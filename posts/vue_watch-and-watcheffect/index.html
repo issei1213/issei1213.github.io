@@ -1,0 +1,270 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+WatchとwatchEffect |
+TechBlog(仮)</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。
+概要 Vue3のwatchとwatchEffectの仕様をまとめていく。また、それぞれの違いもまとめる。
+本題 watch 説明 指定したデータを監視して、変化があればコールバック関数が実行する。
+使い方 単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。
+1. 単一のデータを監視する場合 const count = ref(0) // 第一引数に監視したいデータを記載する watch(count, (newCount, prevCount) => { /* ... */ }) const state = reactive({ count: 0 }) // 第一引数に監視したいデータをコールバック関数で記載する watch(() => state.count, (newCount, prevCount) => { /* ... */ } )  2. 複数のデータを監視する場合  配列を使用することで、複数のデータを監視できる 複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意  const firstName = ref('') const lastName = ref('') // 第一引数を配列にしている watch([firstName, lastName], (newValues, prevValues) => { console.
+    ">
+<meta property="og:title" content="watchとwatchEffect">
+<meta property="og:description" content="背景 Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。
+概要 Vue3のwatchとwatchEffectの仕様をまとめていく。また、それぞれの違いもまとめる。
+本題 watch 説明 指定したデータを監視して、変化があればコールバック関数が実行する。
+使い方 単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。
+1. 単一のデータを監視する場合 const count = ref(0) // 第一引数に監視したいデータを記載する watch(count, (newCount, prevCount) => { /* ... */ }) const state = reactive({ count: 0 }) // 第一引数に監視したいデータをコールバック関数で記載する watch(() => state.count, (newCount, prevCount) => { /* ... */ } )  2. 複数のデータを監視する場合  配列を使用することで、複数のデータを監視できる 複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意  const firstName = ref('') const lastName = ref('') // 第一引数を配列にしている watch([firstName, lastName], (newValues, prevValues) => { console.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/posts/vue_watch-and-watcheffect/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-18T10:36:36+09:00">
+<meta property="article:modified_time" content="2022-03-18T10:36:36+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="watchとwatchEffect">
+<meta name=twitter:description content="背景 Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。
+概要 Vue3のwatchとwatchEffectの仕様をまとめていく。また、それぞれの違いもまとめる。
+本題 watch 説明 指定したデータを監視して、変化があればコールバック関数が実行する。
+使い方 単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。
+1. 単一のデータを監視する場合 const count = ref(0) // 第一引数に監視したいデータを記載する watch(count, (newCount, prevCount) => { /* ... */ }) const state = reactive({ count: 0 }) // 第一引数に監視したいデータをコールバック関数で記載する watch(() => state.count, (newCount, prevCount) => { /* ... */ } )  2. 複数のデータを監視する場合  配列を使用することで、複数のデータを監視できる 複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意  const firstName = ref('') const lastName = ref('') // 第一引数を配列にしている watch([firstName, lastName], (newValues, prevValues) => { console.">
+<meta itemprop=name content="watchとwatchEffect">
+<meta itemprop=description content="背景 Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。
+概要 Vue3のwatchとwatchEffectの仕様をまとめていく。また、それぞれの違いもまとめる。
+本題 watch 説明 指定したデータを監視して、変化があればコールバック関数が実行する。
+使い方 単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。
+1. 単一のデータを監視する場合 const count = ref(0) // 第一引数に監視したいデータを記載する watch(count, (newCount, prevCount) => { /* ... */ }) const state = reactive({ count: 0 }) // 第一引数に監視したいデータをコールバック関数で記載する watch(() => state.count, (newCount, prevCount) => { /* ... */ } )  2. 複数のデータを監視する場合  配列を使用することで、複数のデータを監視できる 複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意  const firstName = ref('') const lastName = ref('') // 第一引数を配列にしている watch([firstName, lastName], (newValues, prevValues) => { console."><meta itemprop=datePublished content="2022-03-18T10:36:36+09:00">
+<meta itemprop=dateModified content="2022-03-18T10:36:36+09:00">
+<meta itemprop=wordCount content="252">
+<meta itemprop=keywords content="Vue.js,">
+<link rel=canonical href=http://example.org/posts/vue_watch-and-watcheffect/>
+<link rel=icon type=image/png href=http://example.org/image/favicon.ico>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog(仮) </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>Home</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>This Blog</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>All Tags</a>
+<a class=navbar-item href=/posts/>All Posts</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>WatchとwatchEffect</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Mar 18, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+6 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/vue.js>Vue.js</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/vue.js>Vue.Js</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。</p>
+<h2 id=概要>概要</h2>
+<p>Vue3の<code>watch</code>と<code>watchEffect</code>の仕様をまとめていく。また、それぞれの違いもまとめる。</p>
+<h2 id=本題>本題</h2>
+<h3 id=watch>watch</h3>
+<h4 id=説明>説明</h4>
+<p>指定したデータを監視して、変化があればコールバック関数が実行する。</p>
+<h4 id=使い方>使い方</h4>
+<p>単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。</p>
+<h5 id=1-単一のデータを監視する場合>1. 単一のデータを監視する場合</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#ae81ff>0</span>)
+<span style=color:#75715e>// 第一引数に監視したいデータを記載する
+</span><span style=color:#75715e></span><span style=color:#a6e22e>watch</span>(<span style=color:#a6e22e>count</span>, (<span style=color:#a6e22e>newCount</span>, <span style=color:#a6e22e>prevCount</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>/* ... */</span>
+})
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>state</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>({ 
+    <span style=color:#a6e22e>count</span>: <span style=color:#66d9ef>0</span> 
+})
+<span style=color:#75715e>// 第一引数に監視したいデータをコールバック関数で記載する
+</span><span style=color:#75715e></span><span style=color:#a6e22e>watch</span>(() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>count</span>, (<span style=color:#a6e22e>newCount</span>, <span style=color:#a6e22e>prevCount</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#75715e>/* ... */</span>
+  }
+)
+</code></pre></div><hr>
+<h5 id=2-複数のデータを監視する場合>2. 複数のデータを監視する場合</h5>
+<ul>
+<li>配列を使用することで、複数のデータを監視できる</li>
+<li>複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>firstName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#e6db74>&#39;&#39;</span>)
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>lastName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#e6db74>&#39;&#39;</span>)
+
+<span style=color:#75715e>// 第一引数を配列にしている
+</span><span style=color:#75715e></span><span style=color:#a6e22e>watch</span>([<span style=color:#a6e22e>firstName</span>, <span style=color:#a6e22e>lastName</span>], (<span style=color:#a6e22e>newValues</span>, <span style=color:#a6e22e>prevValues</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>newValues</span>, <span style=color:#a6e22e>prevValues</span>)
+})
+
+<span style=color:#a6e22e>firstName</span>.<span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;John&#39;</span> <span style=color:#75715e>// logs: [&#34;John&#34;, &#34;&#34;] [&#34;&#34;, &#34;&#34;]
+</span><span style=color:#75715e></span><span style=color:#a6e22e>lastName</span>.<span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Smith&#39;</span> <span style=color:#75715e>// logs: [&#34;John&#34;, &#34;Smith&#34;] [&#34;John&#34;, &#34;&#34;]
+</span></code></pre></div><p>複数のデータを監視し、両方のデータの検知をしたいときには、<code>nextTick</code>などを使用する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>changeValues</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>firstName</span>.<span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;John&#39;</span> <span style=color:#75715e>// logs: [&#34;John&#34;, &#34;&#34;] [&#34;&#34;, &#34;&#34;]
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>nextTick</span>()
+  <span style=color:#a6e22e>lastName</span>.<span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Smith&#39;</span> <span style=color:#75715e>// logs: [&#34;John&#34;, &#34;Smith&#34;] [&#34;John&#34;, &#34;&#34;]
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>アクティブな配列やオブジェクトの値を検知するには、値のコピーを作成する必要がある。また、コールバック関数で記載する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>numbers</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>])
+
+<span style=color:#75715e>//　スプレッド構文で展開する必要がある
+</span><span style=color:#75715e></span><span style=color:#a6e22e>watch</span>(() <span style=color:#f92672>=&gt;</span> [...<span style=color:#a6e22e>numbers</span>], (<span style=color:#a6e22e>numbers</span>, <span style=color:#a6e22e>prevNumbers</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>numbers</span>, <span style=color:#a6e22e>prevNumbers</span>)
+  }
+)
+<span style=color:#a6e22e>numbers</span>.<span style=color:#a6e22e>push</span>(<span style=color:#ae81ff>5</span>) <span style=color:#75715e>// logs: [1,2,3,4,5] [1,2,3,4]
+</span></code></pre></div><p>深くネストしたときには、<code>deep</code>を利用する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>watch</span>(() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>state</span>, (<span style=color:#a6e22e>state</span>, <span style=color:#a6e22e>prevState</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;deep&#39;</span>, <span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>attributes</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>prevState</span>.<span style=color:#a6e22e>attributes</span>.<span style=color:#a6e22e>name</span>)
+  },
+  { <span style=color:#a6e22e>deep</span>: <span style=color:#66d9ef>true</span> }
+)
+</code></pre></div><p>しかし、<code>deep</code>を使った時には、現在値と前回値の取得ができなくなることがあるため、完全に監視するときにはライブラリを利用する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>_</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;lodash&#39;</span>
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>state</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>({
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+  <span style=color:#a6e22e>attributes</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>
+  }
+})
+
+<span style=color:#a6e22e>watch</span>(() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>_</span>.<span style=color:#a6e22e>cloneDeep</span>(<span style=color:#a6e22e>state</span>), (<span style=color:#a6e22e>state</span>, <span style=color:#a6e22e>prevState</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>attributes</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>prevState</span>.<span style=color:#a6e22e>attributes</span>.<span style=color:#a6e22e>name</span>)
+  }
+)
+<span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>attributes</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Alex&#39;</span>; <span style=color:#75715e>// Logs: &#34;Alex&#34; &#34;&#34;
+</span></code></pre></div><h3 id=watcheffect>watchEffect</h3>
+<h4 id=説明-1>説明</h4>
+<ul>
+<li><code>watchEffect</code>関数内のリアクティブオブジェクト(<code>ref</code>, <code>reactive</code>)を監視し、変更されるたびに即座に関数を再実行する。</li>
+<li>変更前と変更後の値は取得できない</li>
+</ul>
+<h4 id=使い方-1>使い方</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#ae81ff>0</span>)
+
+<span style=color:#75715e>// count(ref)が存在するため、変更した時にはコールバック関数が実行される
+</span><span style=color:#75715e></span><span style=color:#a6e22e>watchEffect</span>(() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>value</span>))
+<span style=color:#75715e>// -&gt; logs 0
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>setTimeout</span>(() <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>value</span><span style=color:#f92672>++</span>
+  <span style=color:#75715e>// -&gt; logs 1
+</span><span style=color:#75715e></span>}, <span style=color:#ae81ff>100</span>)
+</code></pre></div><h3 id=watchとwatcheffectの違い>watchとwatchEffectの違い</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>watch</code></th>
+<th><code>watchEffect</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定義の仕方</td>
+<td>監視対象のデータを第一引数に指定</td>
+<td>関数内のリアクティブオブジェクト(<code>ref</code>, <code>reactive</code>)が監視対象</td>
+</tr>
+<tr>
+<td>データの取得</td>
+<td>変更前と変更後のデータが取得できる</td>
+<td>取得できない</td>
+</tr>
+<tr>
+<td>初回実行のタイミング</td>
+<td>定義に実行されない</td>
+<td>定義時に実行する</td>
+</tr>
+</tbody>
+</table>
+<h2 id=まとめ>まとめ</h2>
+<p>どちらを使用するかは意見が別れるとこだとは思うが、個人的には監視する対象を明示的にしておきたいので、<code>watch</code>の方が好みだと感じた。</p>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://v3.ja.vuejs.org/guide/reactivity-computed-watchers.html#%E7%AE%97%E5%87%BA%E3%83%95%E3%82%9A%E3%83%AD%E3%83%8F%E3%82%9A%E3%83%86%E3%82%A3%E3%81%A8%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81>公式ドキュメント</a> <br>
+<a href=https://qiita.com/doz13189/items/d09cfc6e1ff38621c2cc#watch-%E3%81%AE%E5%A4%89%E6%9B%B4%E5%89%8D%E3%81%A8%E5%A4%89%E6%9B%B4%E5%BE%8C%E3%81%AE%E5%80%A4%E3%81%8C%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%82%8B>Qita: Vue 3 の Composition API における watch vs watchEffect</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<p><i>Sharing is caring!</i></p>
+<br>
+<div class=share-buttons>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" onclick="return socialMediaPopUp(this.href,'',500,500),!1" title="Share on Facebook. Opens in a new window.">
+<img src=/img/icons/45px/facebook.png>
+</a>
+<a href="https://twitter.com/intent/tweet?text=watch%e3%81%a8watchEffect&url=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" onclick="return socialMediaPopUp(this.href,'',500,500),!1" title="Share on Twitter. Opens in a new window.">
+<img src=/img/icons/45px/twitter.png>
+</a>
+<a href="http://www.reddit.com/submit?url=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Reddit. Opens in a new window.">
+<img src=/img/icons/45px/reddit.png>
+</a>
+<a href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Pinterest. Opens in a new window.">
+<img src=/img/icons/45px/pinterest.png>
+</a>
+<a href="http://www.tumblr.com/share/link?url=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Tumblr. Opens in a new window.">
+<img src=/img/icons/45px/tumblr.png>
+</a>
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f
+			&title=watch%e3%81%a8watchEffect&summary=%e8%83%8c%e6%99%af%20Vue.js%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%abwatch%e3%82%92%e4%bd%bf%e3%81%86%e9%a0%bb%e5%ba%a6%e3%81%af%e3%81%9d%e3%81%93%e3%81%be%e3%81%a7%e5%a4%9a%e3%81%8f%e3%81%aa%e3%81%8f%e3%80%81%e4%bd%bf%e3%81%86%e5%ba%a6%e3%81%ab%e3%83%89%e3%82%ad%e3%83%a5%e3%83%a1%e3%83%b3%e3%83%88%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b%e3%81%ae%e3%81%a7%e3%80%81%e8%a8%98%e4%ba%8b%e3%81%ab%e3%81%be%e3%81%a8%e3%82%81%e3%81%a6%e3%81%8a%e3%81%8f%e3%80%82%0a%e6%a6%82%e8%a6%81%20Vue3%e3%81%aewatch%e3%81%a8watchEffect%e3%81%ae%e4%bb%95%e6%a7%98%e3%82%92%e3%81%be%e3%81%a8%e3%82%81%e3%81%a6%e3%81%84%e3%81%8f%e3%80%82%e3%81%be%e3%81%9f%e3%80%81%e3%81%9d%e3%82%8c%e3%81%9e%e3%82%8c%e3%81%ae%e9%81%95%e3%81%84%e3%82%82%e3%81%be%e3%81%a8%e3%82%81%e3%82%8b%e3%80%82%0a%e6%9c%ac%e9%a1%8c%20watch%20%e8%aa%ac%e6%98%8e%20%e6%8c%87%e5%ae%9a%e3%81%97%e3%81%9f%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%80%81%e5%a4%89%e5%8c%96%e3%81%8c%e3%81%82%e3%82%8c%e3%81%b0%e3%82%b3%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af%e9%96%a2%e6%95%b0%e3%81%8c%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%80%82%0a%e4%bd%bf%e3%81%84%e6%96%b9%20%e5%8d%98%e4%b8%80%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e7%9b%a3%e8%a6%96%e3%81%a8%e8%a4%87%e6%95%b0%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e7%9b%a3%e8%a6%96%e3%81%ae2%e7%a8%ae%e9%a1%9e%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9%e3%81%8c%e5%ad%98%e5%9c%a8%e3%81%99%e3%82%8b%e3%80%82%0a1.%20%e5%8d%98%e4%b8%80%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88%20const%20count%20%3d%20ref%280%29%20%2f%2f%20%e7%ac%ac%e4%b8%80%e5%bc%95%e6%95%b0%e3%81%ab%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%9f%e3%81%84%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e8%a8%98%e8%bc%89%e3%81%99%e3%82%8b%20watch%28count%2c%20%28newCount%2c%20prevCount%29%20%3d%26gt%3b%20%7b%20%2f%2a%20...%20%2a%2f%20%7d%29%20const%20state%20%3d%20reactive%28%7b%20count%3a%200%20%7d%29%20%2f%2f%20%e7%ac%ac%e4%b8%80%e5%bc%95%e6%95%b0%e3%81%ab%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%9f%e3%81%84%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%82%b3%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af%e9%96%a2%e6%95%b0%e3%81%a7%e8%a8%98%e8%bc%89%e3%81%99%e3%82%8b%20watch%28%28%29%20%3d%26gt%3b%20state.count%2c%20%28newCount%2c%20prevCount%29%20%3d%26gt%3b%20%7b%20%2f%2a%20...%20%2a%2f%20%7d%20%29%20%202.%20%e8%a4%87%e6%95%b0%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88%20%20%e9%85%8d%e5%88%97%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b%e3%81%93%e3%81%a8%e3%81%a7%e3%80%81%e8%a4%87%e6%95%b0%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%a7%e3%81%8d%e3%82%8b%20%e8%a4%87%e6%95%b0%e3%81%ae%e7%9b%a3%e8%a6%96%e3%83%87%e3%83%bc%e3%82%bf%e3%81%8c%e5%90%8c%e6%99%82%e3%81%ab%e5%a4%89%e6%9b%b4%e3%81%99%e3%82%8b%e6%99%82%e3%81%ab%e3%81%af%e3%80%81%e3%82%b3%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af%e9%96%a2%e6%95%b0%e3%81%af%e4%b8%80%e5%ba%a6%e3%81%97%e3%81%a6%e5%8b%95%e3%81%8b%e3%81%aa%e3%81%84%e3%81%9f%e3%82%81%e6%b3%a8%e6%84%8f%20%20const%20firstName%20%3d%20ref%28%26%2339%3b%26%2339%3b%29%20const%20lastName%20%3d%20ref%28%26%2339%3b%26%2339%3b%29%20%2f%2f%20%e7%ac%ac%e4%b8%80%e5%bc%95%e6%95%b0%e3%82%92%e9%85%8d%e5%88%97%e3%81%ab%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%20watch%28%5bfirstName%2c%20lastName%5d%2c%20%28newValues%2c%20prevValues%29%20%3d%26gt%3b%20%7b%20console.&source=rafed123.github.io" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on LinkedIn. Opens in a new window.">
+<img src=/img/icons/45px/linkedin.png>
+</a>
+<a href="mailto:?subject=watch%e3%81%a8watchEffect&body=Check out this site http%3a%2f%2fexample.org%2fposts%2fvue_watch-and-watcheffect%2f" title="Share via Email. Opens in a new window.">
+<img src=/img/icons/45px/mail.png>
+</a>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>
+© 2020 Ramium. Powered by
+<a class=has-text-light href=https://github.com/gohugoio/hugo target=_blank>
+Hugo</a>. Theme
+<a class=has-text-light href=https://github.com/rafed123/ramium/ target=_blank>
+Ramium.
+</a>
+</p>
+</div>
+</footer>
+</body>
+</html>
