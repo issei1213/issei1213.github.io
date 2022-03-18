@@ -135,8 +135,6 @@ input:focus::placeholder {
 .blog-brief .summary {
     color: black;
     opacity: 0.84;
-    font-size: 1.2em;
-
     overflow: hidden;
     max-height: 4.4em;
     min-height: 1.1em;
