@@ -1,38 +1,34 @@
-name: Deploy Github Pages
+name: GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # Set a branch to deploy
+  pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v1
-      - name: Setup Go
-        uses: actions/setup-go@v2
+      - uses: actions/checkout@v2
         with:
-          go-version: '^1.17.6'
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          # The Hugo version to download (if necessary) and use. Example: 0.58.2
-          hugo-version: 'latest'
-          # Download (if necessary) and use Hugo extended version. Example: true
-          extended: true
-      - uses: actions/cache@v2
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
-      - name: Build Hugo
-        run: hugo -v --minify
-      - name: GitHub Pages action
+          hugo-version: '0.91.2'
+          # extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
