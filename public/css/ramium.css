@@ -77,7 +77,6 @@ input:focus::placeholder {
 .blog-text h6 {font-size: 0.9em;}
 
 .blog-text {
-    font-size: 1.2em;
     color: rgba(0, 0, 0, 0.82);
     line-height: 1.7;
     margin-top: 1.8em;
