@@ -1,6 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'ja-jp'
-title = 'My New Hugo Site'
+title = 'TechBlog(仮)'
 [module]
 [[module.imports]]
   path = 'github.com/rafed/ramium'
@@ -43,18 +43,13 @@ enableemoji = true
                 name = "All Tags"
                 url = "/tags/"
                 weight = 1
-            [[menu.main]]
-                parent = "blog"
-                name = "All Sections"
-                url = "/sections/"
-                weight = 2
+#             [[menu.main]]
+#                 parent = "blog"
+#                 name = "All Sections"
+#                 url = "/sections/"
+#                 weight = 2
             [[menu.main]]
                 parent = "blog"
                 name = "All Posts"
                 url = "/posts/"
-                weight = 3
-    
-    [[menu.main]]
-        name = "Author"
-        url = "/author/"
-        weight = 3
+                weight = 2

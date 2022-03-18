@@ -3,7 +3,7 @@
       
       
 	  <url>
-	    <loc>http://example.org/</loc>
+	    <loc>http://example.org/tags/</loc>
 	    <lastmod>0001-01-01</lastmod>
         
 
@@ -14,7 +14,7 @@
       
       
 	  <url>
-	    <loc>http://example.org/tags/</loc>
+	    <loc>http://example.org/</loc>
 	    <lastmod>0001-01-01</lastmod>
         
 
