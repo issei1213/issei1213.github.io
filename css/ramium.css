@@ -71,13 +71,12 @@ input:focus::placeholder {
 
 .blog-text h1 {font-size: 1.75em;}
 .blog-text h2 {font-size: 1.5em;}
-.blog-text h3 {font-size: 1.25em;} 
+.blog-text h3 {font-size: 1.25em;}
 .blog-text h4 {font-size: 1.125em;}
 .blog-text h5 {font-size: 1em;}
 .blog-text h6 {font-size: 0.9em;}
 
 .blog-text {
-    font-size: 1.2em;
     color: rgba(0, 0, 0, 0.82);
     line-height: 1.7;
     margin-top: 1.8em;
@@ -101,7 +100,7 @@ input:focus::placeholder {
 }
 
 /* For margin below videos */
-/* .blog-text div { 
+/* .blog-text div {
     margin-bottom: 1em;
 } */
 
@@ -147,7 +146,7 @@ input:focus::placeholder {
     .blog-brief img {
         height: 5em;
         max-width: 13em;
-        float: left;       
+        float: left;
         margin-right: 0.8em;
         display: block;
     }
