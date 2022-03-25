@@ -51,10 +51,6 @@ TechBlog(仮)</title>
 <section class="hero has-text-centered">
 <div class=hero-body>
 <div class=container>
-<h1 class="title is-1">
-404! Page not found...エラーだよ
-</h1>
-<br><br>
 <h1 class="subtitle is-4">
 Here's what may have happened:
 </h1>
@@ -78,6 +74,51 @@ Here's what may have happened:
 </a>
 </div>
 <div class=blog-brief>
+<a href=/posts/vue_ref_vs_reactive/>
+<h3 class="title is-4">
+Refとreactive
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/vue_ref_vs_reactive/>
+<p class="subtitle info date">Mar 25, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/vue_ref_vs_reactive/>
+<p class="subtitle info">
+4 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/vue.js>Vue.js</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/vue_ref_vs_reactive/>
+<p class=summary>
+背景 refとreactiveの使い分けがパッとでてこなかったことがあったのでまとめていく。
+概要 どの状況で使い分ければいいのか refとreactiveの違い 本題 1.どの状況で使い分ければいいのか refはプリミティブ型に対して使用する。 reactiveはオブジェクト型に対して使用する。
+2.refとreactiveの違い ref const boolean = ref(false) // export function ref&lt;boolean>(value: boolean): Ref&lt;boolean> TypeScriptの場合は、引数(初期値)を型推論してくれる。 明示的にしたい型注釈したい場合は、ref&lt;boolean | null>(false)と使用することもできる。 基本的になんでも(オブジェクト、配列、プリミティブ)refで使用ができる。 引数の値がオブジェクトの場合は、Vue内部でreactiveに更新している。更新している負荷を与えてしまうため、オブジェクトの場合は、reactiveを使用したほうがいいと言われている。 ref.valueでデータを格納する Ex)boolean.value = true reactive const user = reactive({ firstName: '太郎', lastName: '山田', height: 160, weight: 50 }) // const user: {firstName: string, lastName: string, height: number, weight: number} TypeScriptの場合は、引数(初期値)を型推論してくれる。 型注釈をつけたい場合は、ジェネクリスを使用できる const user = reactive&lt;{ firstName?: string lastName?
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/vue_ref_vs_reactive/>Continue reading <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/vue_watch-and-watcheffect/>
 <h3 class="title is-4">
 WatchとwatchEffect
