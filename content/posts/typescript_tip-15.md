@@ -94,7 +94,7 @@ or
 { type: 'SIGN_OUT' }
 ```
 のどちらかになる。
-`Extract`型については、以下の記事を参考にするとわかりやすいかも。
+`Extract`型については、以下の記事を参考にするとわかりやすいかも。<br>
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu)
 
 4. `infer`は条件分岐後で推論された型を指定することができる。例えば`...args`が`['LOG_IN', { userId: '123' }]`の場合、`[Type, TPayload]`を参照し`Tpayload`は`{ userId: string }`になる。<br>
