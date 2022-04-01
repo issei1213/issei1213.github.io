@@ -80,25 +80,25 @@ const sendEvent = <Type extends AuthEvent['type']>(
 ...args
 // Ex) ['SIGN_OUT'], ['LOG_IN', { userId: '123' }]
 ```
-3.`Extract`型で`AuthEvent`が`{ type: Type }`に代入可能なプロパティを残した型が生成できる。<br>
+3. `Extract`型で`AuthEvent`が`{ type: Type }`に代入可能なプロパティを残した型が生成できる。<br>
 ```typescript
 Extract<AuthEvent, { type: Type }>
 ```
 1の時点で`Type`は`LOG_IN`or`SIGN_OUT`にどちらかに決まっていたので、`{ type: Type }`は`{ type: 'LOG_IN' }` or `{ type: 'SIGN_OUT' }`のどちらかになる。<br>
 なので、上記のコードで
 ```typescript
-{ type: 'LOG_IN'; payload: { userId: string } }
-```
+{ payload: { userId: string } }
+
 or
-```typescript
-{ type: 'SIGN_OUT' }
+
+never
 ```
-のどちらかになる。
 `Extract`型については、以下の記事を参考にするとわかりやすいかも。<br>
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu)
 
-4. `infer`は条件分岐後で推論された型を指定することができる。例えば`...args`が`['LOG_IN', { userId: '123' }]`の場合、`[Type, TPayload]`を参照し`Tpayload`は`{ userId: string }`になる。<br>
-つまり、`{ payload: infer TPayload }`は`{ payload: { userId: string } }`となり3の`Extract`に制約をつけることができる。<br>
+4. 3で`Extract`の型はわかったので`{ payload: infer TPayload }`をが存在するかの条件分岐を行う。<br>
+`Extract`型に`payload`が存在するかを確認して、`[Type, TPayload]`or`[Type]`の分岐を行う。<br>
+また、`infer`は型は`payload`が存在していれば`TPayload`として推論してくれる。
 この時点で`payload`がある引数なのか、ない引数なのかの判定ができる。
 ```typescript
 Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload }
@@ -106,10 +106,10 @@ Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload }
     : [Type]
 ```
 
-[【TypeScript】 inferに詳しくなろう](https://qiita.com/ehika/items/8f41d4a3c8f9df4af9c3#infer%E3%81%A8%E3%81%AF)
+`infer`については以下の記事がしっくりきた。  
+[TypeScriptのinferを今度こそちゃんと理解する](https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer)
 
 ちなみに失敗パターンは以下の型エラーになる
-失敗パターン(コンパイルエラー)
 ```typescript
 sendEvent('SIGN_OUT', {})
 // Expected 1 arguments, but got 2.
@@ -136,5 +136,5 @@ Thank you Matt Pocock for your informative tweet. I learned a lot.
 ## 参考文献
 https://twitter.com/mpocock1/status/1509850662795989005 <br> 
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu) <br>
-[【TypeScript】 inferに詳しくなろう](https://qiita.com/ehika/items/8f41d4a3c8f9df4af9c3#infer%E3%81%A8%E3%81%AF)
+[TypeScriptのinferを今度こそちゃんと理解する](https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer)
 
