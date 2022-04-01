@@ -175,7 +175,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
 <ol start=4>
 <li><code>infer</code>は条件分岐後で推論された型を指定することができる。例えば<code>...args</code>が<code>['LOG_IN', { userId: '123' }]</code>の場合、<code>[Type, TPayload]</code>を参照し<code>Tpayload</code>は<code>{ userId: string }</code>になる。<br>
-つまり、<code>{ payload: infer TPayload }</code>は<code>{ payload: { userId: string } }</code>となり3の<code>Extract</code>に制約をつけることができる。
+つまり、<code>{ payload: infer TPayload }</code>は<code>{ payload: { userId: string } }</code>となり3の<code>Extract</code>に制約をつけることができる。<br>
 この時点で<code>payload</code>がある引数なのか、ない引数なのかの判定ができる。</li>
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> }
