@@ -98,7 +98,7 @@ or
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu)
 
 4. `infer`は条件分岐後で推論された型を指定することができる。例えば`...args`が`['LOG_IN', { userId: '123' }]`の場合、`[Type, TPayload]`を参照し`Tpayload`は`{ userId: string }`になる。<br>
-つまり、`{ payload: infer TPayload }`は`{ payload: { userId: string } }`となり3の`Extract`に制約をつけることができる。
+つまり、`{ payload: infer TPayload }`は`{ payload: { userId: string } }`となり3の`Extract`に制約をつけることができる。<br>
 この時点で`payload`がある引数なのか、ない引数なのかの判定ができる。
 ```typescript
 Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload }
