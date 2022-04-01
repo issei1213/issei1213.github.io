@@ -85,7 +85,7 @@ const sendEvent = <Type extends AuthEvent['type']>(
 Extract<AuthEvent, { type: Type }>
 ```
 1の時点で`Type`は`LOG_IN`or`SIGN_OUT`にどちらかに決まっていたので、`{ type: Type }`は`{ type: 'LOG_IN' }` or `{ type: 'SIGN_OUT' }`のどちらかになる。<br>
-なので、上記のコードで
+なので、上記のコードで以下のどちらかになる
 ```typescript
 { payload: { userId: string } }
 
