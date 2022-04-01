@@ -61,6 +61,28 @@ TechBlog(仮)
 </div>
 </div>
 </section>
+<div class="columns is-centered has-text-centered">
+<div class="column is-10">
+<div class=content>
+<a href=/tags/>
+<h1>Read articles by tags</h1>
+</a>
+<p class=tags-summary>
+<a href=/tags/typescript>
+<span class="tag is-dark is-large is-rounded">
+Typescript
+</span>
+</a>
+<a href=/tags/vue.js>
+<span class="tag is-dark is-large is-rounded">
+Vue.js
+</span>
+</a>
+</p>
+</div>
+</div>
+</div>
+<br>
 <div class="columns is-centered">
 <div class="column is-7">
 <div class=content>
@@ -69,6 +91,55 @@ TechBlog(仮)
 </a>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript_tip-#15/>
+<h3 class="title is-4">
+Typescript Tip #15
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_tip-#15/>
+<p class="subtitle info date">Apr 1, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-#15/>
+<p class="subtitle info">
+6 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-#15/>
+<p class=summary>
+背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
+https://twitter.com/mpocock1/status/1509850662795989005
+概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent("LOG_IN", { userId: '123' }) 成功パターン
+sendEvent('SIGN_OUT') sendEvent("LOG_IN", { userId: '123' }) 失敗パターン(コンパイルエラー)
+sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
+type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = &lt;Type extends AuthEvent['type']>( ...args: Extract&lt;AuthEvent, { type: Type }> extends { payload: infer TPayload } ?
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-#15/>Continue reading <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/vue_ref_vs_reactive/>
 <h3 class="title is-4">
 Refとreactive
