@@ -1,0 +1,13 @@
+<div class="columns is-centered">
+    <div class="column is-7">
+        {{ range first 5 (where .Site.RegularPages.ByPublishDate.Reverse ".Section" "not in" "addons") }}
+        {{- partial "blog-brief.html" . -}}
+        {{ end }}
+
+        <div class="content">
+            <a href="{{ "/posts/" | relURL }}">
+                <h4 class="has-text-centered seeall">全てを見る</h4>
+            </a>
+        </div>
+    </div>
+</div>

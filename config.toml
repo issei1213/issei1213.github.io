@@ -1,6 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'ja-jp'
-title = 'TechBlog(仮)'
+title = 'TechBlog'
 [module]
 [[module.imports]]
   path = 'github.com/rafed/ramium'
@@ -21,6 +21,7 @@ enableemoji = true
     sectionsInHome = 5  # set zero to not show in home page
     paginatePostsPerPage = 5
     paginateTagsPerPage = 6
+    GithubProfile = true
 
 [taxonomies]
     tag = "tags"
@@ -30,17 +31,17 @@ enableemoji = true
 
 [menu]
     [[menu.main]]
-        name = "Home"
+        name = "ホーム"
         url = "/"
         weight = 1
 
     [[menu.main]]
         identifier = "blog"
-        name = "This Blog"
+        name = "ブログ"
         weight = 2
             [[menu.main]]
                 parent = "blog"
-                name = "All Tags"
+                name = "タグ"
                 url = "/tags/"
                 weight = 1
 #             [[menu.main]]
@@ -50,6 +51,6 @@ enableemoji = true
 #                 weight = 2
             [[menu.main]]
                 parent = "blog"
-                name = "All Posts"
+                name = "記事"
                 url = "/posts/"
                 weight = 2
