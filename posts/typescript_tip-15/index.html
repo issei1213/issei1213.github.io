@@ -171,7 +171,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 </code></pre></div><p>or</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;SIGN_OUT&#39;</span> }
 </code></pre></div><p>のどちらかになる。
-<code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。
+<code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
 <ol start=4>
 <li><code>infer</code>は条件分岐後で推論された型を指定することができる。例えば<code>...args</code>が<code>['LOG_IN', { userId: '123' }]</code>の場合、<code>[Type, TPayload]</code>を参照し<code>Tpayload</code>は<code>{ userId: string }</code>になる。<br>
