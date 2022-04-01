@@ -168,7 +168,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt;
 </code></pre></div><p>1の時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>にどちらかに決まっていたので、<code>{ type: Type }</code>は<code>{ type: 'LOG_IN' }</code> or <code>{ type: 'SIGN_OUT' }</code>のどちらかになる。<br>
-なので、上記のコードで</p>
+なので、上記のコードで以下のどちらかになる</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
 
 <span style=color:#a6e22e>or</span>
