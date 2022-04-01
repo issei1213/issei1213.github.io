@@ -42,7 +42,7 @@ sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パ�
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?"><meta itemprop=datePublished content="2022-04-01T23:23:48+09:00">
 <meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
-<meta itemprop=wordCount content="270">
+<meta itemprop=wordCount content="250">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=http://example.org/posts/typescript_tip-15/>
 <link rel=icon type=image/png href=http://example.org/image/favicon.ico>
@@ -163,27 +163,31 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>...<span style=color:#a6e22e>args</span>
 <span style=color:#75715e>// Ex) [&#39;SIGN_OUT&#39;], [&#39;LOG_IN&#39;, { userId: &#39;123&#39; }]
-</span></code></pre></div><p>3.<code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能なプロパティを残した型が生成できる。<br></p>
+</span></code></pre></div><ol start=3>
+<li><code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能なプロパティを残した型が生成できる。<br></li>
+</ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt;
 </code></pre></div><p>1の時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>にどちらかに決まっていたので、<code>{ type: Type }</code>は<code>{ type: 'LOG_IN' }</code> or <code>{ type: 'SIGN_OUT' }</code>のどちらかになる。<br>
 なので、上記のコードで</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;LOG_IN&#39;</span>; <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
-</code></pre></div><p>or</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;SIGN_OUT&#39;</span> }
-</code></pre></div><p>のどちらかになる。
-<code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
+
+<span style=color:#a6e22e>or</span>
+
+<span style=color:#66d9ef>never</span>
+</code></pre></div><p><code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
 <ol start=4>
-<li><code>infer</code>は条件分岐後で推論された型を指定することができる。例えば<code>...args</code>が<code>['LOG_IN', { userId: '123' }]</code>の場合、<code>[Type, TPayload]</code>を参照し<code>Tpayload</code>は<code>{ userId: string }</code>になる。<br>
-つまり、<code>{ payload: infer TPayload }</code>は<code>{ payload: { userId: string } }</code>となり3の<code>Extract</code>に制約をつけることができる。<br>
+<li>3で<code>Extract</code>の型はわかったので<code>{ payload: infer TPayload }</code>をが存在するかの条件分岐を行う。<br>
+<code>Extract</code>型に<code>payload</code>が存在するかを確認して、<code>[Type, TPayload]</code>or<code>[Type]</code>の分岐を行う。<br>
+また、<code>infer</code>は型は<code>payload</code>が存在していれば<code>TPayload</code>として推論してくれる。
 この時点で<code>payload</code>がある引数なのか、ない引数なのかの判定ができる。</li>
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> }
     <span style=color:#f92672>?</span> [<span style=color:#a6e22e>Type</span>, <span style=color:#a6e22e>TPayload</span>]
     <span style=color:#f92672>:</span> [<span style=color:#a6e22e>Type</span>]
-</code></pre></div><p><a href=https://qiita.com/ehika/items/8f41d4a3c8f9df4af9c3#infer%E3%81%A8%E3%81%AF>【TypeScript】 inferに詳しくなろう</a></p>
-<p>ちなみに失敗パターンは以下の型エラーになる
-失敗パターン(コンパイルエラー)</p>
+</code></pre></div><p><code>infer</code>については以下の記事がしっくりきた。<br>
+<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
+<p>ちなみに失敗パターンは以下の型エラーになる</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>, {})
 <span style=color:#75715e>// Expected 1 arguments, but got 2.
 </span><span style=color:#75715e></span>
@@ -205,7 +209,7 @@ Thank you Matt Pocock for your informative tweet. I learned a lot.</p>
 <h2 id=参考文献>参考文献</h2>
 <p><a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a> <br>
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a> <br>
-<a href=https://qiita.com/ehika/items/8f41d4a3c8f9df4af9c3#infer%E3%81%A8%E3%81%AF>【TypeScript】 inferに詳しくなろう</a></p>
+<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
 </div>
 </div><div id=social-media-share class=has-text-centered>
 <p><i>Sharing is caring!</i></p>
