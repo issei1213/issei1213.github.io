@@ -1,7 +1,7 @@
 <!doctype html><html lang=ja-jp>
 <head><title>
 Refとreactive |
-TechBlog(仮)</title>
+TechBlog</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="背景 refとreactiveの使い分けがパッとでてこなかったことがあったのでまとめていく。
@@ -38,7 +38,7 @@ TechBlog(仮)</title>
 <body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
 <div class=navbar-brand>
 <a class=navbar-item href=/>
-<strong>TechBlog(仮) </strong>
+<strong>TechBlog </strong>
 </a>
 <a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
 <span aria-hidden=true></span>
@@ -48,16 +48,22 @@ TechBlog(仮)</title>
 </div>
 <div id=navbarBasicExample class=navbar-menu>
 <div class=navbar-start>
-<a class=navbar-item href=/>Home</a>
+<a class=navbar-item href=/>ホーム</a>
 <div class="navbar-item has-dropdown is-hoverable">
-<a class=navbar-link>This Blog</a>
+<a class=navbar-link>ブログ</a>
 <div class=navbar-dropdown>
-<a class=navbar-item href=/tags/>All Tags</a>
-<a class=navbar-item href=/posts/>All Posts</a>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
 </div>
 </div>
 </div>
 <div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
 </div>
 </div>
 </nav><div class="columns is-centered">
@@ -145,31 +151,8 @@ TechBlog(仮)</title>
 <p><a href=https://stackoverflow.com/questions/61452458/ref-vs-reactive-in-vue-3>ref vs reactive in Vue 3?</a></p>
 </div>
 </div><div id=social-media-share class=has-text-centered>
-<p><i>Sharing is caring!</i></p>
 <br>
 <div class=share-buttons>
-<a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" onclick="return socialMediaPopUp(this.href,'',500,500),!1" title="Share on Facebook. Opens in a new window.">
-<img src=/img/icons/45px/facebook.png>
-</a>
-<a href="https://twitter.com/intent/tweet?text=ref%e3%81%a8reactive&url=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" onclick="return socialMediaPopUp(this.href,'',500,500),!1" title="Share on Twitter. Opens in a new window.">
-<img src=/img/icons/45px/twitter.png>
-</a>
-<a href="http://www.reddit.com/submit?url=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Reddit. Opens in a new window.">
-<img src=/img/icons/45px/reddit.png>
-</a>
-<a href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Pinterest. Opens in a new window.">
-<img src=/img/icons/45px/pinterest.png>
-</a>
-<a href="http://www.tumblr.com/share/link?url=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on Tumblr. Opens in a new window.">
-<img src=/img/icons/45px/tumblr.png>
-</a>
-<a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f
-			&title=ref%e3%81%a8reactive&summary=%e8%83%8c%e6%99%af%20ref%e3%81%a8reactive%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91%e3%81%8c%e3%83%91%e3%83%83%e3%81%a8%e3%81%a7%e3%81%a6%e3%81%93%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%81%93%e3%81%a8%e3%81%8c%e3%81%82%e3%81%a3%e3%81%9f%e3%81%ae%e3%81%a7%e3%81%be%e3%81%a8%e3%82%81%e3%81%a6%e3%81%84%e3%81%8f%e3%80%82%0a%e6%a6%82%e8%a6%81%20%20%e3%81%a9%e3%81%ae%e7%8a%b6%e6%b3%81%e3%81%a7%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91%e3%82%8c%e3%81%b0%e3%81%84%e3%81%84%e3%81%ae%e3%81%8b%20ref%e3%81%a8reactive%e3%81%ae%e9%81%95%e3%81%84%20%20%e6%9c%ac%e9%a1%8c%201.%e3%81%a9%e3%81%ae%e7%8a%b6%e6%b3%81%e3%81%a7%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91%e3%82%8c%e3%81%b0%e3%81%84%e3%81%84%e3%81%ae%e3%81%8b%20ref%e3%81%af%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e5%9e%8b%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b%e3%80%82%20reactive%e3%81%af%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e5%9e%8b%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b%e3%80%82%0a2.ref%e3%81%a8reactive%e3%81%ae%e9%81%95%e3%81%84%20ref%20const%20boolean%20%3d%20ref%28false%29%20%2f%2f%20export%20function%20ref%26lt%3bboolean%26gt%3b%28value%3a%20boolean%29%3a%20Ref%26lt%3bboolean%26gt%3b%20%20TypeScript%e3%81%ae%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81%e5%bc%95%e6%95%b0%28%e5%88%9d%e6%9c%9f%e5%80%a4%29%e3%82%92%e5%9e%8b%e6%8e%a8%e8%ab%96%e3%81%97%e3%81%a6%e3%81%8f%e3%82%8c%e3%82%8b%e3%80%82%20%e6%98%8e%e7%a4%ba%e7%9a%84%e3%81%ab%e3%81%97%e3%81%9f%e3%81%84%e5%9e%8b%e6%b3%a8%e9%87%88%e3%81%97%e3%81%9f%e3%81%84%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81ref%26lt%3bboolean%20%7c%20null%26gt%3b%28false%29%e3%81%a8%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b%e3%81%93%e3%81%a8%e3%82%82%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e5%9f%ba%e6%9c%ac%e7%9a%84%e3%81%ab%e3%81%aa%e3%82%93%e3%81%a7%e3%82%82%28%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%80%81%e9%85%8d%e5%88%97%e3%80%81%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%29ref%e3%81%a7%e4%bd%bf%e7%94%a8%e3%81%8c%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e5%bc%95%e6%95%b0%e3%81%ae%e5%80%a4%e3%81%8c%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ae%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81Vue%e5%86%85%e9%83%a8%e3%81%a7reactive%e3%81%ab%e6%9b%b4%e6%96%b0%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%80%82%e6%9b%b4%e6%96%b0%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e8%b2%a0%e8%8d%b7%e3%82%92%e4%b8%8e%e3%81%88%e3%81%a6%e3%81%97%e3%81%be%e3%81%86%e3%81%9f%e3%82%81%e3%80%81%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ae%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81reactive%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%97%e3%81%9f%e3%81%bb%e3%81%86%e3%81%8c%e3%81%84%e3%81%84%e3%81%a8%e8%a8%80%e3%82%8f%e3%82%8c%e3%81%a6%e3%81%84%e3%82%8b%e3%80%82%20ref.value%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%a0%bc%e7%b4%8d%e3%81%99%e3%82%8b%20Ex%29boolean.value%20%3d%20true%20%20reactive%20const%20user%20%3d%20reactive%28%7b%20firstName%3a%20%26%2339%3b%e5%a4%aa%e9%83%8e%26%2339%3b%2c%20lastName%3a%20%26%2339%3b%e5%b1%b1%e7%94%b0%26%2339%3b%2c%20height%3a%20160%2c%20weight%3a%2050%20%7d%29%20%2f%2f%20const%20user%3a%20%7bfirstName%3a%20string%2c%20lastName%3a%20string%2c%20height%3a%20number%2c%20weight%3a%20number%7d%20%20TypeScript%e3%81%ae%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81%e5%bc%95%e6%95%b0%28%e5%88%9d%e6%9c%9f%e5%80%a4%29%e3%82%92%e5%9e%8b%e6%8e%a8%e8%ab%96%e3%81%97%e3%81%a6%e3%81%8f%e3%82%8c%e3%82%8b%e3%80%82%20%e5%9e%8b%e6%b3%a8%e9%87%88%e3%82%92%e3%81%a4%e3%81%91%e3%81%9f%e3%81%84%e5%a0%b4%e5%90%88%e3%81%af%e3%80%81%e3%82%b8%e3%82%a7%e3%83%8d%e3%82%af%e3%83%aa%e3%82%b9%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%a7%e3%81%8d%e3%82%8b%20%20const%20user%20%3d%20reactive%26lt%3b%7b%20firstName%3f%3a%20string%20lastName%3f&source=rafed123.github.io" onclick="return socialMediaPopUp(this.href,'',900,500),!1" title="Share on LinkedIn. Opens in a new window.">
-<img src=/img/icons/45px/linkedin.png>
-</a>
-<a href="mailto:?subject=ref%e3%81%a8reactive&body=Check out this site http%3a%2f%2fexample.org%2fposts%2fvue_ref_vs_reactive%2f" title="Share via Email. Opens in a new window.">
-<img src=/img/icons/45px/mail.png>
-</a>
 </div>
 </div>
 <br>
@@ -180,14 +163,7 @@ TechBlog(仮)</title>
 </div>
 <footer class="footer has-background-dark">
 <div class="content has-text-centered has-text-white">
-<p>
-© 2020 Ramium. Powered by
-<a class=has-text-light href=https://github.com/gohugoio/hugo target=_blank>
-Hugo</a>. Theme
-<a class=has-text-light href=https://github.com/rafed123/ramium/ target=_blank>
-Ramium.
-</a>
-</p>
+<p>© 2022 issei1213 All rights reserved.</p>
 </div>
 </footer>
 </body>
