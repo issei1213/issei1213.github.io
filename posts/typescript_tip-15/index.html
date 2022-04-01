@@ -21,7 +21,7 @@ sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パ�
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://example.org/posts/typescript_tip-15/"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-15/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-04-01T23:23:48+09:00">
 <meta property="article:modified_time" content="2022-04-01T23:23:48+09:00">
 <meta name=twitter:card content="summary">
@@ -44,8 +44,8 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
 <meta itemprop=wordCount content="250">
 <meta itemprop=keywords content="TypeScript,">
-<link rel=canonical href=http://example.org/posts/typescript_tip-15/>
-<link rel=icon type=image/png href=http://example.org/image/favicon.ico>
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-15/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script src=/js/ramium.js></script>
