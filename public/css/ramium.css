@@ -200,6 +200,11 @@ input:focus::placeholder {
 
 /******** Footer *******/
 
+.footer{
+    background-color: #fafafa;
+    padding: 2rem;
+}
+
 .footer p {
     font-size: 0.9em;
 }
@@ -228,4 +233,12 @@ kbd {
 
 #___gcse_0 {
     max-height: 0;
+}
+
+
+/***** カスタム ****/
+.hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 2rem 1.5rem;
 }

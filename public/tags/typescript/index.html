@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+
+<head><title>
+    TypeScript | 
+    
+    TechBlog</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A description for the meta tag of the site
+    ">
+
+
+<meta property="og:title" content="TypeScript" />
+<meta property="og:description" content="A description for the meta tag of the site" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/tags/typescript/" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TypeScript"/>
+<meta name="twitter:description" content="A description for the meta tag of the site"/>
+
+<meta itemprop="name" content="TypeScript">
+<meta itemprop="description" content="A description for the meta tag of the site">
+<link rel="canonical" href="http://example.org/tags/typescript/" />
+
+<link rel="icon" type="image/png" href="http://example.org/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>TechBlog </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">ホーム</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">ブログ</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">タグ</a>
+          
+          <a class="navbar-item" href="/posts/">記事</a>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+      <a class="navbar-item navgithub" href="https://github.com/issei1213" target="_blank">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
+      
+
+      <a class="navbar-item navgithub" href="https://twitter.com/abIOELEsEfu6Os0" target="_blank">
+        <i class="fa brands fa-twitter fa-2x"></i>
+      </a>
+
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content">
+    <h1>TypeScript</h1>
+</div>
+
+<div class="blog-brief">
+    <a href="/posts/typescript_tip-15/">
+        <h3 class="title is-4">
+            TypeScript Tip #15
+        </h3>
+    </a>
+
+    <div class="level is-mobile details">
+        <div class="level-left">
+
+            
+            <div class="level-item">
+                <a href="/posts/typescript_tip-15/">
+                    <p class="subtitle info date">Apr 1, 2022
+                    </p>
+                </a>
+            </div>
+            
+
+
+            <div class="level-item">
+                <a href="/posts/typescript_tip-15/">
+                    <p class="subtitle info">
+                        6 mins read
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            
+            <a class="tag is-rounded" href="/tags/typescript">TypeScript</a>
+            
+        </div>
+    </div>
+
+    <div>
+        
+
+        <div>
+            <a href="/posts/typescript_tip-15/">
+                <p class="summary">
+                    背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
+https://twitter.com/mpocock1/status/1509850662795989005
+概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent(&#39;SIGN_OUT&#39;) // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 成功パターン
+sendEvent(&#39;SIGN_OUT&#39;) sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 失敗パターン(コンパイルエラー)
+sendEvent(&#39;SIGN_OUT&#39;, {}) sendEvent(&#39;LOG_IN&#39;, { userId: 122 }) sendEvent(&#39;LOG_IN&#39;, {}) sendEvent(&#39;LOG_IN&#39;) 本題 以下のコードで実現可能
+type AuthEvent = | { type: &#39;LOG_IN&#39; payload: { userId: string } } | { type: &#39;SIGN_OUT&#39; } const sendEvent = &lt;Type extends AuthEvent[&#39;type&#39;]&gt;( ...args: Extract&lt;AuthEvent, { type: Type }&gt; extends { payload: infer TPayload } ?
+                    
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <div class="level is-mobile continue-reading">
+        <div class="level-left">
+        </div>
+        <div class="level-right">
+            <a href="/posts/typescript_tip-15/">続きを読む <i class="fa fa-angle-double-right"
+                    aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <hr>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>© 2022 issei1213 All rights reserved.</p>
+    </div>
+</footer>
+</body>
+
+</html>
