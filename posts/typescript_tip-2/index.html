@@ -1,0 +1,236 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #2 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
+概要 以下のコードリーディングをしていく。
+非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。
+type Result<T, E extends Error> = Ok<T, E> | Err<T, E> export class Ok<T, E extends Error> { constructor(readonly val: T) {} isOk = (): this is Ok<T, E> => true isErr = (): this is Err<T, E> => false } export class Err<T, E extends Error> { constructor(readonly err: E) {} isOk = (): this is Ok<T, E> => false isErr = (): this is Err<T, E> => true } export const withResult = <T, A extends any[], E extends Error>(fn: (.
+    ">
+<meta property="og:title" content="TypeScript Tip #2">
+<meta property="og:description" content="背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
+概要 以下のコードリーディングをしていく。
+非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。
+type Result<T, E extends Error> = Ok<T, E> | Err<T, E> export class Ok<T, E extends Error> { constructor(readonly val: T) {} isOk = (): this is Ok<T, E> => true isErr = (): this is Err<T, E> => false } export class Err<T, E extends Error> { constructor(readonly err: E) {} isOk = (): this is Ok<T, E> => false isErr = (): this is Err<T, E> => true } export const withResult = <T, A extends any[], E extends Error>(fn: (.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-2/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-02T13:39:20+09:00">
+<meta property="article:modified_time" content="2022-04-02T13:39:20+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #2">
+<meta name=twitter:description content="背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
+概要 以下のコードリーディングをしていく。
+非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。
+type Result<T, E extends Error> = Ok<T, E> | Err<T, E> export class Ok<T, E extends Error> { constructor(readonly val: T) {} isOk = (): this is Ok<T, E> => true isErr = (): this is Err<T, E> => false } export class Err<T, E extends Error> { constructor(readonly err: E) {} isOk = (): this is Ok<T, E> => false isErr = (): this is Err<T, E> => true } export const withResult = <T, A extends any[], E extends Error>(fn: (.">
+<meta itemprop=name content="TypeScript Tip #2">
+<meta itemprop=description content="背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
+概要 以下のコードリーディングをしていく。
+非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。
+type Result<T, E extends Error> = Ok<T, E> | Err<T, E> export class Ok<T, E extends Error> { constructor(readonly val: T) {} isOk = (): this is Ok<T, E> => true isErr = (): this is Err<T, E> => false } export class Err<T, E extends Error> { constructor(readonly err: E) {} isOk = (): this is Ok<T, E> => false isErr = (): this is Err<T, E> => true } export const withResult = <T, A extends any[], E extends Error>(fn: (."><meta itemprop=datePublished content="2022-04-02T13:39:20+09:00">
+<meta itemprop=dateModified content="2022-04-02T13:39:20+09:00">
+<meta itemprop=wordCount content="426">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-2/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #2</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 2, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+6 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。</p>
+<h2 id=概要>概要</h2>
+<p>以下のコードリーディングをしていく。<br>
+非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Result</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>|</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; {
+    <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>val</span>: <span style=color:#66d9ef>T</span>) {}
+    <span style=color:#a6e22e>isOk</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>
+    <span style=color:#a6e22e>isErr</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>false</span>
+}
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; {
+    <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>err</span>: <span style=color:#66d9ef>E</span>) {}
+    <span style=color:#a6e22e>isOk</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>false</span>
+    <span style=color:#a6e22e>isErr</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>
+}
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>withResult</span> <span style=color:#f92672>=</span>
+    &lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>A</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>any</span><span style=color:#960050;background-color:#1e0010>[],</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt;(<span style=color:#a6e22e>fn</span><span style=color:#f92672>:</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>A</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>T</span>&gt;)    <span style=color:#f92672>=&gt;</span>
+        <span style=color:#66d9ef>async</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>A</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>Result</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt;<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>try</span> {
+                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Ok</span>(<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fn</span>(...<span style=color:#a6e22e>args</span>))
+            } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+                <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>error</span> <span style=color:#66d9ef>instanceof</span> Error) {
+                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Err</span>(<span style=color:#a6e22e>error</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>E</span>)
+                }
+                <span style=color:#75715e>//   return new Err(error as E)
+</span><span style=color:#75715e></span>            }
+        }
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>User</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>number</span>,
+    <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>,
+    <span style=color:#a6e22e>title</span>: <span style=color:#66d9ef>string</span>,
+    <span style=color:#a6e22e>completed</span>: <span style=color:#66d9ef>boolean</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span>(<span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>User</span>&gt;  <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>`https://jsonplaceholder.typicode.com/todos/</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>userId</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>()
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>result</span>
+}
+
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>wrapperMethod</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>void</span>&gt; <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>withResult</span>(<span style=color:#a6e22e>getUser</span>)(<span style=color:#e6db74>&#39;1&#39;</span>);
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>)
+    <span style=color:#75715e>// Ok: {
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// &#34;val&#34;: {
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//     &#34;userId&#34;: 1,
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//        &#34;id&#34;: 1,
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//        &#34;title&#34;: &#34;delectus aut autem&#34;,
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//        &#34;completed&#34;: false
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//  }
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//}
+</span><span style=color:#75715e></span>    
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>isErr</span>()) {
+        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>err</span>);
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>val</span>;
+        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Hello, userId:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>userId</span><span style=color:#e6db74>}</span><span style=color:#e6db74>!`</span>);
+        <span style=color:#75715e>// &#34;Hello, userId:1!&#34; 
+</span><span style=color:#75715e></span>    }
+}
+
+<span style=color:#a6e22e>wrapperMethod</span>()
+</code></pre></div><h2 id=本題>本題</h2>
+<ol>
+<li>classの中身を確認していく</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; {
+    <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>val</span>: <span style=color:#66d9ef>T</span>) {}
+    <span style=color:#a6e22e>isOk</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>
+    <span style=color:#a6e22e>isErr</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>false</span>
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; {
+    <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>err</span>: <span style=color:#66d9ef>E</span>) {}
+    <span style=color:#a6e22e>isOk</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>false</span>
+    <span style=color:#a6e22e>isErr</span> <span style=color:#f92672>=</span> ()<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>is</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>
+}
+</code></pre></div><p>1-1. <code>E extends Error</code>はジェネリクス型で型推論される型<code>E</code>に<code>Error</code>型の制約を設けている<br>
+1-2. <code>isOk = (): this is Ok&lt;T, E> => true</code>の<code>is</code>は<code>isOK</code>メソッドの戻り値をクラスで型指定させて、<code>this</code>の絞り込みをしている。<br>
+<a href=https://qiita.com/ryo2132/items/ce9e13899e45dcfaff9b#is target=_blank>TypeScript の"is"と"in"を理解する</a><br>
+1-3. 各クラスのメソッドの返り値はBooleanは逆になっている</p>
+<ol start=2>
+<li><code>Result</code>をみていく</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Result</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>Ok</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt; <span style=color:#f92672>|</span> <span style=color:#a6e22e>Err</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt;
+</code></pre></div><p>2-1. 1-1と同じように<code>Result</code>のジェネリクス内でも制約を設けている <br>
+2-2. 先ほど定義してクラスの合併型を定義している</p>
+<ol start=3>
+<li><code>withResult</code>関数を見ていく</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>withResult</span> <span style=color:#f92672>=</span>
+  &lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>A</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>any</span><span style=color:#960050;background-color:#1e0010>[],</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt;(<span style=color:#a6e22e>fn</span><span style=color:#f92672>:</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>A</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>T</span>&gt;) <span style=color:#f92672>=&gt;</span>
+  <span style=color:#66d9ef>async</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>A</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>Result</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt;<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>try</span> {
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Ok</span>(<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fn</span>(...<span style=color:#a6e22e>args</span>))
+    } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>error</span> <span style=color:#66d9ef>instanceof</span> Error) {
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Err</span>(<span style=color:#a6e22e>error</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>E</span>)
+      }
+    <span style=color:#75715e>//   return new Err(error as E)
+</span><span style=color:#75715e></span>    }
+  }
+</code></pre></div><p>3-1. <code>&lt;T, A extends any[], E extends Error>(fn: (...args: A) => Promise&lt;T>)</code>で型推論させて<code>T</code> <code>A</code> <code>E</code>の型をしていく。<br>
+<code>withResult(getUser)('1')</code>の場合、<code>getUser</code>の部分が<code>(fn: (...args: A) => Promise&lt;T>)</code>になる。これより、<code>A: string[]</code> <code>T: User</code>で型推論される。
+なので、以下のような変換される</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>&lt;<span style=color:#f92672>User</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>string</span><span style=color:#960050;background-color:#1e0010>[]</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>any</span><span style=color:#960050;background-color:#1e0010>[],</span> <span style=color:#a6e22e>E</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Error</span>&gt;(<span style=color:#a6e22e>fn</span><span style=color:#f92672>:</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>string</span>[]) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>User</span>&gt;)
+</code></pre></div><p>3-2. <code>async (...args: A): Promise&lt;Result&lt;T, E>></code>この部分も上記の型推論の結果、以下になる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>async</span> (...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>string</span>[])<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>Result</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>User</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>E</span>&gt;<span style=color:#f92672>&gt;</span>
+</code></pre></div><p>3-3. <code>return new Ok(await fn(...args))</code>でfn関数(今回の場合、<code>getUser(1)</code>)実行され、その結果が<code>Ok</code>クラスのインスタンスが作成される。<br>
+もし例外処理が発生した場合は、<code>Err</code>クラスのインスタンスが作成される。</p>
+<h2 id=まとめ>まとめ</h2>
+<p>正直この解説には自信がないので、ツッコミがありましたらお待ちしております🙇‍</p>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://oukayuka.booth.pm/items/2368045 target=_blank>りあクト！ TypeScriptで始めるつらくないReact開発 第3.1版【Ⅰ. 言語・環境編】</a><br>
+<a href=https://qiita.com/ryo2132/items/ce9e13899e45dcfaff9b#is target=_blank>TypeScript の"is"と"in"を理解する</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
