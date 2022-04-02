@@ -1,5 +1,5 @@
 ---
-title: "TypeScript Tip #15"
+title: "TypeScript Tip #1"
 date: 2022-04-01T23:23:48+09:00
 tags: 
   - "TypeScript"
