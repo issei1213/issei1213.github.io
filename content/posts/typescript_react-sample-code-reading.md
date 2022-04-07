@@ -1,5 +1,5 @@
 ---
-title: "TypeScript Tip #2"
+title: "りあクトのTypeScriptサンプルコードリーディング"
 date: 2022-04-02T13:39:20+09:00
 tags: 
   - "TypeScript"

@@ -1,140 +1,130 @@
 ---
-title: "TypeScript Tip #1"
-date: 2022-04-01T23:23:48+09:00
+title: "Typescript Tip #1"
+date: 2022-04-07T12:43:39+09:00
 tags: 
   - "TypeScript"
 ---
 ## 背景
-Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。<br>
-https://twitter.com/mpocock1/status/1509850662795989005
-
+前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
 
 ## 概要
-関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。<br>
 ```typescript
-// 第一引数がSIGN_OUTの場合は、payloadはなし
-sendEvent('SIGN_OUT')
-
-// 第一引数がLOG_INの場合は、payloadは必須
-sendEvent("LOG_IN", {
-    userId: '123'
-})
+export const fruitCounts = {
+    apple: 1,
+    pear: 4,
+    banana: 26
+}
 ```
-
-成功パターン
+上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
 ```typescript
-sendEvent('SIGN_OUT')
+type SingleFruitCount = 
+    | {
+        apple: number    
+    }
+    | {
+        banana: number
+    }
+    | {
+        pear: number
+    }
 
-sendEvent("LOG_IN", {
-    userId: '123'
-})
+const singleFruitCount: SingleFruitCount = {
+    apple: 10,
+}
 ```
-
-失敗パターン(コンパイルエラー)
-```typescript
-sendEvent('SIGN_OUT', {})
-
-sendEvent('LOG_IN', {
-    userId: 122
-})
-
-sendEvent('LOG_IN', {})
-
-sendEvent('LOG_IN')
-```
+`SingleFruitCount`の型エイリアスを作成すれば、型定義できるが定数`fruitCounts`を型推論させて型エイリアスを作成する。
 
 ## 本題
-以下のコードで実現可能
-
+最終的なコードは以下になる。具体的に解説していく。
 ```typescript
-type AuthEvent =
-    | {
-    type: 'LOG_IN'
-    payload: {
-        userId: string
+type FruitCounts = typeof fruitCounts
+
+type NewSingleFruitCount = {
+    [ K in keyof FruitCounts ]: { 
+        [K2 in K]: number
     }
+}[keyof FruitCounts]
+
+//  type NewSingleFruitCount = {
+//      apple: number;
+//    } | {
+//      pear: number;
+//    } | {
+//      banana: number;
+//  }
+```
+
+1. `typeof fruitCounts`は型推論が効いて以下の型が作成される。
+```typescript
+type FruitCounts = {
+    apple: number;
+    pear: number;
+    banana: number;
 }
-    | {
-    type: 'SIGN_OUT'
+```
+2. `[ K in keyof FruitCounts ]`の`keyof FruitCounts`は型エイリアスのオブジェクトのキーのみを取得することができる。  
+よって、`keyof FruitCounts`は`"apple" | "pear" | "banana"`変換される。  
+そうすると、`[ K in keyof FruitCounts ]`は`[ K in "apple" | "pear" | "banana" ]`に変換し、**マップ型**で型を繰り返し実装される。
+参考Notion: <a href="https://stitch-squid-866.notion.site/Map-652db5e51b8e465ab9fc79a8596c16af" target="_blank">Map型</a>
+3. `[K2 in K]: number`も同じマップ型で繰り返し型定義が作成される。
+```typescript
+type NewSingleFruitCount = {
+    apple: {
+        apple: number;
+    };
+    pear: {
+        pear: number;
+    };
+    banana: {
+        banana: number;
+    };
 }
-
-const sendEvent = <Type extends AuthEvent['type']>(
-    ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } 
-        ? [Type, TPayload]
-        : [Type]
-) => {
-    const [type, payload] = args
-    // ...
+```
+なぜ新たに`[K2 in K]`マップ型を作成しているかというと、もし`K: number`で実装した場合、
+```typescript
+type NewSingleFruitCount = {
+    apple: {
+        K: number;
+    };
+    pear: {
+        K: number;
+    };
+    banana: {
+        K: number;
+    };
 }
 ```
-### 処理の流れ
-1. ジェネリクスに制約をつける形で`Type`の型を作成する。<br>
-この時点で`Type`は`LOG_IN`or`SIGN_OUT`のどちらかになる。<br>
-ちなみに`AuthEvent['type']`のようにキーを指定して型定義を取得する方法を**ルックアップ型**という。
+になり、Kの型推論がうまく効いてくれない。
+
+4. `[keyof FruitCounts]`は`["apple" | "pear" | "banana"]`になり、ルックアップ型でキーを指定して取得することができる  
+これまでのコードを型推論したコードを記載すると
 ```typescript
-<Type extends AuthEvent['type']>
+type NewSingleFruitCount = {
+    apple: {
+        apple: number;
+    }
+    pear: {
+        pear: number;
+    }
+    banana: {
+        banana: number;
+    }
+}["apple" | "pear" | "banana"]
 ```
-
-2. TypeScriptは関係ないが、`...args`は引数を配列で格納する
+になり、以下のコードになる
 ```typescript
-...args
-// Ex) ['SIGN_OUT'], ['LOG_IN', { userId: '123' }]
+type NewSingleFruitCount = {
+    apple: number;
+} | {
+    pear: number;
+} | {
+    banana: number;
+}
 ```
-3. `Extract`型で`AuthEvent`が`{ type: Type }`に代入可能なプロパティを残した型が生成できる。<br>
-```typescript
-Extract<AuthEvent, { type: Type }>
-```
-1の時点で`Type`は`LOG_IN`or`SIGN_OUT`にどちらかに決まっていたので、`{ type: Type }`は`{ type: 'LOG_IN' }` or `{ type: 'SIGN_OUT' }`のどちらかになる。<br>
-なので、上記のコードで以下のどちらかになる
-```typescript
-{ payload: { userId: string } }
-
-or
-
-never
-```
-`Extract`型については、以下の記事を参考にするとわかりやすいかも。<br>
-[【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu)
-
-4. 3で`Extract`の型はわかったので`{ payload: infer TPayload }`をが存在するかの条件分岐を行う。<br>
-`Extract`型に`payload`が存在するかを確認して、`[Type, TPayload]`or`[Type]`の分岐を行う。<br>
-また、`infer`は型は`payload`が存在していれば`TPayload`として推論してくれる。
-この時点で`payload`がある引数なのか、ない引数なのかの判定ができる。
-```typescript
-Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload }
-    ? [Type, TPayload]
-    : [Type]
-```
-
-`infer`については以下の記事がしっくりきた。  
-[TypeScriptのinferを今度こそちゃんと理解する](https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer)
-
-ちなみに失敗パターンは以下の型エラーになる
-```typescript
-sendEvent('SIGN_OUT', {})
-// Expected 1 arguments, but got 2.
-
-sendEvent('LOG_IN', {
-    userId: 122
-    // Type 'number' is not assignable to type 'string'
-})
-
-sendEvent('LOG_IN', {})
-// Argument of type '{}' is not assignable to parameter of type '{ userId: string; }'.
-// Property 'userId' is missing in type '{}' but required in type '{ userId: string; }'.
-
-sendEvent('LOG_IN')
-// Expected 2 arguments, but got 1.
-
-```
-
 
 ## まとめ
-うまく説明できていない気がするが、TypeScriptの復習になった。今後も続けていきたい。<br>
-Thank you Matt Pocock for your informative tweet. I learned a lot.
+TypeScriptにはユーティリティ型が充実しているため、マップ型やルックアップ型を使うことが少ないが、いつでも使える状態にしておきたい。
 
 ## 参考文献
-https://twitter.com/mpocock1/status/1509850662795989005 <br> 
-[【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu) <br>
-[TypeScriptのinferを今度こそちゃんと理解する](https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer)
-
+<a href="https://twitter.com/mpocock1/status/1497262298368409605" target="_blank">TypeScript tip</a>  
+<a href="https://stitch-squid-866.notion.site/Map-652db5e51b8e465ab9fc79a8596c16af" target="_blank">Map型</a>	
