@@ -6,7 +6,7 @@ tags:
 ---
 ## 背景
 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。<br>
-https://twitter.com/mpocock1/status/1509850662795989005
+[TypeScript Tip #15](https://twitter.com/mpocock1/status/1509850662795989005) <br>
 
 
 ## 概要
@@ -134,7 +134,7 @@ sendEvent('LOG_IN')
 Thank you Matt Pocock for your informative tweet. I learned a lot.
 
 ## 参考文献
-https://twitter.com/mpocock1/status/1509850662795989005 <br> 
+[TypeScript Tip #15](https://twitter.com/mpocock1/status/1509850662795989005) <br>
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu) <br>
 [TypeScriptのinferを今度こそちゃんと理解する](https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer)
 
