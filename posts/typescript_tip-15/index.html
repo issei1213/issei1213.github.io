@@ -5,8 +5,7 @@ TechBlog</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
 // 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
 sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
@@ -14,8 +13,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
     ">
 <meta property="og:title" content="TypeScript Tip #15">
 <meta property="og:description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
 // 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
 sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
@@ -27,22 +25,20 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="TypeScript Tip #15">
 <meta name=twitter:description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
 // 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
 sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
 <meta itemprop=name content="TypeScript Tip #15">
 <meta itemprop=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
 // 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
 sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?"><meta itemprop=datePublished content="2022-04-01T23:23:48+09:00">
 <meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
-<meta itemprop=wordCount content="250">
+<meta itemprop=wordCount content="254">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-15/>
 <link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
@@ -110,7 +106,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <div class=blog-text>
 <h2 id=背景>背景</h2>
 <p>Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。<br>
-<a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a></p>
+<a href=https://twitter.com/mpocock1/status/1509850662795989005>TypeScript Tip #15</a> <br></p>
 <h2 id=概要>概要</h2>
 <p>関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。<br></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// 第一引数がSIGN_OUTの場合は、payloadはなし
@@ -213,7 +209,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <p>うまく説明できていない気がするが、TypeScriptの復習になった。今後も続けていきたい。<br>
 Thank you Matt Pocock for your informative tweet. I learned a lot.</p>
 <h2 id=参考文献>参考文献</h2>
-<p><a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a> <br>
+<p><a href=https://twitter.com/mpocock1/status/1509850662795989005>TypeScript Tip #15</a> <br>
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a> <br>
 <a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
 </div>

@@ -182,8 +182,7 @@ TypeScript Tip #15
 <a href=/posts/typescript_tip-15/>
 <p class=summary>
 背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
+TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
 // 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent("LOG_IN", { userId: '123' }) 成功パターン
 sendEvent('SIGN_OUT') sendEvent("LOG_IN", { userId: '123' }) 失敗パターン(コンパイルエラー)
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
