@@ -1,354 +1,237 @@
-<!DOCTYPE html>
-<html lang="ja-jp">
-
+<!doctype html><html lang=ja-jp>
 <head><title>
-    TypeScript Tip #15 | 
-    
-    TechBlog</title>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
+TypeScript Tip #15 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
 https://twitter.com/mpocock1/status/1509850662795989005
 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent(&#39;SIGN_OUT&#39;) // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 成功パターン
-sendEvent(&#39;SIGN_OUT&#39;) sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 失敗パターン(コンパイルエラー)
-sendEvent(&#39;SIGN_OUT&#39;, {}) sendEvent(&#39;LOG_IN&#39;, { userId: 122 }) sendEvent(&#39;LOG_IN&#39;, {}) sendEvent(&#39;LOG_IN&#39;) 本題 以下のコードで実現可能
-type AuthEvent = | { type: &#39;LOG_IN&#39; payload: { userId: string } } | { type: &#39;SIGN_OUT&#39; } const sendEvent = &lt;Type extends AuthEvent[&#39;type&#39;]&gt;( ...args: Extract&lt;AuthEvent, { type: Type }&gt; extends { payload: infer TPayload } ?
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
+sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
+sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
+type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?
     ">
-
-
-<meta property="og:title" content="TypeScript Tip #15" />
+<meta property="og:title" content="TypeScript Tip #15">
 <meta property="og:description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
 https://twitter.com/mpocock1/status/1509850662795989005
 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent(&#39;SIGN_OUT&#39;) // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 成功パターン
-sendEvent(&#39;SIGN_OUT&#39;) sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 失敗パターン(コンパイルエラー)
-sendEvent(&#39;SIGN_OUT&#39;, {}) sendEvent(&#39;LOG_IN&#39;, { userId: 122 }) sendEvent(&#39;LOG_IN&#39;, {}) sendEvent(&#39;LOG_IN&#39;) 本題 以下のコードで実現可能
-type AuthEvent = | { type: &#39;LOG_IN&#39; payload: { userId: string } } | { type: &#39;SIGN_OUT&#39; } const sendEvent = &lt;Type extends AuthEvent[&#39;type&#39;]&gt;( ...args: Extract&lt;AuthEvent, { type: Type }&gt; extends { payload: infer TPayload } ?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/typescript_tip-15/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-04-01T23:23:48+09:00" />
-<meta property="article:modified_time" content="2022-04-01T23:23:48+09:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="TypeScript Tip #15"/>
-<meta name="twitter:description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
+sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
+sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
+type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-15/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-01T23:23:48+09:00">
+<meta property="article:modified_time" content="2022-04-01T23:23:48+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #15">
+<meta name=twitter:description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
 https://twitter.com/mpocock1/status/1509850662795989005
 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent(&#39;SIGN_OUT&#39;) // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 成功パターン
-sendEvent(&#39;SIGN_OUT&#39;) sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 失敗パターン(コンパイルエラー)
-sendEvent(&#39;SIGN_OUT&#39;, {}) sendEvent(&#39;LOG_IN&#39;, { userId: 122 }) sendEvent(&#39;LOG_IN&#39;, {}) sendEvent(&#39;LOG_IN&#39;) 本題 以下のコードで実現可能
-type AuthEvent = | { type: &#39;LOG_IN&#39; payload: { userId: string } } | { type: &#39;SIGN_OUT&#39; } const sendEvent = &lt;Type extends AuthEvent[&#39;type&#39;]&gt;( ...args: Extract&lt;AuthEvent, { type: Type }&gt; extends { payload: infer TPayload } ?"/>
-
-<meta itemprop="name" content="TypeScript Tip #15">
-<meta itemprop="description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
+sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
+sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
+type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
+<meta itemprop=name content="TypeScript Tip #15">
+<meta itemprop=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
 https://twitter.com/mpocock1/status/1509850662795989005
 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent(&#39;SIGN_OUT&#39;) // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 成功パターン
-sendEvent(&#39;SIGN_OUT&#39;) sendEvent(&#34;LOG_IN&#34;, { userId: &#39;123&#39; }) 失敗パターン(コンパイルエラー)
-sendEvent(&#39;SIGN_OUT&#39;, {}) sendEvent(&#39;LOG_IN&#39;, { userId: 122 }) sendEvent(&#39;LOG_IN&#39;, {}) sendEvent(&#39;LOG_IN&#39;) 本題 以下のコードで実現可能
-type AuthEvent = | { type: &#39;LOG_IN&#39; payload: { userId: string } } | { type: &#39;SIGN_OUT&#39; } const sendEvent = &lt;Type extends AuthEvent[&#39;type&#39;]&gt;( ...args: Extract&lt;AuthEvent, { type: Type }&gt; extends { payload: infer TPayload } ?"><meta itemprop="datePublished" content="2022-04-01T23:23:48+09:00" />
-<meta itemprop="dateModified" content="2022-04-01T23:23:48+09:00" />
-<meta itemprop="wordCount" content="250">
-<meta itemprop="keywords" content="TypeScript," />
-<link rel="canonical" href="http://example.org/posts/typescript_tip-15/" />
-
-<link rel="icon" type="image/png" href="http://example.org/image/favicon.ico">
-
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/bulma.min.css">
-
-
-
-
-
+// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
+sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
+sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
+type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?"><meta itemprop=datePublished content="2022-04-01T23:23:48+09:00">
+<meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
+<meta itemprop=wordCount content="250">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-15/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
 <script src=/js/ramium.js></script>
-<link rel="stylesheet" href=/css/ramium.css>
-
-
-
-
-
+<link rel=stylesheet href=/css/ramium.css>
 </head>
-
-<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href=/>
-      
-      <strong>TechBlog </strong>
-      
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      
-      
-      <a class="navbar-item" href="/">ホーム</a>
-      
-      
-      
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">ブログ</a>
-        <div class="navbar-dropdown">
-          
-          <a class="navbar-item" href="/tags/">タグ</a>
-          
-          <a class="navbar-item" href="/posts/">記事</a>
-          
-        </div>
-      </div>
-      
-      
-    </div>
-
-    <div class="navbar-end">
-      
-      <a class="navbar-item navgithub" href="https://github.com/issei1213" target="_blank">
-        <i class="fa fa-github fa-2x"></i>
-      </a>
-      
-
-      <a class="navbar-item navgithub" href="https://twitter.com/abIOELEsEfu6Os0" target="_blank">
-        <i class="fa brands fa-twitter fa-2x"></i>
-      </a>
-
-      
-    </div>
-  </div>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
 </nav><div class="columns is-centered">
-        <div id="page-body" class="column is-7">
-
+<div id=page-body class="column is-7">
 <div class="content blog">
-    <h1>TypeScript Tip #15</h1>
-
-    <div id="infobar" class="level is-mobile">
-        <div class="level-left">
-            
-            <div class="level-item">
-                <p class="subtitle info date">Apr 1, 2022
-                </p>
-            </div>
-            
-
-            <div class="level-item">
-                <p class="subtitle info">
-                    6 mins read
-                </p>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            <div class="tags">
-                
-                <a class="tag is-dark is-rounded" href="/tags/typescript">TypeScript</a>
-                
-            </div>
-        </div>
-    </div>
-
-    <div class="tags is-hidden-desktop">
-        
-        <a class="tag is-dark is-rounded" href="/tags/typescript">Type script</a>
-        
-    </div>
-
-    <div class="blog-text">
-        
-
-        <h2 id="背景">背景</h2>
+<h1>TypeScript Tip #15</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 1, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+6 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
 <p>Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。<br>
-<a href="https://twitter.com/mpocock1/status/1509850662795989005">https://twitter.com/mpocock1/status/1509850662795989005</a></p>
-<h2 id="概要">概要</h2>
+<a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a></p>
+<h2 id=概要>概要</h2>
 <p>関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。<br></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// 第一引数がSIGN_OUTの場合は、payloadはなし
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;SIGN_OUT&#39;</span>)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// 第一引数がSIGN_OUTの場合は、payloadはなし
+</span><span style=color:#75715e></span><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>)
 
-<span style="color:#75715e">// 第一引数がLOG_INの場合は、payloadは必須
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#34;LOG_IN&#34;</span>, {
-    <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;123&#39;</span>
+<span style=color:#75715e>// 第一引数がLOG_INの場合は、payloadは必須
+</span><span style=color:#75715e></span><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#34;LOG_IN&#34;</span>, {
+    <span style=color:#a6e22e>userId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;123&#39;</span>
 })
 </code></pre></div><p>成功パターン</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;SIGN_OUT&#39;</span>)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>)
 
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#34;LOG_IN&#34;</span>, {
-    <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;123&#39;</span>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#34;LOG_IN&#34;</span>, {
+    <span style=color:#a6e22e>userId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;123&#39;</span>
 })
 </code></pre></div><p>失敗パターン(コンパイルエラー)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;SIGN_OUT&#39;</span>, {})
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>, {})
 
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>, {
-    <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">122</span>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {
+    <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>122</span>
 })
 
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>, {})
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {})
 
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>)
-</code></pre></div><h2 id="本題">本題</h2>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>)
+</code></pre></div><h2 id=本題>本題</h2>
 <p>以下のコードで実現可能</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AuthEvent</span> <span style="color:#f92672">=</span>
-    <span style="color:#f92672">|</span> {
-    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;LOG_IN&#39;</span>
-    <span style="color:#a6e22e">payload</span><span style="color:#f92672">:</span> {
-        <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">string</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>AuthEvent</span> <span style=color:#f92672>=</span>
+    <span style=color:#f92672>|</span> {
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;LOG_IN&#39;</span>
+    <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>
     }
 }
-    <span style="color:#f92672">|</span> {
-    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;SIGN_OUT&#39;</span>
+    <span style=color:#f92672>|</span> {
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>
 }
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sendEvent</span> <span style="color:#f92672">=</span> &lt;<span style="color:#f92672">Type</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">AuthEvent</span><span style="color:#960050;background-color:#1e0010">[&#39;</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#39;]</span>&gt;(
-    ...<span style="color:#a6e22e">args</span>: <span style="color:#66d9ef">Extract</span>&lt;<span style="color:#f92672">AuthEvent</span><span style="color:#960050;background-color:#1e0010">,</span> { <span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#a6e22e">Type</span> }&gt; <span style="color:#66d9ef">extends</span> { <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">infer</span> <span style="color:#a6e22e">TPayload</span> } 
-        <span style="color:#f92672">?</span> [<span style="color:#a6e22e">Type</span>, <span style="color:#a6e22e">TPayload</span>]
-        <span style="color:#f92672">:</span> [<span style="color:#a6e22e">Type</span>]
-) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> [<span style="color:#66d9ef">type</span>, <span style="color:#a6e22e">payload</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">args</span>
-    <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h3 id="処理の流れ">処理の流れ</h3>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sendEvent</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>Type</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>AuthEvent</span><span style=color:#960050;background-color:#1e0010>[&#39;</span><span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>&#39;]</span>&gt;(
+    ...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> } 
+        <span style=color:#f92672>?</span> [<span style=color:#a6e22e>Type</span>, <span style=color:#a6e22e>TPayload</span>]
+        <span style=color:#f92672>:</span> [<span style=color:#a6e22e>Type</span>]
+) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> [<span style=color:#66d9ef>type</span>, <span style=color:#a6e22e>payload</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+</code></pre></div><h3 id=処理の流れ>処理の流れ</h3>
 <ol>
 <li>ジェネリクスに制約をつける形で<code>Type</code>の型を作成する。<br>
 この時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>のどちらかになる。<br>
 ちなみに<code>AuthEvent['type']</code>のようにキーを指定して型定義を取得する方法を<strong>ルックアップ型</strong>という。</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">&lt;<span style="color:#f92672">Type</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">AuthEvent</span><span style="color:#960050;background-color:#1e0010">[&#39;</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#39;]</span>&gt;
-</code></pre></div><ol start="2">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>&lt;<span style=color:#f92672>Type</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>AuthEvent</span><span style=color:#960050;background-color:#1e0010>[&#39;</span><span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>&#39;]</span>&gt;
+</code></pre></div><ol start=2>
 <li>TypeScriptは関係ないが、<code>...args</code>は引数を配列で格納する</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">...<span style="color:#a6e22e">args</span>
-<span style="color:#75715e">// Ex) [&#39;SIGN_OUT&#39;], [&#39;LOG_IN&#39;, { userId: &#39;123&#39; }]
-</span></code></pre></div><ol start="3">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>...<span style=color:#a6e22e>args</span>
+<span style=color:#75715e>// Ex) [&#39;SIGN_OUT&#39;], [&#39;LOG_IN&#39;, { userId: &#39;123&#39; }]
+</span></code></pre></div><ol start=3>
 <li><code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能なプロパティを残した型が生成できる。<br></li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">Extract</span>&lt;<span style="color:#f92672">AuthEvent</span><span style="color:#960050;background-color:#1e0010">,</span> { <span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#a6e22e">Type</span> }&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt;
 </code></pre></div><p>1の時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>にどちらかに決まっていたので、<code>{ type: Type }</code>は<code>{ type: 'LOG_IN' }</code> or <code>{ type: 'SIGN_OUT' }</code>のどちらかになる。<br>
 なので、上記のコードで以下のどちらかになる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">{ <span style="color:#a6e22e">payload</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">string</span> } }
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
 
-<span style="color:#a6e22e">or</span>
+<span style=color:#a6e22e>or</span>
 
-<span style="color:#66d9ef">never</span>
+<span style=color:#66d9ef>never</span>
 </code></pre></div><p><code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
-<a href="https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu">【TypeScript】Utility Typesをまとめて理解する</a></p>
-<ol start="4">
+<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
+<ol start=4>
 <li>3で<code>Extract</code>の型はわかったので<code>{ payload: infer TPayload }</code>をが存在するかの条件分岐を行う。<br>
 <code>Extract</code>型に<code>payload</code>が存在するかを確認して、<code>[Type, TPayload]</code>or<code>[Type]</code>の分岐を行う。<br>
 また、<code>infer</code>は型は<code>payload</code>が存在していれば<code>TPayload</code>として推論してくれる。
 この時点で<code>payload</code>がある引数なのか、ない引数なのかの判定ができる。</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">Extract</span>&lt;<span style="color:#f92672">AuthEvent</span><span style="color:#960050;background-color:#1e0010">,</span> { <span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#a6e22e">Type</span> }&gt; <span style="color:#66d9ef">extends</span> { <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">infer</span> <span style="color:#a6e22e">TPayload</span> }
-    <span style="color:#f92672">?</span> [<span style="color:#a6e22e">Type</span>, <span style="color:#a6e22e">TPayload</span>]
-    <span style="color:#f92672">:</span> [<span style="color:#a6e22e">Type</span>]
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> }
+    <span style=color:#f92672>?</span> [<span style=color:#a6e22e>Type</span>, <span style=color:#a6e22e>TPayload</span>]
+    <span style=color:#f92672>:</span> [<span style=color:#a6e22e>Type</span>]
 </code></pre></div><p><code>infer</code>については以下の記事がしっくりきた。<br>
-<a href="https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer">TypeScriptのinferを今度こそちゃんと理解する</a></p>
+<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
 <p>ちなみに失敗パターンは以下の型エラーになる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;SIGN_OUT&#39;</span>, {})
-<span style="color:#75715e">// Expected 1 arguments, but got 2.
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>, {
-    <span style="color:#a6e22e">userId</span>: <span style="color:#66d9ef">122</span>
-    <span style="color:#75715e">// Type &#39;number&#39; is not assignable to type &#39;string&#39;
-</span><span style="color:#75715e"></span>})
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>, {})
+<span style=color:#75715e>// Expected 1 arguments, but got 2.
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {
+    <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>122</span>
+    <span style=color:#75715e>// Type &#39;number&#39; is not assignable to type &#39;string&#39;
+</span><span style=color:#75715e></span>})
 
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>, {})
-<span style="color:#75715e">// Argument of type &#39;{}&#39; is not assignable to parameter of type &#39;{ userId: string; }&#39;.
-</span><span style="color:#75715e">// Property &#39;userId&#39; is missing in type &#39;{}&#39; but required in type &#39;{ userId: string; }&#39;.
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">sendEvent</span>(<span style="color:#e6db74">&#39;LOG_IN&#39;</span>)
-<span style="color:#75715e">// Expected 2 arguments, but got 1.
-</span><span style="color:#75715e"></span>
-</code></pre></div><h2 id="まとめ">まとめ</h2>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {})
+<span style=color:#75715e>// Argument of type &#39;{}&#39; is not assignable to parameter of type &#39;{ userId: string; }&#39;.
+</span><span style=color:#75715e>// Property &#39;userId&#39; is missing in type &#39;{}&#39; but required in type &#39;{ userId: string; }&#39;.
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>)
+<span style=color:#75715e>// Expected 2 arguments, but got 1.
+</span><span style=color:#75715e></span>
+</code></pre></div><h2 id=まとめ>まとめ</h2>
 <p>うまく説明できていない気がするが、TypeScriptの復習になった。今後も続けていきたい。<br>
 Thank you Matt Pocock for your informative tweet. I learned a lot.</p>
-<h2 id="参考文献">参考文献</h2>
-<p><a href="https://twitter.com/mpocock1/status/1509850662795989005">https://twitter.com/mpocock1/status/1509850662795989005</a> <br>
-<a href="https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu">【TypeScript】Utility Typesをまとめて理解する</a> <br>
-<a href="https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer">TypeScriptのinferを今度こそちゃんと理解する</a></p>
-
-    </div>
-</div><div id="social-media-share" class="has-text-centered">
-	<br>
-	
-	<div class="share-buttons">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</div>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a> <br>
+<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a> <br>
+<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
 </div>
-
-
+</div><div id=social-media-share class=has-text-centered>
 <br>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    (function () {
-        
-        
-        if (window.location.hostname == "localhost")
-            return;
-
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        var disqus_shortname = '';
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-        </div>
-    </div>
-
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
 <footer class="footer has-background-dark">
-    <div class="content has-text-centered has-text-white">
-        <p>© 2022 issei1213 All rights reserved.</p>
-    </div>
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
 </footer>
 </body>
-
 </html>

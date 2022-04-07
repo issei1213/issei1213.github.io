@@ -84,21 +84,68 @@ Vue.js
 <div class="columns is-centered">
 <div class="column is-7">
 <div class=blog-brief>
-<a href=/posts/typescript_tip-2/>
+<a href=/posts/typescript_tip-1/>
 <h3 class="title is-4">
-TypeScript Tip #2
+Typescript Tip #1
 </h3>
 </a>
 <div class="level is-mobile details">
 <div class=level-left>
 <div class=level-item>
-<a href=/posts/typescript_tip-2/>
+<a href=/posts/typescript_tip-1/>
+<p class="subtitle info date">Apr 7, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-1/>
+<p class="subtitle info">
+5 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-1/>
+<p class=summary>
+背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
+概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
+type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
+本題 最終的なコードは以下になる。具体的に解説していく。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // } typeof fruitCountsは型推論が効いて以下の型が作成される。 type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-1/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
+<a href=/posts/typescript_react-sample-code-reading/>
+<h3 class="title is-4">
+りあクトのTypeScriptサンプルコードリーディング
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_react-sample-code-reading/>
 <p class="subtitle info date">Apr 2, 2022
 </p>
 </a>
 </div>
 <div class=level-item>
-<a href=/posts/typescript_tip-2/>
+<a href=/posts/typescript_react-sample-code-reading/>
 <p class="subtitle info">
 6 mins read
 </p>
@@ -111,7 +158,7 @@ TypeScript Tip #2
 </div>
 <div>
 <div>
-<a href=/posts/typescript_tip-2/>
+<a href=/posts/typescript_react-sample-code-reading/>
 <p class=summary>
 背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
 概要 以下のコードリーディングをしていく。
@@ -125,26 +172,26 @@ type Result&lt;T, E extends Error> = Ok&lt;T, E> | Err&lt;T, E> export class Ok&
 <div class=level-left>
 </div>
 <div class=level-right>
-<a href=/posts/typescript_tip-2/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+<a href=/posts/typescript_react-sample-code-reading/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
 </div><div class=blog-brief>
-<a href=/posts/typescript_tip-1/>
+<a href=/posts/typescript_tip-15/>
 <h3 class="title is-4">
-TypeScript Tip #1
+TypeScript Tip #15
 </h3>
 </a>
 <div class="level is-mobile details">
 <div class=level-left>
 <div class=level-item>
-<a href=/posts/typescript_tip-1/>
+<a href=/posts/typescript_tip-15/>
 <p class="subtitle info date">Apr 1, 2022
 </p>
 </a>
 </div>
 <div class=level-item>
-<a href=/posts/typescript_tip-1/>
+<a href=/posts/typescript_tip-15/>
 <p class="subtitle info">
 6 mins read
 </p>
@@ -157,7 +204,7 @@ TypeScript Tip #1
 </div>
 <div>
 <div>
-<a href=/posts/typescript_tip-1/>
+<a href=/posts/typescript_tip-15/>
 <p class=summary>
 背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
 https://twitter.com/mpocock1/status/1509850662795989005
@@ -174,7 +221,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <div class=level-left>
 </div>
 <div class=level-right>
-<a href=/posts/typescript_tip-1/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+<a href=/posts/typescript_tip-15/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

@@ -1,48 +1,40 @@
 <!doctype html><html lang=ja-jp>
 <head><title>
-TypeScript Tip #1 |
+Typescript Tip #1 |
 TechBlog</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
-sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
-sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
-type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?
+<meta name=description content="背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
+概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
+type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
+本題 最終的なコードは以下になる。具体的に解説していく。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // }  typeof fruitCountsは型推論が効いて以下の型が作成される。  type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
     ">
-<meta property="og:title" content="TypeScript Tip #1">
-<meta property="og:description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
-sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
-sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
-type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
+<meta property="og:title" content="Typescript Tip #1">
+<meta property="og:description" content="背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
+概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
+type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
+本題 最終的なコードは以下になる。具体的に解説していく。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // }  typeof fruitCountsは型推論が効いて以下の型が作成される。  type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-1/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-04-01T23:23:48+09:00">
-<meta property="article:modified_time" content="2022-04-01T23:23:48+09:00">
+<meta property="article:published_time" content="2022-04-07T12:43:39+09:00">
+<meta property="article:modified_time" content="2022-04-07T12:43:39+09:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="TypeScript Tip #1">
-<meta name=twitter:description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
-sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
-sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
-type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?">
-<meta itemprop=name content="TypeScript Tip #1">
-<meta itemprop=description content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-https://twitter.com/mpocock1/status/1509850662795989005
-概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 成功パターン
-sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パターン(コンパイルエラー)
-sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
-type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?"><meta itemprop=datePublished content="2022-04-01T23:23:48+09:00">
-<meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
-<meta itemprop=wordCount content="250">
+<meta name=twitter:title content="Typescript Tip #1">
+<meta name=twitter:description content="背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
+概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
+type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
+本題 最終的なコードは以下になる。具体的に解説していく。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // }  typeof fruitCountsは型推論が効いて以下の型が作成される。  type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。">
+<meta itemprop=name content="Typescript Tip #1">
+<meta itemprop=description content="背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
+概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
+type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
+本題 最終的なコードは以下になる。具体的に解説していく。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // }  typeof fruitCountsは型推論が効いて以下の型が作成される。  type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。"><meta itemprop=datePublished content="2022-04-07T12:43:39+09:00">
+<meta itemprop=dateModified content="2022-04-07T12:43:39+09:00">
+<meta itemprop=wordCount content="240">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-1/>
 <link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
@@ -85,16 +77,16 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 </nav><div class="columns is-centered">
 <div id=page-body class="column is-7">
 <div class="content blog">
-<h1>TypeScript Tip #1</h1>
+<h1>Typescript Tip #1</h1>
 <div id=infobar class="level is-mobile">
 <div class=level-left>
 <div class=level-item>
-<p class="subtitle info date">Apr 1, 2022
+<p class="subtitle info date">Apr 7, 2022
 </p>
 </div>
 <div class=level-item>
 <p class="subtitle info">
-6 mins read
+5 mins read
 </p>
 </div>
 </div>
@@ -109,113 +101,113 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 </div>
 <div class=blog-text>
 <h2 id=背景>背景</h2>
-<p>Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。<br>
-<a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a></p>
+<p>前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく</p>
 <h2 id=概要>概要</h2>
-<p>関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。<br></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// 第一引数がSIGN_OUTの場合は、payloadはなし
-</span><span style=color:#75715e></span><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>)
-
-<span style=color:#75715e>// 第一引数がLOG_INの場合は、payloadは必須
-</span><span style=color:#75715e></span><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#34;LOG_IN&#34;</span>, {
-    <span style=color:#a6e22e>userId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;123&#39;</span>
-})
-</code></pre></div><p>成功パターン</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>)
-
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#34;LOG_IN&#34;</span>, {
-    <span style=color:#a6e22e>userId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;123&#39;</span>
-})
-</code></pre></div><p>失敗パターン(コンパイルエラー)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>, {})
-
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {
-    <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>122</span>
-})
-
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {})
-
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>)
-</code></pre></div><h2 id=本題>本題</h2>
-<p>以下のコードで実現可能</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>AuthEvent</span> <span style=color:#f92672>=</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fruitCounts</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>1</span>,
+    <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>4</span>,
+    <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>26</span>
+}
+</code></pre></div><p>上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>SingleFruitCount</span> <span style=color:#f92672>=</span> 
     <span style=color:#f92672>|</span> {
-    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;LOG_IN&#39;</span>
-    <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>
+        <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>number</span>    
     }
-}
     <span style=color:#f92672>|</span> {
-    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>
+        <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>number</span>
+    }
+    <span style=color:#f92672>|</span> {
+        <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>number</span>
+    }
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>singleFruitCount</span>: <span style=color:#66d9ef>SingleFruitCount</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>10</span>,
 }
+</code></pre></div><p><code>SingleFruitCount</code>の型エイリアスを作成すれば、型定義できるが定数<code>fruitCounts</code>を型推論させて型エイリアスを作成する。</p>
+<h2 id=本題>本題</h2>
+<p>最終的なコードは以下になる。具体的に解説していく。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FruitCounts</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>fruitCounts</span>
 
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sendEvent</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>Type</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>AuthEvent</span><span style=color:#960050;background-color:#1e0010>[&#39;</span><span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>&#39;]</span>&gt;(
-    ...<span style=color:#a6e22e>args</span>: <span style=color:#66d9ef>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> } 
-        <span style=color:#f92672>?</span> [<span style=color:#a6e22e>Type</span>, <span style=color:#a6e22e>TPayload</span>]
-        <span style=color:#f92672>:</span> [<span style=color:#a6e22e>Type</span>]
-) <span style=color:#f92672>=&gt;</span> {
-    <span style=color:#66d9ef>const</span> [<span style=color:#66d9ef>type</span>, <span style=color:#a6e22e>payload</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>
-    <span style=color:#75715e>// ...
-</span><span style=color:#75715e></span>}
-</code></pre></div><h3 id=処理の流れ>処理の流れ</h3>
-<ol>
-<li>ジェネリクスに制約をつける形で<code>Type</code>の型を作成する。<br>
-この時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>のどちらかになる。<br>
-ちなみに<code>AuthEvent['type']</code>のようにキーを指定して型定義を取得する方法を<strong>ルックアップ型</strong>という。</li>
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewSingleFruitCount</span> <span style=color:#f92672>=</span> {
+    [ <span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>FruitCounts</span> ]<span style=color:#f92672>:</span> { 
+        [<span style=color:#a6e22e>K2</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>K</span>]<span style=color:#f92672>:</span> <span style=color:#66d9ef>number</span>
+    }
+}[<span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>FruitCounts</span>]
+
+<span style=color:#75715e>//  type NewSingleFruitCount = {
+</span><span style=color:#75715e>//      apple: number;
+</span><span style=color:#75715e>//    } | {
+</span><span style=color:#75715e>//      pear: number;
+</span><span style=color:#75715e>//    } | {
+</span><span style=color:#75715e>//      banana: number;
+</span><span style=color:#75715e>//  }
+</span></code></pre></div><ol>
+<li><code>typeof fruitCounts</code>は型推論が効いて以下の型が作成される。</li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>&lt;<span style=color:#f92672>Type</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>AuthEvent</span><span style=color:#960050;background-color:#1e0010>[&#39;</span><span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>&#39;]</span>&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FruitCounts</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>number</span>;
+}
 </code></pre></div><ol start=2>
-<li>TypeScriptは関係ないが、<code>...args</code>は引数を配列で格納する</li>
+<li><code>[ K in keyof FruitCounts ]</code>の<code>keyof FruitCounts</code>は型エイリアスのオブジェクトのキーのみを取得することができる。<br>
+よって、<code>keyof FruitCounts</code>は<code>"apple" | "pear" | "banana"</code>変換される。<br>
+そうすると、<code>[ K in keyof FruitCounts ]</code>は<code>[ K in "apple" | "pear" | "banana" ]</code>に変換し、<strong>マップ型</strong>で型を繰り返し実装される。
+参考Notion: <a href=https://stitch-squid-866.notion.site/Map-652db5e51b8e465ab9fc79a8596c16af target=_blank>Map型</a></li>
+<li><code>[K2 in K]: number</code>も同じマップ型で繰り返し型定義が作成される。</li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>...<span style=color:#a6e22e>args</span>
-<span style=color:#75715e>// Ex) [&#39;SIGN_OUT&#39;], [&#39;LOG_IN&#39;, { userId: &#39;123&#39; }]
-</span></code></pre></div><ol start=3>
-<li><code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能なプロパティを残した型が生成できる。<br></li>
-</ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt;
-</code></pre></div><p>1の時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>にどちらかに決まっていたので、<code>{ type: Type }</code>は<code>{ type: 'LOG_IN' }</code> or <code>{ type: 'SIGN_OUT' }</code>のどちらかになる。<br>
-なので、上記のコードで以下のどちらかになる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
-
-<span style=color:#a6e22e>or</span>
-
-<span style=color:#66d9ef>never</span>
-</code></pre></div><p><code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
-<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewSingleFruitCount</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>number</span>;
+    };
+    <span style=color:#a6e22e>pear</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>number</span>;
+    };
+    <span style=color:#a6e22e>banana</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>number</span>;
+    };
+}
+</code></pre></div><p>なぜ新たに<code>[K2 in K]</code>マップ型を作成しているかというと、もし<code>K: number</code>で実装した場合、</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewSingleFruitCount</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>K</span>: <span style=color:#66d9ef>number</span>;
+    };
+    <span style=color:#a6e22e>pear</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>K</span>: <span style=color:#66d9ef>number</span>;
+    };
+    <span style=color:#a6e22e>banana</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>K</span>: <span style=color:#66d9ef>number</span>;
+    };
+}
+</code></pre></div><p>になり、Kの型推論がうまく効いてくれない。</p>
 <ol start=4>
-<li>3で<code>Extract</code>の型はわかったので<code>{ payload: infer TPayload }</code>をが存在するかの条件分岐を行う。<br>
-<code>Extract</code>型に<code>payload</code>が存在するかを確認して、<code>[Type, TPayload]</code>or<code>[Type]</code>の分岐を行う。<br>
-また、<code>infer</code>は型は<code>payload</code>が存在していれば<code>TPayload</code>として推論してくれる。
-この時点で<code>payload</code>がある引数なのか、ない引数なのかの判定ができる。</li>
+<li><code>[keyof FruitCounts]</code>は<code>["apple" | "pear" | "banana"]</code>になり、ルックアップ型でキーを指定して取得することができる<br>
+これまでのコードを型推論したコードを記載すると</li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt; <span style=color:#66d9ef>extends</span> { <span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>TPayload</span> }
-    <span style=color:#f92672>?</span> [<span style=color:#a6e22e>Type</span>, <span style=color:#a6e22e>TPayload</span>]
-    <span style=color:#f92672>:</span> [<span style=color:#a6e22e>Type</span>]
-</code></pre></div><p><code>infer</code>については以下の記事がしっくりきた。<br>
-<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
-<p>ちなみに失敗パターンは以下の型エラーになる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>, {})
-<span style=color:#75715e>// Expected 1 arguments, but got 2.
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {
-    <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>122</span>
-    <span style=color:#75715e>// Type &#39;number&#39; is not assignable to type &#39;string&#39;
-</span><span style=color:#75715e></span>})
-
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>, {})
-<span style=color:#75715e>// Argument of type &#39;{}&#39; is not assignable to parameter of type &#39;{ userId: string; }&#39;.
-</span><span style=color:#75715e>// Property &#39;userId&#39; is missing in type &#39;{}&#39; but required in type &#39;{ userId: string; }&#39;.
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>sendEvent</span>(<span style=color:#e6db74>&#39;LOG_IN&#39;</span>)
-<span style=color:#75715e>// Expected 2 arguments, but got 1.
-</span><span style=color:#75715e></span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewSingleFruitCount</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>number</span>;
+    }
+    <span style=color:#a6e22e>pear</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>number</span>;
+    }
+    <span style=color:#a6e22e>banana</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>number</span>;
+    }
+}[<span style=color:#e6db74>&#34;apple&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;pear&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;banana&#34;</span>]
+</code></pre></div><p>になり、以下のコードになる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewSingleFruitCount</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>apple</span>: <span style=color:#66d9ef>number</span>;
+} <span style=color:#f92672>|</span> {
+    <span style=color:#a6e22e>pear</span>: <span style=color:#66d9ef>number</span>;
+} <span style=color:#f92672>|</span> {
+    <span style=color:#a6e22e>banana</span>: <span style=color:#66d9ef>number</span>;
+}
 </code></pre></div><h2 id=まとめ>まとめ</h2>
-<p>うまく説明できていない気がするが、TypeScriptの復習になった。今後も続けていきたい。<br>
-Thank you Matt Pocock for your informative tweet. I learned a lot.</p>
+<p>TypeScriptにはユーティリティ型が充実しているため、マップ型やルックアップ型を使うことが少ないが、いつでも使える状態にしておきたい。</p>
 <h2 id=参考文献>参考文献</h2>
-<p><a href=https://twitter.com/mpocock1/status/1509850662795989005>https://twitter.com/mpocock1/status/1509850662795989005</a> <br>
-<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a> <br>
-<a href=https://zenn.dev/brachio_takumi/articles/464106a6a80eca8ab919#infer>TypeScriptのinferを今度こそちゃんと理解する</a></p>
+<p><a href=https://twitter.com/mpocock1/status/1497262298368409605 target=_blank>TypeScript tip</a><br>
+<a href=https://stitch-squid-866.notion.site/Map-652db5e51b8e465ab9fc79a8596c16af target=_blank>Map型</a></p>
 </div>
 </div><div id=social-media-share class=has-text-centered>
 <br>
