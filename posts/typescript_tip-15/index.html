@@ -38,7 +38,7 @@ sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パ�
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?"><meta itemprop=datePublished content="2022-04-01T23:23:48+09:00">
 <meta itemprop=dateModified content="2022-04-01T23:23:48+09:00">
-<meta itemprop=wordCount content="254">
+<meta itemprop=wordCount content="259">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-15/>
 <link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
@@ -166,16 +166,21 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>...<span style=color:#a6e22e>args</span>
 <span style=color:#75715e>// Ex) [&#39;SIGN_OUT&#39;], [&#39;LOG_IN&#39;, { userId: &#39;123&#39; }]
 </span></code></pre></div><ol start=3>
-<li><code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能なプロパティを残した型が生成できる。<br></li>
+<li><code>Extract</code>型で<code>AuthEvent</code>が<code>{ type: Type }</code>に代入可能な型を取り除くことができる。<br></li>
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>AuthEvent</span><span style=color:#960050;background-color:#1e0010>,</span> { <span style=color:#a6e22e>type</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#a6e22e>Type</span> }&gt;
 </code></pre></div><p>1の時点で<code>Type</code>は<code>LOG_IN</code>or<code>SIGN_OUT</code>にどちらかに決まっていたので、<code>{ type: Type }</code>は<code>{ type: 'LOG_IN' }</code> or <code>{ type: 'SIGN_OUT' }</code>のどちらかになる。<br>
 なので、上記のコードで以下のどちらかになる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } }
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{ 
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;LOG_IN&#39;</span>
+    <span style=color:#a6e22e>payload</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span> } 
+}
 
 <span style=color:#a6e22e>or</span>
 
-<span style=color:#66d9ef>never</span>
+{
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;SIGN_OUT&#39;</span>
+}
 </code></pre></div><p><code>Extract</code>型については、以下の記事を参考にするとわかりやすいかも。<br>
 <a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu>【TypeScript】Utility Typesをまとめて理解する</a></p>
 <ol start=4>

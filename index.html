@@ -100,7 +100,7 @@ TypeScript Tip #1
 <div class=level-item>
 <a href=/posts/typescript_tip-1/>
 <p class="subtitle info">
-5 mins read
+6 mins read
 </p>
 </a>
 </div>
@@ -117,7 +117,7 @@ TypeScript Tip #1
 概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
 type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
 本題 最終的なコードは以下になる。具体的に解説していく。
-type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [K2 in K]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // } typeof fruitCountsは型推論が効いて以下の型が作成される。 type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
+type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [ K2 in K ]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // } typeof fruitCountsは型推論が効いて以下の型が作成される。 type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
 </p>
 </a>
 </div>
@@ -147,7 +147,7 @@ type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof 
 <div class=level-item>
 <a href=/posts/typescript_react-sample-code-reading/>
 <p class="subtitle info">
-6 mins read
+7 mins read
 </p>
 </a>
 </div>
