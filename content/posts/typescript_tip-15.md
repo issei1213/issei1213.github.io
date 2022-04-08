@@ -80,18 +80,23 @@ const sendEvent = <Type extends AuthEvent['type']>(
 ...args
 // Ex) ['SIGN_OUT'], ['LOG_IN', { userId: '123' }]
 ```
-3. `Extract`型で`AuthEvent`が`{ type: Type }`に代入可能なプロパティを残した型が生成できる。<br>
+3. `Extract`型で`AuthEvent`が`{ type: Type }`に代入可能な型を取り除くことができる。<br>
 ```typescript
 Extract<AuthEvent, { type: Type }>
 ```
 1の時点で`Type`は`LOG_IN`or`SIGN_OUT`にどちらかに決まっていたので、`{ type: Type }`は`{ type: 'LOG_IN' }` or `{ type: 'SIGN_OUT' }`のどちらかになる。<br>
 なので、上記のコードで以下のどちらかになる
 ```typescript
-{ payload: { userId: string } }
+{ 
+    type: 'LOG_IN'
+    payload: { userId: string } 
+}
 
 or
 
-never
+{
+    type: 'SIGN_OUT'
+}
 ```
 `Extract`型については、以下の記事を参考にするとわかりやすいかも。<br>
 [【TypeScript】Utility Typesをまとめて理解する](https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu)

@@ -41,7 +41,7 @@ type FruitCounts = typeof fruitCounts
 
 type NewSingleFruitCount = {
     [ K in keyof FruitCounts ]: { 
-        [K2 in K]: number
+        [ K2 in K ]: number
     }
 }[keyof FruitCounts]
 
@@ -64,9 +64,9 @@ type FruitCounts = {
 ```
 2. `[ K in keyof FruitCounts ]`の`keyof FruitCounts`は型エイリアスのオブジェクトのキーのみを取得することができる。  
 よって、`keyof FruitCounts`は`"apple" | "pear" | "banana"`変換される。  
-そうすると、`[ K in keyof FruitCounts ]`は`[ K in "apple" | "pear" | "banana" ]`に変換し、**マップ型**で型を繰り返し実装される。
+そうすると、`[ K in keyof FruitCounts ]`は`[ K in "apple" | "pear" | "banana" ]`に変換し、**マップ型**で型を繰り返し実装される。  
 参考Notion: <a href="https://stitch-squid-866.notion.site/Map-652db5e51b8e465ab9fc79a8596c16af" target="_blank">Map型</a>
-3. `[K2 in K]: number`も同じマップ型で繰り返し型定義が作成される。
+3. `[K2 in K]: number`で`K`は単独のリテラル型(` "apple" | "pear" | "banana`)になる。なので、`K2`も`K`と同じリテラル型になる。
 ```typescript
 type NewSingleFruitCount = {
     apple: {
@@ -94,9 +94,9 @@ type NewSingleFruitCount = {
     };
 }
 ```
-になり、Kの型推論がうまく効いてくれない。
+`K`のリテラル型になり、マップした変数`K`が使用できなくなる。オブジェクトのキーで変数を使用したい場合は、インデックスシグネチャを使用するしかなくなる。
 
-4. `[keyof FruitCounts]`は`["apple" | "pear" | "banana"]`になり、ルックアップ型でキーを指定して取得することができる  
+4. `[keyof FruitCounts]`は`["apple" | "pear" | "banana"]`になり、ルックアップ型でキーを指定して取得することできる。ルックアップ型がユニオン型になっているため、取得した型もユニオン型で生成することができる。   
 これまでのコードを型推論したコードを記載すると
 ```typescript
 type NewSingleFruitCount = {
