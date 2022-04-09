@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TechBlog</title><link>https://issei1213.github.io/</link><description>Recent content on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Sat, 09 Apr 2022 01:13:25 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>TypeScript Tip #3</title><link>https://issei1213.github.io/posts/typescript_tip-3/</link><pubDate>Sat, 09 Apr 2022 01:13:25 +0900</pubDate><guid>https://issei1213.github.io/posts/typescript_tip-3/</guid><description>背景 今回もmattoさんのコードリーディングをしていく。
 TypeScript Tip #3
 概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
-注意点としては、TypeScriptバージョンが4.1以上である必要があるため、注意が必要。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
+注意点としては、TypeScriptバージョンが4.1以上である必要がある。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
 ts-toolbelt
 本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
 import { String, Union } from &amp;#39;ts-toolbelt&amp;#39;; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
