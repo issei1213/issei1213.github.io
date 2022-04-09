@@ -1,0 +1,289 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #3 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 今回もmattoさんのコードリーディングをしていく。
+TypeScript Tip #3
+ 概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
+注意点としては、TypeScriptバージョンが4.1以上である必要があるため、注意が必要。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
+ts-toolbelt
+ 本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
+import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
+サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = &#34;/home?a=foo&b=wow&#34;  type SecondQueryPart = String.Split<Query, '?'>[1] // type SecondQueryPart = &#34;a=foo&b=wow&#34;  type QueryElements = String.Split<SecondQueryPart, '&'> // type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]  type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String.
+    ">
+<meta property="og:title" content="TypeScript Tip #3">
+<meta property="og:description" content="背景 今回もmattoさんのコードリーディングをしていく。
+TypeScript Tip #3
+ 概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
+注意点としては、TypeScriptバージョンが4.1以上である必要があるため、注意が必要。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
+ts-toolbelt
+ 本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
+import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
+サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = &#34;/home?a=foo&b=wow&#34;  type SecondQueryPart = String.Split<Query, '?'>[1] // type SecondQueryPart = &#34;a=foo&b=wow&#34;  type QueryElements = String.Split<SecondQueryPart, '&'> // type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]  type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-3/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-09T01:13:25+09:00">
+<meta property="article:modified_time" content="2022-04-09T01:13:25+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #3">
+<meta name=twitter:description content="背景 今回もmattoさんのコードリーディングをしていく。
+TypeScript Tip #3
+ 概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
+注意点としては、TypeScriptバージョンが4.1以上である必要があるため、注意が必要。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
+ts-toolbelt
+ 本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
+import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
+サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = &#34;/home?a=foo&b=wow&#34;  type SecondQueryPart = String.Split<Query, '?'>[1] // type SecondQueryPart = &#34;a=foo&b=wow&#34;  type QueryElements = String.Split<SecondQueryPart, '&'> // type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]  type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String.">
+<meta itemprop=name content="TypeScript Tip #3">
+<meta itemprop=description content="背景 今回もmattoさんのコードリーディングをしていく。
+TypeScript Tip #3
+ 概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
+注意点としては、TypeScriptバージョンが4.1以上である必要があるため、注意が必要。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
+ts-toolbelt
+ 本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
+import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
+サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = &#34;/home?a=foo&b=wow&#34;  type SecondQueryPart = String.Split<Query, '?'>[1] // type SecondQueryPart = &#34;a=foo&b=wow&#34;  type QueryElements = String.Split<SecondQueryPart, '&'> // type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]  type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String."><meta itemprop=datePublished content="2022-04-09T01:13:25+09:00">
+<meta itemprop=dateModified content="2022-04-09T01:13:25+09:00">
+<meta itemprop=wordCount content="299">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-3/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #3</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 9, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+7 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>今回もmattoさんのコードリーディングをしていく。<br>
+<a href=https://twitter.com/mpocock1/status/1499002040168636420 target=_blank>TypeScript Tip #3</a></p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>今回はTypeScriptのユーティリティをまとめたライブラリ<code>ts-toolbelt</code>について説明していく。<br>
+注意点としては、<strong>TypeScriptバージョンが4.1以上である必要がある</strong>ため、注意が必要。
+数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。<br>
+<a href=https://millsp.github.io/ts-toolbelt/index.html target=_blank>ts-toolbelt</a></p>
+<hr>
+<h2 id=本題>本題</h2>
+<h3 id=使い方>使い方</h3>
+<p>ライブラリの中から使用したいユーティリティをimportして使用する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { String, <span style=color:#a6e22e>Union</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;ts-toolbelt&#39;</span>;
+</code></pre></div><p>今回はURLの操作をする時に便利なユーティリティをまとめていく。</p>
+<h3 id=サンプルコード>サンプルコード</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { String, <span style=color:#a6e22e>Union</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;ts-toolbelt&#39;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>query</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;/home?a=foo&amp;b=wow&#39;</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Query</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>query</span>
+<span style=color:#75715e>//  type Query = &#34;/home?a=foo&amp;b=wow&#34;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>SecondQueryPart</span> <span style=color:#f92672>=</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>Query</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#39;?&#39;</span>&gt;[<span style=color:#ae81ff>1</span>]
+<span style=color:#75715e>//  type SecondQueryPart = &#34;a=foo&amp;b=wow&#34;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryElements</span> <span style=color:#f92672>=</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>SecondQueryPart</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#39;&amp;&#39;</span>&gt;
+<span style=color:#75715e>//  type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+    [ <span style=color:#a6e22e>QueryElement</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>] ]<span style=color:#f92672>:</span> {
+        [ <span style=color:#a6e22e>key</span> <span style=color:#66d9ef>in</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#39;=&#39;</span>&gt;[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>:</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#39;=&#39;</span>&gt;[<span style=color:#ae81ff>1</span>]
+    }
+}[<span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>]]
+<span style=color:#75715e>//  type QueryParams = {
+</span><span style=color:#75715e>//    a: &#34;foo&#34;;
+</span><span style=color:#75715e>//  } | {
+</span><span style=color:#75715e>//    b: &#34;wow&#34;;
+</span><span style=color:#75715e>//  }
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>obj</span>: <span style=color:#66d9ef>Union.Merge</span>&lt;<span style=color:#f92672>QueryParams</span>&gt; <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;foo&#39;</span>,
+    <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;wow&#39;</span>
+}
+<span style=color:#75715e>//  const obj: {
+</span><span style=color:#75715e>//    a: &#34;foo&#34;;
+</span><span style=color:#75715e>//    b: &#34;wow&#34;;
+</span><span style=color:#75715e>//  }
+</span></code></pre></div><ol>
+<li>
+<p><code>type SecondQueryPart = String.Split&lt;Query, "?">;</code>でリテラル型を<code>?</code>で区切りタプル型を作成する。
+よって、<code>type SecondQueryPart = ["/home", "a=foo&b=wow"]</code>になる。その後、ルックアップ型で要素を取得している。<br>
+<code>type SecondQueryPart = String.Split&lt;Query, '?'>[1]</code>で<code>type SecondQueryPart = "a=foo&b=wow"</code>の型を取得することができる。<br>
+<a href=https://numb86-tech.hatenablog.com/entry/2020/06/28/101757 target=_blank>TypeScript のルックアップ型と keyof キーワード</a></p>
+</li>
+<li>
+<p><code>type QueryElements = String.Split&lt;SecondQueryPart, "&">;</code>は上記と同じように<code>&</code>で区切りタプル型を作成している。<br>
+そのため、<code>type QueryElements = ["a=foo", "b=wow"]</code>になる。</p>
+</li>
+<li>
+<p><code>QueryParams</code>型のインデックスシグネチャをみていく。<br>
+<code>QueryElement in QueryElements[number]</code>の<code>QueryElements[number]</code>は、以下の様になる。</p>
+</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>]
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+[<span style=color:#e6db74>&#34;a=foo&#34;</span>, <span style=color:#e6db74>&#34;b=wow&#34;</span>][<span style=color:#66d9ef>number</span>]
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+<span style=color:#e6db74>&#34;a=foo&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b=wow&#34;</span>
+</code></pre></div><p>よって、<code>QueryElement in QueryElements[number]</code>は<code>QueryElement in "a=foo" | "b=wow"</code>でマップ型が作成される。
+4. <code>Key in String.Split&lt;QueryElement, "=">[0]</code>の<code>String.Split&lt;QueryElement, "=">[0]</code>は以下になる。<br>
+<code>a=foo</code>の場合</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>String.<span style=color:#a6e22e>Split</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#39;a=foo&#39;</span>, <span style=color:#e6db74>&#34;=&#34;</span><span style=color:#f92672>&gt;</span>[<span style=color:#ae81ff>0</span>]
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+<span style=color:#e6db74>&#34;a&#34;</span>
+</code></pre></div><p>上記と同じ様に<code>String.Split&lt;QueryElement,"=">[1]</code>も時も以下の様になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,&#34;=&#34;</span>&gt;[<span style=color:#ae81ff>1</span>]
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#e6db74>&#34;foo&#34;</span>
+</code></pre></div><ol start=5>
+<li>ここまでを見ると最後のルックアップ型を考慮せずに記載すると以下になる</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>QueryElement</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>]]<span style=color:#f92672>:</span> {
+        [<span style=color:#a6e22e>Key</span> <span style=color:#66d9ef>in</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#34;=&#34;</span>&gt;[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>:</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,&#34;=&#34;</span>&gt;[<span style=color:#ae81ff>1</span>];
+    };
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;a=foo&#34;</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;foo&#34;</span>;
+    };
+    <span style=color:#e6db74>&#34;b=wow&#34;</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;wow&#34;</span>;
+    };
+}
+</code></pre></div><ol start=6>
+<li>上記のコードに最後のルックアップ型を追加すると、指定したキーのバリューを取得することができる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+  [<span style=color:#a6e22e>QueryElement</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>]]<span style=color:#f92672>:</span> {
+    [<span style=color:#a6e22e>Key</span> <span style=color:#66d9ef>in</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>&#34;=&#34;</span>&gt;[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>:</span> String.<span style=color:#a6e22e>Split</span>&lt;<span style=color:#f92672>QueryElement</span><span style=color:#960050;background-color:#1e0010>,&#34;=&#34;</span>&gt;[<span style=color:#ae81ff>1</span>];
+  };
+}[<span style=color:#a6e22e>QueryElements</span>[<span style=color:#66d9ef>number</span>]];
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;a=foo&#34;</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;foo&#34;</span>;
+    };
+    <span style=color:#e6db74>&#34;b=wow&#34;</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;wow&#34;</span>;
+    };
+}[<span style=color:#e6db74>&#34;a=foo&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b=wow&#34;</span>];
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>QueryParams</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;foo&#34;</span>;
+} <span style=color:#f92672>|</span> {
+    <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;wow&#34;</span>;
+}
+</code></pre></div><ol start=7>
+<li>最後に<code>Union.Merge&lt;T></code>でユニオン型の型をインターセクション型に定義することができる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Union</span>.<span style=color:#a6e22e>Merge</span>&lt;<span style=color:#f92672>QueryParams</span>&gt;
+    
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#a6e22e>Union</span>.<span style=color:#a6e22e>Merge</span><span style=color:#f92672>&lt;</span>
+        {
+            <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;foo&#34;</span>;
+        } <span style=color:#f92672>|</span> {
+            <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;wow&#34;</span>;
+        }<span style=color:#f92672>&gt;</span>
+    
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+ {
+     <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;foo&#34;</span>;
+     <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;wow&#34;</span>;
+ }
+</code></pre></div><hr>
+<h2 id=まとめ>まとめ</h2>
+<p>ts-toolbeltの存在を初めて知ったので、非常に勉強になった。比較的バージョンを新しくする必要があるので、
+使用できる環境があれば、積極的に公式のドキュメントを参考にしていきたい。</p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1499002040168636420 target=_blank>TypeScript Tip #3</a><br>
+<a href=https://millsp.github.io/ts-toolbelt/index.html target=_blank>ts-toolbelt</a><br>
+<a href=https://numb86-tech.hatenablog.com/entry/2020/06/28/101757 target=_blank>TypeScript のルックアップ型と keyof キーワード</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
