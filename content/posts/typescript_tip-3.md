@@ -12,7 +12,7 @@ tags:
 ---
 ## 概要
 今回はTypeScriptのユーティリティをまとめたライブラリ`ts-toolbelt`について説明していく。  
-注意点としては、**TypeScriptバージョンが4.1以上である必要がある**ため、注意が必要。
+注意点としては、**TypeScriptバージョンが4.1以上である必要がある**。
 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。  
 <a href="https://millsp.github.io/ts-toolbelt/index.html" target="_blank">ts-toolbelt</a>
 
