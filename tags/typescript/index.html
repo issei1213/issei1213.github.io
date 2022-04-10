@@ -59,6 +59,54 @@ TechBlog</title>
 <h1>TypeScript</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript_tip-5/>
+<h3 class="title is-4">
+TypeScript Tip #5
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_tip-5/>
+<p class="subtitle info date">Apr 10, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-5/>
+<p class="subtitle info">
+3 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-5/>
+<p class=summary>
+背景 今回もmattさんの動画をまとめていく
+TypeScript Tip #5
+概要 型推論された型に対してextendsを使用するまとめていく。
+本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
+export const getDeepValue = &lt; Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd')) 引数の第2引数FirstKeyは型推論されたObjに制約を設けている。 FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends "foo" | "bar" よって、FirstKeyはfooかbarのどちらかになる。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-5/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/typescript_tip-3/>
 <h3 class="title is-4">
 TypeScript Tip #3

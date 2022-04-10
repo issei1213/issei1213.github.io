@@ -1,0 +1,210 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #5 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 今回もmattさんの動画をまとめていく
+TypeScript Tip #5
+ 概要 型推論された型に対してextendsを使用するまとめていく。
+ 本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
+export const getDeepValue = < Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd'))  引数の第2引数FirstKeyは型推論されたObjに制約を設けている。  FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends &#34;foo&#34; | &#34;bar&#34; よって、FirstKeyはfooかbarのどちらかになる。
+    ">
+<meta property="og:title" content="TypeScript Tip #5">
+<meta property="og:description" content="背景 今回もmattさんの動画をまとめていく
+TypeScript Tip #5
+ 概要 型推論された型に対してextendsを使用するまとめていく。
+ 本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
+export const getDeepValue = < Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd'))  引数の第2引数FirstKeyは型推論されたObjに制約を設けている。  FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends &#34;foo&#34; | &#34;bar&#34; よって、FirstKeyはfooかbarのどちらかになる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-5/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-10T12:43:14+09:00">
+<meta property="article:modified_time" content="2022-04-10T12:43:14+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #5">
+<meta name=twitter:description content="背景 今回もmattさんの動画をまとめていく
+TypeScript Tip #5
+ 概要 型推論された型に対してextendsを使用するまとめていく。
+ 本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
+export const getDeepValue = < Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd'))  引数の第2引数FirstKeyは型推論されたObjに制約を設けている。  FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends &#34;foo&#34; | &#34;bar&#34; よって、FirstKeyはfooかbarのどちらかになる。">
+<meta itemprop=name content="TypeScript Tip #5">
+<meta itemprop=description content="背景 今回もmattさんの動画をまとめていく
+TypeScript Tip #5
+ 概要 型推論された型に対してextendsを使用するまとめていく。
+ 本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
+export const getDeepValue = < Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd'))  引数の第2引数FirstKeyは型推論されたObjに制約を設けている。  FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends &#34;foo&#34; | &#34;bar&#34; よって、FirstKeyはfooかbarのどちらかになる。"><meta itemprop=datePublished content="2022-04-10T12:43:14+09:00">
+<meta itemprop=dateModified content="2022-04-10T12:43:14+09:00">
+<meta itemprop=wordCount content="157">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-5/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #5</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 10, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+3 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>今回もmattさんの動画をまとめていく<br>
+<a href=https://twitter.com/mpocock1/status/1500813765973053440 target=_blank>TypeScript Tip #5</a></p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>型推論された型に対してextendsを使用するまとめていく。</p>
+<hr>
+<h2 id=本題>本題</h2>
+<p>実際のサンプルコードは以下。
+<code>getDeepValue</code>関数の引数にオブジェクトを渡して、そこから型推論をさせている。<br>
+第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getDeepValue</span> <span style=color:#f92672>=</span> <span style=color:#f92672>&lt;</span>
+      <span style=color:#a6e22e>Obj</span>, 
+      <span style=color:#a6e22e>FirstKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>, 
+      <span style=color:#a6e22e>SecondKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>FirstKey</span>]
+  <span style=color:#f92672>&gt;</span>(
+      <span style=color:#a6e22e>obj</span>: <span style=color:#66d9ef>Obj</span>,
+      <span style=color:#a6e22e>firstKey</span>: <span style=color:#66d9ef>FirstKey</span>,
+      <span style=color:#a6e22e>secondKey</span>: <span style=color:#66d9ef>SecondKey</span>
+    )<span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>FirstKey</span>][<span style=color:#a6e22e>SecondKey</span>] <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#66d9ef>return</span>  <span style=color:#a6e22e>obj</span>[<span style=color:#a6e22e>firstKey</span>][<span style=color:#a6e22e>secondKey</span>]
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>2</span>
+  },
+  <span style=color:#a6e22e>bar</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;cool&#39;</span>,
+    <span style=color:#a6e22e>d</span>: <span style=color:#66d9ef>2</span>
+  }
+}
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>getDeepValue</span>(<span style=color:#a6e22e>obj</span>, <span style=color:#e6db74>&#39;bar&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>))
+</code></pre></div><ol>
+<li>引数の第2引数<code>FirstKey</code>は型推論された<code>Obj</code>に制約を設けている。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>FirstKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>keyof</span> {
+    <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>boolean</span>;
+        <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>;
+    };
+    <span style=color:#a6e22e>bar</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>string</span>;
+        <span style=color:#a6e22e>d</span>: <span style=color:#66d9ef>number</span>;
+    };
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#a6e22e>FirstKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#e6db74>&#34;foo&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;bar&#34;</span>
+
+</code></pre></div><p>よって、FirstKeyは<code>foo</code>か<code>bar</code>のどちらかになる。</p>
+<ol start=2>
+<li>引数の第3引数<code>SecondKey</code>は型推論された<code>Obj</code>と上記の<code>FirstKey</code>のルックアップ型で制約を設けている。<br>
+例えば、第2引数が<code>foo</code>の場合、以下の様になる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#f92672>&lt;</span>
+      <span style=color:#a6e22e>Obj</span>, 
+      <span style=color:#a6e22e>FirstKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#e6db74>&#39;foo&#39;</span>, 
+      <span style=color:#a6e22e>SecondKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#e6db74>&#39;foo&#39;</span>]
+<span style=color:#f92672>&gt;</span>
+    
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#f92672>&lt;</span>
+    <span style=color:#a6e22e>Obj</span>,
+    <span style=color:#a6e22e>FirstKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#e6db74>&#39;foo&#39;</span>,
+    <span style=color:#a6e22e>SecondKey</span> <span style=color:#66d9ef>extends</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b&#34;</span>
+<span style=color:#f92672>&gt;</span>
+</code></pre></div><p>上記の様に型推論され、第2引数の値によって第3引数の値も変更されるため、より安全に型定義できる。</p>
+<p>よって、以下の様なパターンは型エラーとなる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>getDeepValue</span>(<span style=color:#a6e22e>obj</span>, <span style=color:#e6db74>&#39;foo&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>))
+<span style=color:#75715e>// Argument of type &#39;&#34;d&#34;&#39; is not assignable to parameter of type &#39;&#34;a&#34; | &#34;b&#34;&#39;.
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>getDeepValue</span>(<span style=color:#a6e22e>obj</span>, <span style=color:#e6db74>&#39;bar&#39;</span>, <span style=color:#e6db74>&#39;a&#39;</span>))
+<span style=color:#75715e>// Argument of type &#39;&#34;a&#34;&#39; is not assignable to parameter of type &#39;&#34;c&#34; | &#34;d&#34;&#39;
+</span></code></pre></div><hr>
+<h2 id=まとめ>まとめ</h2>
+<p>今回は短めだったが、型推論は強力のため、うまく使用すれば汎用的な型定義ができそうだなと感じた。<br>
+意外とkeyofを使用した時に、リテラル型のユニオンが生成されることが抜けていたので勉強になった。</p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1500813765973053440 target=_blank>TypeScript Tip #5</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
