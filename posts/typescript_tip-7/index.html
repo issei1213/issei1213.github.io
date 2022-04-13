@@ -1,0 +1,227 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #7 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 今回もmattさんの記事をまとめていく。
+TypeScript Tip #7
+ 概要 オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。
+const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { console.log(myObject[key]) // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ a: number; b: number; c: number; }'.  // No index signature with a parameter of type 'string' was found on type '{ a: number; b: number; c: number; }'.
+    ">
+<meta property="og:title" content="TypeScript Tip #7">
+<meta property="og:description" content="背景 今回もmattさんの記事をまとめていく。
+TypeScript Tip #7
+ 概要 オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。
+const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { console.log(myObject[key]) // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ a: number; b: number; c: number; }'.  // No index signature with a parameter of type 'string' was found on type '{ a: number; b: number; c: number; }'.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-7/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-13T23:11:35+09:00">
+<meta property="article:modified_time" content="2022-04-13T23:11:35+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #7">
+<meta name=twitter:description content="背景 今回もmattさんの記事をまとめていく。
+TypeScript Tip #7
+ 概要 オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。
+const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { console.log(myObject[key]) // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ a: number; b: number; c: number; }'.  // No index signature with a parameter of type 'string' was found on type '{ a: number; b: number; c: number; }'.">
+<meta itemprop=name content="TypeScript Tip #7">
+<meta itemprop=description content="背景 今回もmattさんの記事をまとめていく。
+TypeScript Tip #7
+ 概要 オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。
+const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { console.log(myObject[key]) // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ a: number; b: number; c: number; }'.  // No index signature with a parameter of type 'string' was found on type '{ a: number; b: number; c: number; }'."><meta itemprop=datePublished content="2022-04-13T23:11:35+09:00">
+<meta itemprop=dateModified content="2022-04-13T23:11:35+09:00">
+<meta itemprop=wordCount content="255">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-7/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #7</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 13, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+6 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>今回もmattさんの記事をまとめていく。<br>
+<a href=https://twitter.com/mpocock1/status/1502264005251018754 target=_blank>TypeScript Tip #7</a></p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>myObject</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>,
+  <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>2</span>,
+  <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>3</span>
+}
+
+Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>myObject</span>).<span style=color:#a6e22e>forEach</span>((<span style=color:#a6e22e>key</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>myObject</span>[<span style=color:#a6e22e>key</span>])
+  <span style=color:#75715e>// Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index type &#39;{ a: number; b: number; c: number; }&#39;.
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//  No index signature with a parameter of type &#39;string&#39; was found on type &#39;{ a: number; b: number; c: number; }&#39;.(7053)
+</span><span style=color:#75715e></span>})
+</code></pre></div><p>しかし、上記のコードではconsole.logで型エラーが発生する。これは<code>myObject[key]</code>のkeyが存在しないオブジェクトのキーを指定しまう可能性があるとして、エラーが発生している。<br>
+参考記事：<a href=https://zenn.dev/katoaki/articles/37a8cff3a8a32a target=_blank>TypeScriptでブラケット記法を使うときにハマったこと</a></p>
+<p>今回は、この場合の対応策を考えていく。</p>
+<hr>
+<h2 id=本題>本題</h2>
+<p>実際のサンプルコードは以下になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>myObject</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>,
+    <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>2</span>,
+    <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>3</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>objectKeys</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>Obj</span>&gt;(<span style=color:#a6e22e>obj</span>: <span style=color:#66d9ef>Obj</span>)<span style=color:#f92672>:</span> (<span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>)[] <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>obj</span>) <span style=color:#66d9ef>as</span> (<span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>)[];
+}
+
+<span style=color:#a6e22e>objectKeys</span>(<span style=color:#a6e22e>myObject</span>).<span style=color:#a6e22e>forEach</span>((<span style=color:#a6e22e>key</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>myObject</span>[<span style=color:#a6e22e>key</span>]);
+})
+</code></pre></div><ol>
+<li>今回は<code>objectKeys</code>関数を作成し、引数<code>obj</code>を型推論させた<code>Obj</code>を作成する。
+例えば、上記のmyObject定数を型推論させると以下になる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>myObject</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>,
+    <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>2</span>,
+    <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>3</span>
+}
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>MyObject</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>myObject</span>
+<span style=color:#75715e>// type MyObject = {
+</span><span style=color:#75715e>//   a: number;
+</span><span style=color:#75715e>//   b: number;
+</span><span style=color:#75715e>//   c: number;
+</span><span style=color:#75715e>// }
+</span></code></pre></div><p>よって、上記でいう<code>MyObject</code>が型<code>Obj</code>になる。また、ジェネリクスで定義しているため、関数全体で使用できる型になっている。</p>
+<ol start=2>
+<li>二ヶ所で<code>keyof Obj</code>を使用しているが、これはオブジェクトのkeyを切り取った、ユニオンのリテラル型になる。
+例えば、MyObjectの型を定義すると以下になる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>KeyOf</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>MyObject</span>
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>KeyOf</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>keyof</span> {
+    <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>number</span>;
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>KeyOf</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;c&#34;</span>
+</code></pre></div><ol start=3>
+<li>ここまでで、定数myObjectを型定義をあてはまると、以下になる</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>objectKeys</span>(<span style=color:#a6e22e>myObject</span>)
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>objectKeys</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>Obj</span>&gt;(<span style=color:#a6e22e>obj</span>: <span style=color:#66d9ef>Obj</span>)<span style=color:#f92672>:</span> (<span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>)[] <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>obj</span>) <span style=color:#66d9ef>as</span> (<span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>)[];
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Obj</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>number</span>;
+}
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>objectKeys</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>Obj</span>&gt;(<span style=color:#a6e22e>obj</span>: <span style=color:#66d9ef>Obj</span>)<span style=color:#f92672>:</span> (<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;c&#34;</span>)[] <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>obj</span>) <span style=color:#66d9ef>as</span> (<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;c&#34;</span>)[];
+    <span style=color:#75715e>// 型アサーションでa, b, cのどれかが含まれている配列であることを宣言している。
+</span><span style=color:#75715e></span>}
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(Object.<span style=color:#a6e22e>keys</span>(<span style=color:#a6e22e>myObject</span>))
+<span style=color:#75715e>//  [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] 
+</span></code></pre></div><ol start=4>
+<li>上記の配列を作成することによって、foreach分の引数の値に型定義がきちんとされ、オブジェクトのキーとしてきちんと利用することができる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>objectKeys</span>(<span style=color:#a6e22e>myObject</span>).<span style=color:#a6e22e>forEach</span>((<span style=color:#a6e22e>key</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>// ここのkeyは以下の様に、型定義が聞いてくれる。
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// key: &#34;a&#34; | &#34;b&#34; | &#34;c&#34;
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>myObject</span>[<span style=color:#a6e22e>key</span>]);
+})
+</code></pre></div><hr>
+<h2 id=まとめ>まとめ</h2>
+<p>今回はforEach分の例にしているが、通常のオブジェクトの操作をしている時に出てくる対処策は以下の記事にかいていたので、<br>
+併せて確認するとさらに勉強になった。
+参考記事：<a href=https://zenn.dev/katoaki/articles/37a8cff3a8a32a target=_blank>TypeScriptでブラケット記法を使うときにハマったこと</a></p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1502264005251018754 target=_blank>TypeScript Tip #7</a><br>
+<a href=https://zenn.dev/katoaki/articles/37a8cff3a8a32a target=_blank>TypeScriptでブラケット記法を使うときにハマったこと</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

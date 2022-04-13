@@ -58,6 +58,52 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript_tip-7/>
+<h3 class="title is-4">
+TypeScript Tip #7
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_tip-7/>
+<p class="subtitle info date">Apr 13, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-7/>
+<p class="subtitle info">
+6 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-7/>
+<p class=summary>
+背景 今回もmattさんの記事をまとめていく。
+TypeScript Tip #7
+概要 オブジェクト中身を順番に処理していく時には、以下のコードを用いることがある。
+const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { console.log(myObject[key]) // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ a: number; b: number; c: number; }'. // No index signature with a parameter of type 'string' was found on type '{ a: number; b: number; c: number; }'.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-7/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/typescript_tip-5/>
 <h3 class="title is-4">
 TypeScript Tip #5
@@ -247,52 +293,6 @@ type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof 
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-1/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_react-sample-code-reading/>
-<h3 class="title is-4">
-りあクトのTypeScriptサンプルコードリーディング
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_react-sample-code-reading/>
-<p class="subtitle info date">Apr 2, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_react-sample-code-reading/>
-<p class="subtitle info">
-7 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_react-sample-code-reading/>
-<p class=summary>
-背景 TypeScriptの教材で以下のサンプルコードがあったので、コードリーディングしていく。
-概要 以下のコードリーディングをしていく。
-非同期データ取得関数をラップして、そこで起きる例外をフォローしつつ正常系と異常系に振り分ける関数を定義している。
-type Result&lt;T, E extends Error> = Ok&lt;T, E> | Err&lt;T, E> export class Ok&lt;T, E extends Error> { constructor(readonly val: T) {} isOk = (): this is Ok&lt;T, E> => true isErr = (): this is Err&lt;T, E> => false } export class Err&lt;T, E extends Error> { constructor(readonly err: E) {} isOk = (): this is Ok&lt;T, E> => false isErr = (): this is Err&lt;T, E> => true } export const withResult = &lt;T, A extends any[], E extends Error>(fn: (.
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_react-sample-code-reading/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
