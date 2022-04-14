@@ -1,0 +1,273 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #8 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 今回もmattさんのTypeScriptTipsをまとめていく。
+TypeScript Tip #8
+ 概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
+ 本題 以下のコードはReactのサンプルのコードである。
+Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
+オブジェクトはプロパティidのみを保持している。
+import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( <Table items={[ { id: '1', } ]} renderItem={(item) => <div>{ item.id }</div>} ></Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード
+    ">
+<meta property="og:title" content="TypeScript Tip #8">
+<meta property="og:description" content="背景 今回もmattさんのTypeScriptTipsをまとめていく。
+TypeScript Tip #8
+ 概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
+ 本題 以下のコードはReactのサンプルのコードである。
+Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
+オブジェクトはプロパティidのみを保持している。
+import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( <Table items={[ { id: '1', } ]} renderItem={(item) => <div>{ item.id }</div>} ></Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-8/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-15T00:14:16+09:00">
+<meta property="article:modified_time" content="2022-04-15T00:14:16+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #8">
+<meta name=twitter:description content="背景 今回もmattさんのTypeScriptTipsをまとめていく。
+TypeScript Tip #8
+ 概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
+ 本題 以下のコードはReactのサンプルのコードである。
+Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
+オブジェクトはプロパティidのみを保持している。
+import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( <Table items={[ { id: '1', } ]} renderItem={(item) => <div>{ item.id }</div>} ></Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード">
+<meta itemprop=name content="TypeScript Tip #8">
+<meta itemprop=description content="背景 今回もmattさんのTypeScriptTipsをまとめていく。
+TypeScript Tip #8
+ 概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
+ 本題 以下のコードはReactのサンプルのコードである。
+Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
+オブジェクトはプロパティidのみを保持している。
+import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( <Table items={[ { id: '1', } ]} renderItem={(item) => <div>{ item.id }</div>} ></Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード"><meta itemprop=datePublished content="2022-04-15T00:14:16+09:00">
+<meta itemprop=dateModified content="2022-04-15T00:14:16+09:00">
+<meta itemprop=wordCount content="280">
+<meta itemprop=keywords content="TypeScript,React,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-8/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #8</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 15, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+5 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+<a class="tag is-dark is-rounded" href=/tags/react>React</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+<a class="tag is-dark is-rounded" href=/tags/react>React</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>今回もmattさんのTypeScriptTipsをまとめていく。<br>
+<a href=https://twitter.com/mpocock1/status/1503352924537339904 target=_blank>TypeScript Tip #8</a></p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。</p>
+<hr>
+<h2 id=本題>本題</h2>
+<p>以下のコードはReactのサンプルのコードである。<br>
+<code>Table</code>コンポーネントの<code>props</code>に存在する<code>items</code>はオブジェクトの配列になっている。<br>
+オブジェクトはプロパティ<code>id</code>のみを保持している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react&#39;</span>
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>TableProps</span> {
+    <span style=color:#a6e22e>items</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }[]
+    <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>ReactNode</span>
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Table</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>TableProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Component</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Table</span>
+            <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span>{[
+                {
+                    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;1&#39;</span>,
+                }
+            ]}
+            <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>item</span>) <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>div</span>&gt;{ <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>id</span> }&lt;/<span style=color:#f92672>div</span>&gt;}
+        &gt;&lt;/<span style=color:#f92672>Table</span>&gt;
+    )
+}
+</code></pre></div><p>上記の場合、props<code>items</code>にオブジェクトの<code>id</code>以外のプロパティを定義したい場合、<code>TableProps</code>にも追加をしてやる必要がある。
+以下はそのサンプルコード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react&#39;</span>
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>TableProps</span> {
+    <span style=color:#a6e22e>items</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span> }[]
+    <span style=color:#75715e>// 🔼プロパティnameを追加している
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span> }) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>ReactNode</span>
+    <span style=color:#75715e>// 🔼プロパティnameを追加している
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Table</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>TableProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Component</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Table</span>
+            <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span>{[
+                {
+                    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;1&#39;</span>,
+                    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;issei&#39;</span>
+                    <span style=color:#75715e>// 🔼propsにnameを追加している
+</span><span style=color:#75715e></span>                }
+            ]}
+            <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>item</span>) <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>div</span>&gt;{ <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>id</span> }&lt;/<span style=color:#f92672>div</span>&gt;}
+        &gt;&lt;/<span style=color:#f92672>Table</span>&gt;
+    )
+}
+</code></pre></div><p>プロパティを追加する度に型定義を追加してやる必要があるため、これをジェネリクスを利用して定義を動的に変更させる。
+ジェネリクスを利用したサンプルコードは以下。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react&#39;</span>
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>TableProps</span>&lt;<span style=color:#f92672>TItem</span>&gt; {
+    <span style=color:#a6e22e>items</span>: <span style=color:#66d9ef>TItem</span>[]
+    <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>TItem</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>ReactNode</span>
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Table</span>&lt;<span style=color:#f92672>TItem</span>&gt;(<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>TableProps</span>&lt;<span style=color:#f92672>TItem</span>&gt;) {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Component</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Table</span>
+            <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span>{[
+                {
+                    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;1&#39;</span>,
+                    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Matt&#39;</span>
+                }
+            ]}
+            <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>item</span>) <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>div</span>&gt;{ <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>id</span> }&lt;/<span style=color:#f92672>div</span>&gt;}
+        &gt;&lt;/<span style=color:#f92672>Table</span>&gt;
+    )
+}
+</code></pre></div><ol>
+<li><code>TableProps</code>の型定義でジェネリクスを定義している。<br>
+今回の例でいうと、itemsの型推論した型をジェネリクスに格納し、型全体で使用できる様にしている。<br>
+renderItem関数内の引数にもジェネリクスで定義した型を定義している。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>TableProps</span>&lt;<span style=color:#f92672>TItem</span>&gt; {
+    <span style=color:#a6e22e>items</span>: <span style=color:#66d9ef>TItem</span>[]
+    <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>TItem</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>ReactNode</span>
+}
+</code></pre></div><ol start=2>
+<li>上記で定義したジェネクスも関数全体で使用できるように定義しておく。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Table</span>&lt;<span style=color:#f92672>TItem</span>&gt;(<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>TableProps</span>&lt;<span style=color:#f92672>TItem</span>&gt;) {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>
+}
+
+<span style=color:#75715e>// or
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Table</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>TItem</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>unknown</span>&gt;(<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>TableProps</span>&lt;<span style=color:#f92672>TItem</span>&gt;) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+};
+
+</code></pre></div><ol start=3>
+<li>上記の型を定義してやることで、propsの値を型推論してくれて、itemsのプロパティを追加しても動的に型推論してくれる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Component</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>Table</span>
+      <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span>{[
+          {
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;1&#39;</span>,
+            <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Matt&#39;</span>
+            <span style=color:#75715e>// 🔼nameを追加しても動的に型推論することができる
+</span><span style=color:#75715e></span>          }
+        ]}
+      <span style=color:#a6e22e>renderItem</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>item</span>) <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>div</span>&gt;{ <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>id</span> }&lt;/<span style=color:#f92672>div</span>&gt;}
+    &gt;&lt;/<span style=color:#f92672>Table</span>&gt;
+    <span style=color:#75715e>// 型定義内容
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//  function Table&lt;{
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//    id: string;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//    name: string;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//   }&gt;(props: TableProps&lt;{
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//    id: string;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//    name: string;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//   }&gt;): null
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//  )
+</span><span style=color:#75715e></span>}
+</code></pre></div><hr>
+<h2 id=まとめ>まとめ</h2>
+<p>かなり汎用性が高くなるため、使用することがあれば使用していきたい</p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1503352924537339904 target=_blank>TypeScript Tip #8</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
