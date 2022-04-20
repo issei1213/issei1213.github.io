@@ -1,0 +1,235 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+TypeScript Tip #20 |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 今回もmattさんのTypeScriptTipsを解説していく。
+TypeScript Tip #20
+ 概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
+export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
+type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'.
+    ">
+<meta property="og:title" content="TypeScript Tip #20">
+<meta property="og:description" content="背景 今回もmattさんのTypeScriptTipsを解説していく。
+TypeScript Tip #20
+ 概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
+export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
+type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/typescript_tip-20/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-20T23:30:11+09:00">
+<meta property="article:modified_time" content="2022-04-20T23:30:11+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TypeScript Tip #20">
+<meta name=twitter:description content="背景 今回もmattさんのTypeScriptTipsを解説していく。
+TypeScript Tip #20
+ 概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
+export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
+type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'.">
+<meta itemprop=name content="TypeScript Tip #20">
+<meta itemprop=description content="背景 今回もmattさんのTypeScriptTipsを解説していく。
+TypeScript Tip #20
+ 概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
+export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
+type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'."><meta itemprop=datePublished content="2022-04-20T23:30:11+09:00">
+<meta itemprop=dateModified content="2022-04-20T23:30:11+09:00">
+<meta itemprop=wordCount content="309">
+<meta itemprop=keywords content="TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-20/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>TypeScript Tip #20</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Apr 20, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+8 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>今回もmattさんのTypeScriptTipsを解説していく。<br>
+<a href=https://twitter.com/mpocock1/status/1516755042816172042 target=_blank>TypeScript Tip #20</a></p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Obj</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a&#39;</span>,
+    <span style=color:#a6e22e>a2</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a2&#39;</span>,
+    <span style=color:#a6e22e>a3</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a3&#39;</span>,
+    <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;b&#39;</span>,
+    <span style=color:#a6e22e>b1</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;b1&#39;</span>,
+    <span style=color:#a6e22e>b2</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;b2&#39;</span>
+}
+
+<span style=color:#75715e>// 上記の型から以下の型を作成したい
+</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewUnion</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>
+</code></pre></div><hr>
+<h2 id=本題>本題</h2>
+<p>以下が実際の型定義になる。順番に解説していく。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>keyof</span> <span style=color:#a6e22e>Obj</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>`</span><span style=color:#a6e22e>a</span><span style=color:#960050;background-color:#1e0010>$</span>{<span style=color:#a6e22e>string</span>}<span style=color:#960050;background-color:#1e0010>`</span>&gt;]<span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>K</span>];
+}[<span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>keyof</span> <span style=color:#a6e22e>Obj</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>`</span><span style=color:#a6e22e>a</span><span style=color:#960050;background-color:#1e0010>$</span>{<span style=color:#a6e22e>string</span>}<span style=color:#960050;background-color:#1e0010>`</span>&gt;]
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewUnion</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt;
+<span style=color:#75715e>// type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;
+</span></code></pre></div><ol>
+<li>今回のポイントは<code>Extract&lt;keyof Obj,`a${string}`></code>になるため細かくみていく。
+まず、<code>a${string}</code>がどのように型定義されるかというと、文字列<code>a</code>を含めて文字列リテラル型を定義できる。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>TestType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`a</span><span style=color:#e6db74>${</span><span style=color:#66d9ef>string</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>
+
+<span style=color:#75715e>// Success
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>test1</span>: <span style=color:#66d9ef>TestType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;a&#39;</span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>test2</span>: <span style=color:#66d9ef>TestType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;a1&#39;</span>
+
+<span style=color:#75715e>// Error
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>test3</span>: <span style=color:#66d9ef>TestType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;1&#39;</span>  <span style=color:#75715e>// Type &#39;&#34;1&#34;&#39; is not assignable to type &#39;`a${string}`&#39;.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>test4</span>: <span style=color:#66d9ef>TestType</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>    <span style=color:#75715e>// Type &#39;1&#39; is not assignable to type &#39;`a${string}`&#39;.
+</span></code></pre></div><p>次に<code>keyof Obj</code>は、オブジェクト型のキーのユニオンのリテラル型を作成できる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Keys</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>Obj</span>
+<span style=color:#75715e>// &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34; | &#34;b&#34; | &#34;b1&#34; | &#34;b2&#34;
+</span></code></pre></div><p>そこで<code>Extract&lt;keyof Obj,`a${string}`></code>に組み合わせると、以下になる。 <br>
+また、<code>Extract&lt;T,U></code>は、<code>T</code>型から<code>U</code>型に代入可能な型だけを抽出するユーティリティになる。<br>
+参考記事：<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu target=_blank>【TypeScript】Utility Typesをまとめて理解する</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#a6e22e>Extract</span>&lt;<span style=color:#f92672>keyof</span> <span style=color:#a6e22e>Obj</span><span style=color:#960050;background-color:#1e0010>,`</span><span style=color:#a6e22e>a</span><span style=color:#960050;background-color:#1e0010>$</span>{<span style=color:#a6e22e>string</span>}<span style=color:#960050;background-color:#1e0010>`</span>&gt;
+    
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#a6e22e>Extract</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b1&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;b2&#34;</span>, <span style=color:#e6db74>`a</span><span style=color:#e6db74>${</span><span style=color:#66d9ef>string</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span><span style=color:#f92672>&gt;</span>
+<span style=color:#75715e>// &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34; | &#34;b&#34; | &#34;b1&#34; | &#34;b2&#34;からa${string}に代入可能な型を抜き出す
+</span><span style=color:#75715e></span>
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>
+</code></pre></div><p>よって、<code>Extract&lt;keyof Obj,`a${string}`></code>は<code>"a" | "a2" | "a3"</code>の型になる。
+2. Extract型がわかったので、元のコードに当てはめてみる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>K</span>];
+}[<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>]
+</code></pre></div><p>まずはインデックスシグネチャだけを取り出してみる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>K</span>];
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#e6db74>&#39;a&#39;</span>],
+    <span style=color:#e6db74>&#39;a2&#39;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#e6db74>&#39;a2&#39;</span>],
+    <span style=color:#e6db74>&#39;a3&#39;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#e6db74>&#39;a3&#39;</span>],
+}
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a&#39;</span>,
+    <span style=color:#e6db74>&#39;a2&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a2&#39;</span>,
+    <span style=color:#e6db74>&#39;a3&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a3&#39;</span>,
+}
+</code></pre></div><p>上記に展開したインデックスシグネチャにルックアップ型を追加する。<br>
+ルックアップ型がユニオンになっているので、取り出し型もユニオンになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt; <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a&#39;</span>,
+    <span style=color:#e6db74>&#39;a2&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a2&#39;</span>,
+    <span style=color:#e6db74>&#39;a3&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;a3&#39;</span>,
+}[<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>]
+
+<span style=color:#960050;background-color:#1e0010>🔽</span>
+
+<span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a2&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;a3&#34;</span>
+</code></pre></div><p>これで特定のキーのバリューのユニオンを作成することができた。<br>
+3. コードをよくみると<code>Extract&lt;keyof Obj, `a${string}`></code>が二ヶ所存在しており、少し冗長である。<br>
+そのため、ジェネリクスで定義してやる書き方が以下になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>_ExtractedKeys</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>keyof</span> <span style=color:#a6e22e>Obj </span><span style=color:#f92672>=</span> <span style=color:#a6e22e>Extract</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>keyof</span> <span style=color:#a6e22e>Obj</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>`</span><span style=color:#a6e22e>a</span><span style=color:#960050;background-color:#1e0010>$</span>{<span style=color:#a6e22e>string</span>}<span style=color:#960050;background-color:#1e0010>`</span>&gt;<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>_ExtractedKeys</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>Obj</span>[<span style=color:#a6e22e>K</span>];
+}[<span style=color:#a6e22e>_ExtractedKeys</span>]
+
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewUnion</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt;
+</code></pre></div><p>ジェネリクスで型<code>_ExtractedKeys</code>に<code>keyof Obj = Extract&lt;keyof Obj, `a${string}`>></code>の制約をつけている。<br>
+これはデフォルト型引数を使用しており、<code>keyof Obj</code>が存在しない、つまりジェネリクスの第2引数が存在しない場合、<br>
+参考記事：<a href=https://typescriptbook.jp/reference/generics/default-type-parameter target=_blank>デフォルト型引数</a></p>
+<p><code>Extract&lt;keyof Obj, `a${string}`>></code>が<code>_ExtractedKeys</code>の型になる。<br>
+よって、今回の場合、型<code>_ExtractedKeys</code>は<code>"a" | "a2" | "a3"</code>に推論される。</p>
+<hr>
+<h2 id=まとめ>まとめ</h2>
+<p>過去にTipsのコードリーディングをしていたので、大分型の流れを掴めるようになってきた。<br>
+ジェネリクスのデフォルト型引数は久しぶりに復習できてよかった。</p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://twitter.com/mpocock1/status/1516755042816172042 target=_blank>TypeScript Tip #20</a><br>
+<a href=https://qiita.com/k-penguin-sato/items/e2791d7a57e96f6144e5#extracttu target=_blank>【TypeScript】Utility Typesをまとめて理解する</a><br>
+<a href=https://typescriptbook.jp/reference/generics/default-type-parameter target=_blank>デフォルト型引数</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
