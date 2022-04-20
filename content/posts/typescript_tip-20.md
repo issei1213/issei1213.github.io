@@ -122,12 +122,11 @@ type ValuesOfKeysStartingWithA<Obj, _ExtractedKeys extends keyof Obj = Extract<k
 type NewUnion = ValuesOfKeysStartingWithA<Obj>
 ```
 ジェネリクスで型`_ExtractedKeys`に``keyof Obj = Extract<keyof Obj, `a${string}`>>``の制約をつけている。  
-これはデフォルト型引数を使用しており、`keyof Obj`が存在しない、つまりジェネリクスの第2引数が存在しない場合、  
-参考記事：<a href="https://typescriptbook.jp/reference/generics/default-type-parameter" target="_blank">デフォルト型引数</a>
-
-
+これはデフォルト型引数を使用しており、`keyof Obj`が存在しない、つまりジェネリクスの第2引数が存在しない場合、
 ``Extract<keyof Obj, `a${string}`>>``が``_ExtractedKeys``の型になる。  
-よって、今回の場合、型`_ExtractedKeys`は`"a" | "a2" | "a3"`に推論される。
+``Extract<keyof Obj, `a${string}`>>``が``_ExtractedKeys``の型になる。  
+参考記事：<a href="https://typescriptbook.jp/reference/generics/default-type-parameter" target="_blank">デフォルト型引数</a>  
+よって今回の場合、型`_ExtractedKeys`は`"a" | "a2" | "a3"`に推論される。
 
 ---
 ## まとめ
