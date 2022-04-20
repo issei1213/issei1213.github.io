@@ -34,7 +34,7 @@ TypeScript Tip #20
 export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
 type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'."><meta itemprop=datePublished content="2022-04-20T23:30:11+09:00">
 <meta itemprop=dateModified content="2022-04-20T23:30:11+09:00">
-<meta itemprop=wordCount content="309">
+<meta itemprop=wordCount content="312">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-20/>
 <link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
@@ -201,10 +201,11 @@ type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]:
 
 <span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NewUnion</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ValuesOfKeysStartingWithA</span>&lt;<span style=color:#f92672>Obj</span>&gt;
 </code></pre></div><p>ジェネリクスで型<code>_ExtractedKeys</code>に<code>keyof Obj = Extract&lt;keyof Obj, `a${string}`>></code>の制約をつけている。<br>
-これはデフォルト型引数を使用しており、<code>keyof Obj</code>が存在しない、つまりジェネリクスの第2引数が存在しない場合、<br>
-参考記事：<a href=https://typescriptbook.jp/reference/generics/default-type-parameter target=_blank>デフォルト型引数</a></p>
-<p><code>Extract&lt;keyof Obj, `a${string}`>></code>が<code>_ExtractedKeys</code>の型になる。<br>
-よって、今回の場合、型<code>_ExtractedKeys</code>は<code>"a" | "a2" | "a3"</code>に推論される。</p>
+これはデフォルト型引数を使用しており、<code>keyof Obj</code>が存在しない、つまりジェネリクスの第2引数が存在しない場合、
+<code>Extract&lt;keyof Obj, `a${string}`>></code>が<code>_ExtractedKeys</code>の型になる。<br>
+<code>Extract&lt;keyof Obj, `a${string}`>></code>が<code>_ExtractedKeys</code>の型になる。<br>
+参考記事：<a href=https://typescriptbook.jp/reference/generics/default-type-parameter target=_blank>デフォルト型引数</a><br>
+よって今回の場合、型<code>_ExtractedKeys</code>は<code>"a" | "a2" | "a3"</code>に推論される。</p>
 <hr>
 <h2 id=まとめ>まとめ</h2>
 <p>過去にTipsのコードリーディングをしていたので、大分型の流れを掴めるようになってきた。<br>
