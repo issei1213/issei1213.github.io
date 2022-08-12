@@ -58,6 +58,57 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/solidjs_types/>
+<h3 class="title is-4">
+Component TypesとEvent Handlers
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/solidjs_types/>
+<p class="subtitle info date">Aug 12, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/solidjs_types/>
+<p class="subtitle info">
+7 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/solidjs>SolidJS</a>
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/solidjs_types/>
+<p class=summary>
+背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component&lt;P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from "solid-js/web"; import { createSignal, Component } from "solid-js"; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( &lt;button onClick={() => setCount((c) => c+1)}> {count()} &lt;/button> ); }; const InitCounter: Component&lt;{initial: number}> = (props) => { const [count, setCount] = createSignal(props.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/solidjs_types/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/typescript_tip-20/>
 <h3 class="title is-4">
 TypeScript Tip #20
@@ -245,56 +296,6 @@ export const getDeepValue = &lt; Obj, FirstKey extends keyof Obj, SecondKey exte
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-5/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-3/>
-<h3 class="title is-4">
-TypeScript Tip #3
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-3/>
-<p class="subtitle info date">Apr 9, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-3/>
-<p class="subtitle info">
-7 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-3/>
-<p class=summary>
-背景 今回もmattoさんのコードリーディングをしていく。
-TypeScript Tip #3
-概要 今回はTypeScriptのユーティリティをまとめたライブラリts-toolbeltについて説明していく。
-注意点としては、TypeScriptバージョンが4.1以上である必要がある。 数多くのユーティリティが提供されているため、今回はMattさんの解説に絞ってまとめていく。
-ts-toolbelt
-本題 使い方 ライブラリの中から使用したいユーティリティをimportして使用する。
-import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
-サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = "/home?a=foo&b=wow" type SecondQueryPart = String.Split&lt;Query, '?'>[1] // type SecondQueryPart = "a=foo&b=wow" type QueryElements = String.Split&lt;SecondQueryPart, '&'> // type QueryElements = ["a=foo", "b=wow"] type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String.
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-3/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

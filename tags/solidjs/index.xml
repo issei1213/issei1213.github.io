@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SolidJS on TechBlog</title><link>https://issei1213.github.io/tags/solidjs/</link><description>Recent content in SolidJS on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 12 Aug 2022 21:08:23 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/tags/solidjs/index.xml" rel="self" type="application/rss+xml"/><item><title>Component TypesとEvent Handlers</title><link>https://issei1213.github.io/posts/solidjs_types/</link><pubDate>Fri, 12 Aug 2022 21:08:23 +0900</pubDate><guid>https://issei1213.github.io/posts/solidjs_types/</guid><description>背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+本題 Component Types Component import type { JSX, Component } from &amp;#39;solid-js&amp;#39;; type Component&amp;lt;P = {}&amp;gt; = (props: P) =&amp;gt; JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from &amp;#34;solid-js/web&amp;#34;; import { createSignal, Component } from &amp;#34;solid-js&amp;#34;; const Counter: Component = () =&amp;gt; { const [count, setCount] = createSignal(0); return ( &amp;lt;button onClick={() =&amp;gt; setCount((c) =&amp;gt; c+1)}&amp;gt; {count()} &amp;lt;/button&amp;gt; ); }; const InitCounter: Component&amp;lt;{initial: number}&amp;gt; = (props) =&amp;gt; { const [count, setCount] = createSignal(props.</description></item></channel></rss>

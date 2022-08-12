@@ -1,0 +1,308 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+Component TypesとEvent Handlers |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+ 概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+ 本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component<P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from &#34;solid-js/web&#34;; import { createSignal, Component } from &#34;solid-js&#34;; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( <button onClick={() => setCount((c) => c+1)}> {count()} </button> ); }; const InitCounter: Component<{initial: number}> = (props) => { const [count, setCount] = createSignal(props.
+    ">
+<meta property="og:title" content="Component TypesとEvent Handlers">
+<meta property="og:description" content="背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+ 概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+ 本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component<P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from &#34;solid-js/web&#34;; import { createSignal, Component } from &#34;solid-js&#34;; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( <button onClick={() => setCount((c) => c+1)}> {count()} </button> ); }; const InitCounter: Component<{initial: number}> = (props) => { const [count, setCount] = createSignal(props.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/solidjs_types/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-08-12T21:08:23+09:00">
+<meta property="article:modified_time" content="2022-08-12T21:08:23+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Component TypesとEvent Handlers">
+<meta name=twitter:description content="背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+ 概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+ 本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component<P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from &#34;solid-js/web&#34;; import { createSignal, Component } from &#34;solid-js&#34;; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( <button onClick={() => setCount((c) => c+1)}> {count()} </button> ); }; const InitCounter: Component<{initial: number}> = (props) => { const [count, setCount] = createSignal(props.">
+<meta itemprop=name content="Component TypesとEvent Handlers">
+<meta itemprop=description content="背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
+個人的にまとめることにする。
+ 概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
+公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
+ 本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component<P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
+戻り値はJSX.Elementになる。
+サンプルコード　※公式のコードを参照
+import { render } from &#34;solid-js/web&#34;; import { createSignal, Component } from &#34;solid-js&#34;; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( <button onClick={() => setCount((c) => c+1)}> {count()} </button> ); }; const InitCounter: Component<{initial: number}> = (props) => { const [count, setCount] = createSignal(props."><meta itemprop=datePublished content="2022-08-12T21:08:23+09:00">
+<meta itemprop=dateModified content="2022-08-12T21:08:23+09:00">
+<meta itemprop=wordCount content="462">
+<meta itemprop=keywords content="SolidJS,TypeScript,">
+<link rel=canonical href=https://issei1213.github.io/posts/solidjs_types/>
+<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>Component TypesとEvent Handlers</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Aug 12, 2022
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+7 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/solidjs>SolidJS</a>
+<a class="tag is-dark is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/solidjs>Solid js</a>
+<a class="tag is-dark is-rounded" href=/tags/typescript>Type script</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、<br>
+個人的にまとめることにする。</p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>コンポーネントとイベントハンドラの型定義の方法をまとめていく。<br>
+公式ではコンポーネントの型を<strong>Component Types</strong>、エベントハンドラの型を<strong>Event Handlers</strong>として記載しているので、
+同一の単語を使用していく。</p>
+<hr>
+<h2 id=本題>本題</h2>
+<h3 id=component-types>Component Types</h3>
+<h4 id=component><code>Component</code></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> <span style=color:#66d9ef>type</span> { <span style=color:#a6e22e>JSX</span>, <span style=color:#a6e22e>Component</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;solid-js&#39;</span>;
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Component</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}&gt; <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>P</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>JSX</span>.<span style=color:#a6e22e>Element</span>;
+</code></pre></div><p>基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。<br>
+戻り値は<code>JSX.Element</code>になる。</p>
+<p>サンプルコード　※公式のコードを参照</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js/web&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createSignal</span>, <span style=color:#a6e22e>Component</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Counter</span>: <span style=color:#66d9ef>Component</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSignal</span>(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setCount</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>c</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)}&gt;
+            {<span style=color:#a6e22e>count</span>()}
+        &lt;/<span style=color:#f92672>button</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>InitCounter</span>: <span style=color:#66d9ef>Component</span><span style=color:#f92672>&lt;</span>{<span style=color:#a6e22e>initial</span>: <span style=color:#66d9ef>number</span>}<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSignal</span>(<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>initial</span>);
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setCount</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>c</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)}&gt;
+            {<span style=color:#a6e22e>count</span>()}
+        &lt;/<span style=color:#f92672>button</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App() {</span>
+    <span style=color:#66d9ef>return</span> (
+        &lt;&gt;
+            &lt;<span style=color:#f92672>InitCounter</span> <span style=color:#a6e22e>initial</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>5</span>}/&gt;  <span style=color:#75715e>// good
+</span><span style=color:#75715e></span>            &lt;<span style=color:#f92672>Counter</span>/&gt;;                 <span style=color:#75715e>// good
+</span><span style=color:#75715e></span>            &lt;<span style=color:#f92672>Counter</span> <span style=color:#a6e22e>initial</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>5</span>}/&gt;;     <span style=color:#75715e>// type error: no initial prop
+</span><span style=color:#75715e></span>            &lt;<span style=color:#f92672>Counter</span>&gt;<span style=color:#a6e22e>hi</span>&lt;/<span style=color:#f92672>Counter</span>&gt;       <span style=color:#75715e>// type error: no children prop
+</span><span style=color:#75715e></span>        &lt;/&gt;
+
+    );
+}
+
+<span style=color:#a6e22e>render</span>(() <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>App</span> /&gt;, document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;app&#34;</span>)<span style=color:#f92672>!</span>);
+</code></pre></div><h4 id=parentcomponent><code>ParentComponent</code></h4>
+<p>コンポーネントに<code>children</code>(子要素)を追加したい場合は、Propsに明示的に追加するか、<br>
+自動的に<code>children</code>を追加される<code>ParentComponent</code>を使用する。
+<code>ParentProps</code>に<code>children</code>にオプショナルがついているため、省略することもできる。
+また、ジェネリクスを使用してpropsの型定義も使用できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>JSX</span>, <span style=color:#a6e22e>ParentComponent</span>, <span style=color:#a6e22e>ParentProps</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;solid-js&#39;</span>;
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ParentProps</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>P</span> <span style=color:#f92672>&amp;</span> { <span style=color:#a6e22e>children?</span>: <span style=color:#66d9ef>JSX.Element</span> };
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ParentComponent</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>Component</span>&lt;<span style=color:#f92672>ParentProps</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>P</span>&gt;<span style=color:#f92672>&gt;</span>;
+</code></pre></div><p>サンプルコード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js/web&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createSignal</span>, <span style=color:#a6e22e>ParentComponent</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CustomInitCounter</span>: <span style=color:#66d9ef>ParentComponent</span><span style=color:#f92672>&lt;</span>{<span style=color:#a6e22e>initial</span>: <span style=color:#66d9ef>number</span>}<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSignal</span>(<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>initial</span>);
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setCount</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>c</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)}&gt;
+            {<span style=color:#a6e22e>count</span>()}
+            {<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>children</span>}
+        &lt;/<span style=color:#f92672>button</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App() {</span>
+    <span style=color:#66d9ef>return</span> (
+        &lt;&gt;
+            &lt;<span style=color:#f92672>CustomInitCounter</span> <span style=color:#a6e22e>initial</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>5</span>}&gt;
+                &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>childrenだよ</span>&lt;/<span style=color:#f92672>p</span>&gt;
+            &lt;/<span style=color:#f92672>CustomInitCounter</span>&gt;
+        &lt;/&gt;
+
+    );
+}
+
+<span style=color:#a6e22e>render</span>(() <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>App</span> /&gt;, document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;app&#34;</span>)<span style=color:#f92672>!</span>);
+
+</code></pre></div><h4 id=voidcomponent><code>VoidComponent</code></h4>
+<p><code>chidren</code>を使用しない時に使用する型。<br>
+<code>Component</code>の<code>children</code>を使用しない型と同等の意味。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>JSX</span>, <span style=color:#a6e22e>VoidComponent</span>, <span style=color:#a6e22e>VoidProps</span>} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;solid-js&#39;</span>;
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>VoidProps</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>P</span> <span style=color:#f92672>&amp;</span> { <span style=color:#a6e22e>children?</span>: <span style=color:#66d9ef>never</span> };
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>VoidComponent</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>Component</span>&lt;<span style=color:#f92672>VoidProps</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>P</span>&gt;<span style=color:#f92672>&gt;</span>;
+</code></pre></div><p>サンプルコード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js/web&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createSignal</span>, <span style=color:#a6e22e>VoidComponent</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CustomInitCounter</span>: <span style=color:#66d9ef>VoidComponent</span><span style=color:#f92672>&lt;</span>{<span style=color:#a6e22e>initial</span>: <span style=color:#66d9ef>number</span>}<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSignal</span>(<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>initial</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setCount</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>c</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)}&gt;
+      {<span style=color:#a6e22e>count</span>()}
+    &lt;/<span style=color:#f92672>button</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+        &lt;<span style=color:#f92672>CustomInitCounter</span> <span style=color:#a6e22e>initial</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>5</span>} /&gt;
+    &lt;/&gt;
+
+  );
+}
+
+<span style=color:#a6e22e>render</span>(() <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>App</span> /&gt;, document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;app&#34;</span>)<span style=color:#f92672>!</span>);
+
+</code></pre></div><h4 id=flowcomponent><code>FlowComponent</code></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>JSX</span>, <span style=color:#a6e22e>FlowComponent</span>, <span style=color:#a6e22e>FlowProps</span>} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;solid-js&#39;</span>;
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FlowProps</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}<span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>C </span><span style=color:#f92672>=</span> <span style=color:#a6e22e>JSX.Element</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>P</span> <span style=color:#f92672>&amp;</span> { <span style=color:#a6e22e>children</span>: <span style=color:#66d9ef>C</span> };
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FlowComponent</span>&lt;<span style=color:#f92672>P</span> <span style=color:#960050;background-color:#1e0010>=</span> {}<span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>C </span><span style=color:#f92672>=</span> <span style=color:#a6e22e>JSX.Element</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>Component</span>&lt;<span style=color:#f92672>FlowProps</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>P</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>C</span>&gt;<span style=color:#f92672>&gt;</span>;
+</code></pre></div><p><code>&lt;Show></code> <code>&lt;For></code>の様な制御フローを使用するコンポーネントを使用している。<br>
+<code>children</code>は必須となり、<code>children</code>が関数である場合、関数の型など定義することができる。</p>
+<p>サンプルコード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js/web&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>FlowComponent</span>, <span style=color:#a6e22e>createEffect</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;solid-js&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CallMeMaybe</span>: <span style=color:#66d9ef>FlowComponent</span><span style=color:#f92672>&lt;</span>{<span style=color:#a6e22e>when</span>: <span style=color:#66d9ef>boolean</span>}, () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>createEffect</span>(() <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>when</span>)
+      <span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>children</span>();
+  });
+  <span style=color:#66d9ef>return</span> &lt;&gt;{<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>when</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;Calling&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Not Calling&#39;</span>}&lt;/&gt;;
+};
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      <span style=color:#75715e>// &lt;CallMeMaybe when={true}/&gt;;  // type error: missing children
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// &lt;CallMeMaybe when={true}&gt;hi&lt;/CallMeMaybe&gt;;  // type error: children
+</span><span style=color:#75715e></span>      &lt;<span style=color:#f92672>CallMeMaybe</span> <span style=color:#a6e22e>when</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>true</span>}&gt;                   <span style=color:#75715e>// good
+</span><span style=color:#75715e></span>        {() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Here&#39;s my number&#34;</span>)}
+      &lt;/<span style=color:#f92672>CallMeMaybe</span>&gt;;  
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#a6e22e>render</span>(() <span style=color:#f92672>=&gt;</span> &lt;<span style=color:#f92672>App</span> /&gt;, document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;app&#34;</span>)<span style=color:#f92672>!</span>);
+
+</code></pre></div><hr>
+<h3 id=event-handlers>Event Handlers</h3>
+<p>イベントハンドラの型を定義できる。<code>JSX.EventHandler&lt;T, E></code>で定義し、<code>T</code>はDOMの要素型で<code>E</code>イベント型として使用する。</p>
+<p>サンプルコード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>import</span> <span style=color:#66d9ef>type</span> { <span style=color:#a6e22e>JSX</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;solid-js&#39;</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onInput</span>: <span style=color:#66d9ef>JSX.EventHandler</span>&lt;<span style=color:#f92672>HTMLInputElement</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>InputEvent</span>&gt; <span style=color:#f92672>=</span> (<span style=color:#a6e22e>event</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;input changed to&#39;</span>, <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>currentTarget</span>.<span style=color:#a6e22e>value</span>);
+};
+
+&lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>onInput</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onInput</span>}/&gt;
+</code></pre></div><p>また、関数に切り出さないで直接要素に記載した場合は、適切に型を判断してくれる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>&lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>onInput</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>event</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;input changed to&#39;</span>, <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>currentTarget</span>.<span style=color:#a6e22e>value</span>);
+    }}
+/&gt;;
+</code></pre></div><p>エディターによる型推論</p>
+<p><img src=/img/posts/solidjs_types_event-handler.png alt></p>
+<h2 id=まとめ>まとめ</h2>
+<p>コンポーネントの型の種類が、Reactよりは多くなっているが、リアクティブなコンポーネントを作るために、必要なものなのかなと感じた。<br>
+適切に使用しつつ、コンポーネントの見通しもよくしていきたい。</p>
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://www.solidjs.com/guides/typescript#component-types target=_blank>Component Types</a><br>
+<a href=https://www.solidjs.com/guides/typescript#event-handlers target=_blank>Event Handlers</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
