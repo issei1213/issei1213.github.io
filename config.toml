@@ -1,13 +1,16 @@
 baseURL = 'https://issei1213.github.io/'
 languageCode = 'ja-jp'
 title = 'TechBlog'
-[module]
-[[module.imports]]
-  path = 'github.com/rafed/ramium'
-
+googleAnalytics = 'G-3WPQ6FJXBQ'
 # disqusShortname = "disqus-code"
-googleAnalytics = "G-3WPQ6FJXBQ"
+
 # pluralizeListTitles = false
+
+# [module]
+# [[module.imports]]
+#   path = 'github.com/rafed/ramium'
+
+
 enableemoji = true
 
 [params]
