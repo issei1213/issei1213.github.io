@@ -6,14 +6,14 @@ title = 'TechBlog'
   path = 'github.com/rafed/ramium'
 
 # disqusShortname = "disqus-code"
-
+googleAnalytics = "G-3WPQ6FJXBQ"
 # pluralizeListTitles = false
 enableemoji = true
 
 [params]
-    description = "A description for the meta tag of the site"
+    description = "技術ブログ"
     # googleSearch = "google-search-code"
-    googleAnalytics = "G-3WPQ6FJXBQ"
+
     showDate = true # make false if dont want to show date for evergeen articles
     math = false # best to enable this in the front matter of a page
     githubLink = "rafed/ramium/"
