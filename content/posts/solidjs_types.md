@@ -105,7 +105,7 @@ render(() => <App />, document.getElementById("app")!);
 ```
 
 #### `VoidComponent`
-`chidren`を使用しない時に使用する型。  
+`children`を使用しない時に使用する型。  
 `Component`の`children`を使用しない型と同等の意味。
 ```typescript jsx
 import {JSX, VoidComponent, VoidProps} from 'solid-js';
