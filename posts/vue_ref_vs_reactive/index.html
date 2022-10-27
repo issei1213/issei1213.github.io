@@ -8,6 +8,8 @@ TechBlog</title>
 概要  どの状況で使い分ければいいのか refとreactiveの違い  本題 1.どの状況で使い分ければいいのか refはプリミティブ型に対して使用する。 reactiveはオブジェクト型に対して使用する。
 2.refとreactiveの違い ref const boolean = ref(false) // export function ref<boolean>(value: boolean): Ref<boolean>  TypeScriptの場合は、引数(初期値)を型推論してくれる。 明示的にしたい型注釈したい場合は、ref<boolean | null>(false)と使用することもできる。 基本的になんでも(オブジェクト、配列、プリミティブ)refで使用ができる。 引数の値がオブジェクトの場合は、Vue内部でreactiveに更新している。更新している負荷を与えてしまうため、オブジェクトの場合は、reactiveを使用したほうがいいと言われている。 ref.valueでデータを格納する Ex)boolean.value = true  reactive const user = reactive({ firstName: '太郎', lastName: '山田', height: 160, weight: 50 }) // const user: {firstName: string, lastName: string, height: number, weight: number}  TypeScriptの場合は、引数(初期値)を型推論してくれる。 型注釈をつけたい場合は、ジェネクリスを使用できる  const user = reactive<{ firstName?: string lastName?
     ">
+<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta name=twitter:card content="summary">
 <meta property="og:title" content="refとreactive">
 <meta property="og:description" content="背景 refとreactiveの使い分けがパッとでてこなかったことがあったのでまとめていく。
 概要  どの状況で使い分ければいいのか refとreactiveの違い  本題 1.どの状況で使い分ければいいのか refはプリミティブ型に対して使用する。 reactiveはオブジェクト型に対して使用する。
@@ -29,7 +31,7 @@ TechBlog</title>
 <meta itemprop=wordCount content="105">
 <meta itemprop=keywords content="Vue.js,">
 <link rel=canonical href=https://issei1213.github.io/posts/vue_ref_vs_reactive/>
-<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>

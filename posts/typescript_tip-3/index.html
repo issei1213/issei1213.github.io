@@ -13,6 +13,8 @@ ts-toolbelt
 import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時に便利なユーティリティをまとめていく。
 サンプルコード import { String, Union } from 'ts-toolbelt'; const query = '/home?a=foo&b=wow' type Query = typeof query // type Query = &#34;/home?a=foo&b=wow&#34;  type SecondQueryPart = String.Split<Query, '?'>[1] // type SecondQueryPart = &#34;a=foo&b=wow&#34;  type QueryElements = String.Split<SecondQueryPart, '&'> // type QueryElements = [&#34;a=foo&#34;, &#34;b=wow&#34;]  type QueryParams = { [ QueryElement in QueryElements[number] ]: { [ key in String.
     ">
+<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta name=twitter:card content="summary">
 <meta property="og:title" content="TypeScript Tip #3">
 <meta property="og:description" content="背景 今回もmattoさんのコードリーディングをしていく。
 TypeScript Tip #3
@@ -49,7 +51,7 @@ import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時�
 <meta itemprop=wordCount content="299">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-3/>
-<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>

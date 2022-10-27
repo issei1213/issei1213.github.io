@@ -10,6 +10,8 @@ TypeScript Tip #20
 export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  本題 以下が実際の型定義になる。順番に解説していく。
 type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]: Obj[K]; }[Extract<keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA<Obj> // type NewUnion = &#34;a&#34; | &#34;a2&#34; | &#34;a3&#34;  今回のポイントはExtract<keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。  type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '&#34;1&#34;' is not assignable to type '`a${string}`'.
     ">
+<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta name=twitter:card content="summary">
 <meta property="og:title" content="TypeScript Tip #20">
 <meta property="og:description" content="背景 今回もmattさんのTypeScriptTipsを解説していく。
 TypeScript Tip #20
@@ -37,7 +39,7 @@ type ValuesOfKeysStartingWithA<Obj> = { [K in Extract<keyof Obj, `a${string}`>]:
 <meta itemprop=wordCount content="312">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-20/>
-<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>

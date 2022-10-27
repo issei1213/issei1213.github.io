@@ -10,6 +10,8 @@ TechBlog</title>
 使い方 単一のデータ監視と複数のデータ監視の2種類の使い方が存在する。
 1. 単一のデータを監視する場合 const count = ref(0) // 第一引数に監視したいデータを記載する watch(count, (newCount, prevCount) => { /* ... */ }) const state = reactive({ count: 0 }) // 第一引数に監視したいデータをコールバック関数で記載する watch(() => state.count, (newCount, prevCount) => { /* ... */ } )  2. 複数のデータを監視する場合  配列を使用することで、複数のデータを監視できる 複数の監視データが同時に変更する時には、コールバック関数は一度して動かないため注意  const firstName = ref('') const lastName = ref('') // 第一引数を配列にしている watch([firstName, lastName], (newValues, prevValues) => { console.
     ">
+<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta name=twitter:card content="summary">
 <meta property="og:title" content="watchとwatchEffect">
 <meta property="og:description" content="背景 Vue.jsを使用する際にwatchを使う頻度はそこまで多くなく、使う度にドキュメントを確認するので、記事にまとめておく。
 概要 Vue3のwatchとwatchEffectの仕様をまとめていく。また、それぞれの違いもまとめる。
@@ -37,7 +39,7 @@ TechBlog</title>
 <meta itemprop=wordCount content="252">
 <meta itemprop=keywords content="Vue.js,">
 <link rel=canonical href=https://issei1213.github.io/posts/vue_watch-and-watcheffect/>
-<link rel=icon type=image/png href=https://issei1213.github.io//img/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
