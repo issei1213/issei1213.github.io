@@ -22,6 +22,9 @@
 ">
 {{ end }}
 
+<meta property="og:image" content="{{ .Site.BaseURL }}img/logo.png" />
+<meta name="twitter:card" content="summary" />
+
 {{ template "_internal/opengraph.html" . }}
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/schema.html" . }}

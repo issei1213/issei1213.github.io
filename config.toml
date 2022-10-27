@@ -1,4 +1,4 @@
-baseURL = 'https://issei1213.github.io/'
+baseURL = 'https://issei1213.github.io'
 languageCode = 'ja-jp'
 title = 'TechBlog'
 googleAnalytics = 'G-3WPQ6FJXBQ'
@@ -15,6 +15,7 @@ enableemoji = true
 
 [params]
     description = "技術ブログ"
+    image="test"
     # googleSearch = "google-search-code"
 
     showDate = true # make false if dont want to show date for evergeen articles
