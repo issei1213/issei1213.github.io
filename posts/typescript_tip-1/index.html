@@ -10,7 +10,7 @@ type SingleFruitCount = | { apple: number } | { banana: number } | { pear: numbe
 本題 最終的なコードは以下になる。具体的に解説していく。
 type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [ K2 in K ]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // }  typeof fruitCountsは型推論が効いて以下の型が作成される。  type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
     ">
-<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
 <meta name=twitter:card content="summary">
 <meta property="og:title" content="TypeScript Tip #1">
 <meta property="og:description" content="背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
@@ -39,7 +39,7 @@ type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof 
 <meta itemprop=wordCount content="247">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-1/>
-<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>

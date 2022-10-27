@@ -11,7 +11,7 @@ sendEvent('SIGN_OUT') sendEvent(&#34;LOG_IN&#34;, { userId: '123' }) 失敗パ�
 sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
 type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = <Type extends AuthEvent['type']>( ...args: Extract<AuthEvent, { type: Type }> extends { payload: infer TPayload } ?
     ">
-<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
 <meta name=twitter:card content="summary">
 <meta property="og:title" content="TypeScript Tip #15">
 <meta property="og:description" content="背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
@@ -43,7 +43,7 @@ type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIG
 <meta itemprop=wordCount content="259">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-15/>
-<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>

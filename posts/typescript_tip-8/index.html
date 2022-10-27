@@ -12,7 +12,7 @@ Tableコンポーネントのpropsに存在するitemsはオブジェクトの�
 オブジェクトはプロパティidのみを保持している。
 import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( <Table items={[ { id: '1', } ]} renderItem={(item) => <div>{ item.id }</div>} ></Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード
     ">
-<meta property="og:image" content="https://issei1213.github.ioimg/logo.png">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
 <meta name=twitter:card content="summary">
 <meta property="og:title" content="TypeScript Tip #8">
 <meta property="og:description" content="背景 今回もmattさんのTypeScriptTipsをまとめていく。
@@ -47,7 +47,7 @@ import React from 'react' interface TableProps { items: { id: string }[] renderI
 <meta itemprop=wordCount content="280">
 <meta itemprop=keywords content="TypeScript,React,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript_tip-8/>
-<link rel=icon type=image/png href=https://issei1213.github.ioimg/favicon.png>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
 <link rel=stylesheet href=/css/font-awesome.min.css>
 <link rel=stylesheet href=/css/bulma.min.css>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
