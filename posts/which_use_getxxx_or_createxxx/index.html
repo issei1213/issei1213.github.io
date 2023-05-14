@@ -1,0 +1,197 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+関数命名について GetXXX と CreateXXX の違い |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+ 概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+ 本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ ユーザー情報を取得する場合  const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合  const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数  const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; };  まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+    ">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
+<meta name=twitter:card content="summary">
+<meta property="og:title" content="関数命名について getXXX と createXXX の違い">
+<meta property="og:description" content="背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+ 概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+ 本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ ユーザー情報を取得する場合  const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合  const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数  const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; };  まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-05-14T23:45:27+09:00">
+<meta property="article:modified_time" content="2023-05-14T23:45:27+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="関数命名について getXXX と createXXX の違い">
+<meta name=twitter:description content="背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+ 概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+ 本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ ユーザー情報を取得する場合  const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合  const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数  const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; };  まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。">
+<meta itemprop=name content="関数命名について getXXX と createXXX の違い">
+<meta itemprop=description content="背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+ 概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+ 本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ ユーザー情報を取得する場合  const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合  const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数  const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; };  まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。"><meta itemprop=datePublished content="2023-05-14T23:45:27+09:00">
+<meta itemprop=dateModified content="2023-05-14T23:45:27+09:00">
+<meta itemprop=wordCount content="87">
+<meta itemprop=keywords content="週1ゆるアウトプット,">
+<link rel=canonical href=https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3WPQ6FJXBQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config',"G-3WPQ6FJXBQ")</script>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>関数命名について GetXXX と CreateXXX の違い</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">May 14, 2023
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+4 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<p>現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。<br>
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。</p>
+<hr>
+<h2 id=概要>概要</h2>
+<p>戻り地がある関数を命名するときに、<code>createXXX</code>と<code>getXXX</code>のどちらを使うか迷ったので、まとめていく。</p>
+<hr>
+<h2 id=本題>本題</h2>
+<p>以下はサンプルコードを記載する。
+名前のフルネームを作成する関数である。<br>
+<code>createFullName</code>と<code>getFullName</code>のどちらが適切かをまとめていく。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// 1. createXXX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>createFullName</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>firstName</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>lastName</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>
+}
+
+<span style=color:#75715e>// 2. getXXX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getFullName</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>firstName</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>lastName</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>
+}
+</code></pre></div><p>ポイントとしては、<code>getXXX</code>は<strong>通常、既存のデータやリソースを取得するときに使用する</strong>ことを想定すること。<br>
+<code>createXXX</code>は<strong>新しいデータを作成するときに使用する</strong>。<br>
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、<code>createXXX</code>を使用するのが適切だと判断。</p>
+<p>getXXXを使ったサンプルは以下</p>
+<ol>
+<li>ユーザー情報を取得する場合</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getUserInfo</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>// ユーザー情報を取得するロジック
+</span><span style=color:#75715e></span>};
+</code></pre></div><ol start=2>
+<li>配列から特定の要素を取得する場合</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getElementAtIndex</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>string</span>[], <span style=color:#a6e22e>index</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>index</span>];
+};
+</code></pre></div><ol start=3>
+<li>オブジェクトのプロパティ値を取得する関数</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getPropertyValue</span> <span style=color:#f92672>=</span> (<span style=color:#66d9ef>object</span><span style=color:#f92672>:</span> Object, <span style=color:#a6e22e>propertyName</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>object</span>[<span style=color:#a6e22e>propertyName</span>];
+};
+
+</code></pre></div><hr>
+<h2 id=まとめ>まとめ</h2>
+<p>今回は、関数の命名について<code>createXXX</code>と<code>getXXX</code>のどちらを使うか迷ったので、まとめてみた。
+<code>getXXX</code>は<strong>通常、既存のデータやリソースを取得するときに使用する</strong>ことを想定すること。<br>
+<code>createXXX</code>は<strong>新しいデータを作成するときに使用する</strong>。</p>
+<p>改めて言語化できたので、スッキリできた。</p>
+<hr>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

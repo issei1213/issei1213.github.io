@@ -1,0 +1,128 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+週1ゆるアウトプット |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="技術ブログ
+    ">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
+<meta name=twitter:card content="summary">
+<meta property="og:title" content="週1ゆるアウトプット">
+<meta property="og:description" content="技術ブログ">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://issei1213.github.io/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="週1ゆるアウトプット">
+<meta name=twitter:description content="技術ブログ">
+<meta itemprop=name content="週1ゆるアウトプット">
+<meta itemprop=description content="技術ブログ">
+<link rel=canonical href=https://issei1213.github.io/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88/>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3WPQ6FJXBQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config',"G-3WPQ6FJXBQ")</script>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class=content>
+<h1>週1ゆるアウトプット</h1>
+</div>
+<div class=blog-brief>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<h3 class="title is-4">
+関数命名について GetXXX と CreateXXX の違い
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class="subtitle info date">May 14, 2023
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class="subtitle info">
+4 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class=summary>
+背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ユーザー情報を取得する場合 const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合 const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数 const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; }; まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/which_use_getxxx_or_createxxx/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

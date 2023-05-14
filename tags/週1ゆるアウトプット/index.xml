@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>週1ゆるアウトプット on TechBlog</title><link>https://issei1213.github.io/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88/</link><description>Recent content in 週1ゆるアウトプット on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Sun, 14 May 2023 23:45:27 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88/index.xml" rel="self" type="application/rss+xml"/><item><title>関数命名について getXXX と createXXX の違い</title><link>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</link><pubDate>Sun, 14 May 2023 23:45:27 +0900</pubDate><guid>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</guid><description>背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string =&amp;gt; { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string =&amp;gt; { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ユーザー情報を取得する場合 const getUserInfo = (userId: string) =&amp;gt; { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合 const getElementAtIndex = (array: string[], index: number) =&amp;gt; { return array[index]; }; オブジェクトのプロパティ値を取得する関数 const getPropertyValue = (object: Object, propertyName: string) =&amp;gt; { return object[propertyName]; }; まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。</description></item></channel></rss>

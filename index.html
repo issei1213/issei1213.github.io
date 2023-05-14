@@ -92,6 +92,11 @@ Typescript
 Vue.js
 </span>
 </a>
+<a href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>
+<span class="tag is-dark is-large is-rounded">
+週1ゆるアウトプット
+</span>
+</a>
 </p>
 </div>
 </div>
@@ -100,6 +105,58 @@ Vue.js
 <div class="columns is-centered">
 <div class="column is-7">
 <div class=blog-brief>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<h3 class="title is-4">
+関数命名について GetXXX と CreateXXX の違い
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class="subtitle info date">May 14, 2023
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class="subtitle info">
+4 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/which_use_getxxx_or_createxxx/>
+<p class=summary>
+背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
+概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
+本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
+createFullNameとgetFullNameのどちらが適切かをまとめていく。
+// 1. createXXX const createFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } // 2. getXXX const getFullName = (firstName: string, lastName: string): string => { return `${firstName}${lastName}` } ポイントとしては、getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+createXXXは新しいデータを作成するときに使用する。
+なので、今回の場合は、既存のデータやリソースを取得するわけではないので、createXXXを使用するのが適切だと判断。
+getXXXを使ったサンプルは以下
+ユーザー情報を取得する場合 const getUserInfo = (userId: string) => { // ユーザー情報を取得するロジック }; 配列から特定の要素を取得する場合 const getElementAtIndex = (array: string[], index: number) => { return array[index]; }; オブジェクトのプロパティ値を取得する関数 const getPropertyValue = (object: Object, propertyName: string) => { return object[propertyName]; }; まとめ 今回は、関数の命名についてcreateXXXとgetXXXのどちらを使うか迷ったので、まとめてみた。 getXXXは通常、既存のデータやリソースを取得するときに使用することを想定すること。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/which_use_getxxx_or_createxxx/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/solidjs_types/>
 <h3 class="title is-4">
 Component TypesとEvent Handlers
@@ -290,54 +347,6 @@ const myObject = { a: 1, b: 2, c: 3 } Object.keys(myObject).forEach((key) => { c
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-7/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-5/>
-<h3 class="title is-4">
-TypeScript Tip #5
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-5/>
-<p class="subtitle info date">Apr 10, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-5/>
-<p class="subtitle info">
-3 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-5/>
-<p class=summary>
-背景 今回もmattさんの動画をまとめていく
-TypeScript Tip #5
-概要 型推論された型に対してextendsを使用するまとめていく。
-本題 実際のサンプルコードは以下。 getDeepValue関数の引数にオブジェクトを渡して、そこから型推論をさせている。
-第2引数、第3引数のオブジェクトのキーを指定して、最終的なバリューを取得できるような関数を作成する。
-export const getDeepValue = &lt; Obj, FirstKey extends keyof Obj, SecondKey extends keyof Obj[FirstKey] >( obj: Obj, firstKey: FirstKey, secondKey: SecondKey ): Obj[FirstKey][SecondKey] => { return obj[firstKey][secondKey] } const obj = { foo: { a: true, b: 2 }, bar: { c: 'cool', d: 2 } } console.log(getDeepValue(obj, 'bar', 'd')) 引数の第2引数FirstKeyは型推論されたObjに制約を設けている。 FirstKey extends keyof { foo: { a: boolean; b: number; }; bar: { c: string; d: number; }; } 🔽 FirstKey extends "foo" | "bar" よって、FirstKeyはfooかbarのどちらかになる。
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-5/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
