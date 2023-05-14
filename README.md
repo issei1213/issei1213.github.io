@@ -9,3 +9,8 @@ https://gohugo.io/getting-started/quick-start/
 ```bash
 hugo new posts/xxx.md
 ```
+
+### ローカルサーバー起動
+```bash
+hugo server -D
+```
