@@ -65,6 +65,60 @@ TechBlog</title>
 <h1>週1ゆるアウトプット</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/testing-library_getbyrole/>
+<h3 class="title is-4">
+Testing Libraryで暗黙的なロールを使用したDOMの取得方法
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/testing-library_getbyrole/>
+<p class="subtitle info date">May 21, 2023
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/testing-library_getbyrole/>
+<p class="subtitle info">
+4 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/testing-library_getbyrole/>
+<p class=summary>
+背景 現在以下の書籍でフロントのテストを学習しているので、勉強になったDOMの取得方法をまとめる。 書籍通り、ReactのUIコンポーネントのテスト方法を記載していく。
+概要 ReactのUIコンポーネントのDOMを取得する方法で、暗黙的なロールを活用した取得方法があったので、まとめていく
+本題 以下のコンポーネントのテストをしていく。
+import {ReactNode} from "react"; export const Heading = ({children}: {children: ReactNode}) => { return ( &lt;h1>{children}&lt;/h1> ); }; 今回は簡易的に、propsの値がh1タグで表示されているかをテストしていく。
+import {render, screen} from "@testing-library/react"; import {Heading} from "./Heading"; test('propsが値がh1タグに存在していること', () => { render(&lt;Heading>test&lt;/Heading>) expect(screen.getByRole('heading', {name: 'test'})).toBeInTheDocument() }) 上記のgetByRoleの第一引数にheadingを指定しているが、h1タグの暗黙的なロールがheadingであるため、headingを指定している。
+このように暗黙的なロールをうまく使えば、test-idみたいなカスタム属性をなどを使用せずに、テストをかくことができる。 また、Testing Libraryも公式も暗黙的なロールを使用することを推奨している。
+暗黙的なルール一覧はこちらから確認ができる。
+※上記はaria-queryというライブラリのドキュメントであるが、Testing Libraryのライブラリは内部的に依存するので、上記を参考にしても問題ない
+まとめ UIコンポーネントのテストをする際は、暗黙的なロールを使用することで、テストを書きやすくなるので、ぜひ活用していきたい。
+参考文献 Testing Library
+暗黙的なルール一覧(aria-query)
+フロントエンド開発のためのテスト入門 今からでも知っておきたい自動テスト戦略の必須知識
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/testing-library_getbyrole/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/which_use_getxxx_or_createxxx/>
 <h3 class="title is-4">
 関数命名について GetXXX と CreateXXX の違い

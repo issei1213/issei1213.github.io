@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on TechBlog</title><link>https://issei1213.github.io/posts/</link><description>Recent content in Posts on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Sun, 14 May 2023 23:45:27 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>関数命名について getXXX と createXXX の違い</title><link>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</link><pubDate>Sun, 14 May 2023 23:45:27 +0900</pubDate><guid>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</guid><description>背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on TechBlog</title><link>https://issei1213.github.io/posts/</link><description>Recent content in Posts on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Sun, 21 May 2023 23:11:10 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Testing Libraryで暗黙的なロールを使用したDOMの取得方法</title><link>https://issei1213.github.io/posts/testing-library_getbyrole/</link><pubDate>Sun, 21 May 2023 23:11:10 +0900</pubDate><guid>https://issei1213.github.io/posts/testing-library_getbyrole/</guid><description>背景 現在以下の書籍でフロントのテストを学習しているので、勉強になったDOMの取得方法をまとめる。 書籍通り、ReactのUIコンポーネントのテスト方法を記載していく。
+概要 ReactのUIコンポーネントのDOMを取得する方法で、暗黙的なロールを活用した取得方法があったので、まとめていく
+本題 以下のコンポーネントのテストをしていく。
+import {ReactNode} from &amp;#34;react&amp;#34;; export const Heading = ({children}: {children: ReactNode}) =&amp;gt; { return ( &amp;lt;h1&amp;gt;{children}&amp;lt;/h1&amp;gt; ); }; 今回は簡易的に、propsの値がh1タグで表示されているかをテストしていく。
+import {render, screen} from &amp;#34;@testing-library/react&amp;#34;; import {Heading} from &amp;#34;./Heading&amp;#34;; test(&amp;#39;propsが値がh1タグに存在していること&amp;#39;, () =&amp;gt; { render(&amp;lt;Heading&amp;gt;test&amp;lt;/Heading&amp;gt;) expect(screen.getByRole(&amp;#39;heading&amp;#39;, {name: &amp;#39;test&amp;#39;})).toBeInTheDocument() }) 上記のgetByRoleの第一引数にheadingを指定しているが、h1タグの暗黙的なロールがheadingであるため、headingを指定している。
+このように暗黙的なロールをうまく使えば、test-idみたいなカスタム属性をなどを使用せずに、テストをかくことができる。 また、Testing Libraryも公式も暗黙的なロールを使用することを推奨している。
+暗黙的なルール一覧はこちらから確認ができる。
+※上記はaria-queryというライブラリのドキュメントであるが、Testing Libraryのライブラリは内部的に依存するので、上記を参考にしても問題ない
+まとめ UIコンポーネントのテストをする際は、暗黙的なロールを使用することで、テストを書きやすくなるので、ぜひ活用していきたい。
+参考文献 Testing Library
+暗黙的なルール一覧(aria-query)
+フロントエンド開発のためのテスト入門 今からでも知っておきたい自動テスト戦略の必須知識</description></item><item><title>関数命名について getXXX と createXXX の違い</title><link>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</link><pubDate>Sun, 14 May 2023 23:45:27 +0900</pubDate><guid>https://issei1213.github.io/posts/which_use_getxxx_or_createxxx/</guid><description>背景 現在の参画している案件で「週1ゆるアウトプット」という名前でアウトプットしている方がいたので、自分も真似してみようと思う。
 今回は、コードを書いていてふと気になったことがあったので、簡単にまとめていく。
 概要 戻り地がある関数を命名するときに、createXXXとgetXXXのどちらを使うか迷ったので、まとめていく。
 本題 以下はサンプルコードを記載する。 名前のフルネームを作成する関数である。
