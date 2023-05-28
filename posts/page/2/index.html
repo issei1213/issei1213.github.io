@@ -64,6 +64,56 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript_tip-8/>
+<h3 class="title is-4">
+TypeScript Tip #8
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_tip-8/>
+<p class="subtitle info date">Apr 15, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-8/>
+<p class="subtitle info">
+5 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+<a class="tag is-rounded" href=/tags/react>React</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-8/>
+<p class=summary>
+背景 今回もmattさんのTypeScriptTipsをまとめていく。
+TypeScript Tip #8
+概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
+本題 以下のコードはReactのサンプルのコードである。
+Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
+オブジェクトはプロパティidのみを保持している。
+import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( &lt;Table items={[ { id: '1', } ]} renderItem={(item) => &lt;div>{ item.id }&lt;/div>} >&lt;/Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-8/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/typescript_tip-7/>
 <h3 class="title is-4">
 TypeScript Tip #7
@@ -252,53 +302,6 @@ type EntityWithId = | { type: 'user' userId: string } | { type: 'post' postId: s
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-2/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-1/>
-<h3 class="title is-4">
-TypeScript Tip #1
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-1/>
-<p class="subtitle info date">Apr 7, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-1/>
-<p class="subtitle info">
-6 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-1/>
-<p class=summary>
-背景 前回のmattさんのTypeScript Tip #15が勉強になったので、最初から#1からまとめていく
-概要 export const fruitCounts = { apple: 1, pear: 4, banana: 26 } 上記の様なコードがあった時に、特定のキーを取得する型エイリアスで定義すると以下になる。
-type SingleFruitCount = | { apple: number } | { banana: number } | { pear: number } const singleFruitCount: SingleFruitCount = { apple: 10, } SingleFruitCountの型エイリアスを作成すれば、型定義できるが定数fruitCountsを型推論させて型エイリアスを作成する。
-本題 最終的なコードは以下になる。具体的に解説していく。
-type FruitCounts = typeof fruitCounts type NewSingleFruitCount = { [ K in keyof FruitCounts ]: { [ K2 in K ]: number } }[keyof FruitCounts] // type NewSingleFruitCount = { // apple: number; // } | { // pear: number; // } | { // banana: number; // } typeof fruitCountsは型推論が効いて以下の型が作成される。 type FruitCounts = { apple: number; pear: number; banana: number; } [ K in keyof FruitCounts ]のkeyof FruitCountsは型エイリアスのオブジェクトのキーのみを取得することができる。
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-1/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

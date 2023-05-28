@@ -105,6 +105,57 @@ Vue.js
 <div class="columns is-centered">
 <div class="column is-7">
 <div class=blog-brief>
+<a href=/posts/readable-testing-code/>
+<h3 class="title is-4">
+Jestのリーダブルテストコード
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/readable-testing-code/>
+<p class="subtitle info date">May 29, 2023
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/readable-testing-code/>
+<p class="subtitle info">
+10 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/readable-testing-code/>
+<p class=summary>
+背景 今週、社内のメンバーから以下のリーダブルテストコードの記事を見せてもらった。 かなり自分の中でささったので、Jestの場合どうするかを考えてみた
+リーダブルテストコード
+過度なDRYを行わず、APIドキュメントだと思って書く 脳内メモリを消費させない“リーダブルなテストコード”の書き方
+概要 上記の参考記事を参考に、Jest(React)の場合、どのようにリーダブルテストコードを書くかを考えてみた。 今回は、UIコンポーネントとカスタムHookそれぞれのテストコードを書いていく。
+本題 参考の記事にはリーダブルテストコードを書くには、以下の様に書く必要がある記載している
+テストコードにおいて、過度なDRYは読みやすさの敵 賢くてロジカルなテストコードより、誰でも(非エンジニアでも)読める愚直なテストコードを 脳内メモリを使わないテストコードはリーダブル 変数をなくし、上から順番に見るだけでテストの意図がわかるようにする 実行可能なAPIドキュメントだと思ってテストコードを書こう(テストコードはプログラムじゃなくてドキュメント) もっとリーダブルにするコツ
+実際のユースケースに近いテストデータを使用する 「あああ」「テストテスト」「ユーザー１」みたいなテストデータはNG describe / context / itの説明を丁寧に書く 「it “適切な値を返す”」みたいな具体性のない説明はNG すべての情報が1画面に収まるテストコードが理想 上下スクロールが頻繁に発生したり、他のファイルが見に行かなきゃいけないのはNG DRY禁止はあくまで原則。適宜メリット・デメリットを天秤にかける。 「明確なメリットがあるDRY」や「可読性の損なわない抽象化」まで放棄するのはNG 上記を考慮して、React(Jest)のテストケースを書いていく
+UIコンポーネントテスト テスト対象コンポーネント inputタグで入力した値firstNameとlastNameが、pタグで表示されるようになっている。
+// @ref: https://react.dev/learn/reusing-logic-with-custom-hooks#custom-hooks-let-you-share-stateful-logic-not-state-itself import { useFormInput } from './useFormInput'; export const Form = () => { const firstNameProps = useFormInput(''); const lastNameProps = useFormInput(''); return ( &lt;> &lt;label> First name: &lt;input type='text' name='firstName' {.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/readable-testing-code/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/testing-library_getbyrole/>
 <h3 class="title is-4">
 Testing Libraryで暗黙的なロールを使用したDOMの取得方法
@@ -305,56 +356,6 @@ type ValuesOfKeysStartingWithA&lt;Obj> = { [K in Extract&lt;keyof Obj, `a${strin
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-20/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-8/>
-<h3 class="title is-4">
-TypeScript Tip #8
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-8/>
-<p class="subtitle info date">Apr 15, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-8/>
-<p class="subtitle info">
-5 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-<a class="tag is-rounded" href=/tags/react>React</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-8/>
-<p class=summary>
-背景 今回もmattさんのTypeScriptTipsをまとめていく。
-TypeScript Tip #8
-概要 Reactのジェネリクスを使用して、動的で柔軟なコンポーネントを作成することができる。
-本題 以下のコードはReactのサンプルのコードである。
-Tableコンポーネントのpropsに存在するitemsはオブジェクトの配列になっている。
-オブジェクトはプロパティidのみを保持している。
-import React from 'react' interface TableProps { items: { id: string }[] renderItem: (item: { id: string }) => React.ReactNode } export const Table = (props: TableProps) => { return null } const Component = () => { return ( &lt;Table items={[ { id: '1', } ]} renderItem={(item) => &lt;div>{ item.id }&lt;/div>} >&lt;/Table> ) } 上記の場合、propsitemsにオブジェクトのid以外のプロパティを定義したい場合、TablePropsにも追加をしてやる必要がある。 以下はそのサンプルコード
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-8/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
