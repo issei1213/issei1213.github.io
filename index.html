@@ -110,6 +110,61 @@ Vue.js
 <div class="columns is-centered">
 <div class="column is-7">
 <div class=blog-brief>
+<a href=/posts/pm-estimate/>
+<h3 class="title is-4">
+PMの見積もりの方法
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/pm-estimate/>
+<p class="subtitle info date">Apr 30, 2024
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/pm-estimate/>
+<p class="subtitle info">
+10 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/pm>PM</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/pm-estimate/>
+<p class=summary>
+背景 直近でPMの見積もりを行う機会があったので、その際に参考にした資料をまとめる。
+概要 こちらの参考書をもとに見積もりの方法をまとめる
+本題 見積もりは工数を前提で作成していく。 工数が精度が荒い「概算見積もり」と、精度の高い「詳細見積もり」を段階的に提示していく必要がある。
+概算見積もり：精度が荒いが、短時間で作成できる 詳細見積もり：精度が高いが、時間がかかる 概算見積もり 不確実性が多い段階で提出する見積もりのこと。 この見積もりを作成する時には、以下の内容を明記しておくことが重要。
+「これは現時点での概算見積もりです。詳細見積もりは設計完了後に改めて行います」と日付と合わせて明記する 外部システムに影響する可能性がある場合、「外部システム連携の内容によって変動する可能性あり」と明記する また、概算見積もりを作成する時には、バッファを見込んで作成する。追加予算が発生した時に、調整が大変になる可能性がある。
+詳細見積もり 不確実性をかなり潰した状態(要件定義や設計が完了した状態)で提示する見積もり
+Ex）ECサイトの場合、画面数や機能の詳細が明確になっている状態
+正しい見積もり方の手順 見積もりの一番失敗しやすいパターンは、定例会議なので口頭のみでざっくりと見積もりを提示すること。 かならず持ち帰って見積もりを実施すること大事。
+今回かの正しい手順に関しては、ボトムアップ見積もりをベースにしている。
+ボトムアップ見積もり
+成果物や作業を分割してそれぞれの構成要素の工数を算出して、積み上げて全体の工数を見積もる方法。
+手順1: やることを細分化して積み上げ式で見積もり 誰が何をするかを明確にし、メンバーのタスクレベルを落とし込む。 以下のルールを則り、見積もり表を作成していく
+工数は各領域の専門家に入力していく。PMが作成する場合でも、最終的に専門家に確認してもらうことが重要。 工数は1, 3, 5, 10, 15 …を5人日以上の工数は5人日単位で見積もる これは実際のタスクを遂行していくと、予想外の作業が発生することがあるため、バッファを積むことを目的としている。 プロジェクトマネージャーやディレクターのマネジメント工数やテスト工数などは漏れて赤字になる可能性があるため、見積もりの際には必ず入力すること。 項目 工数 費用 1 トップ画面　 5 250,000 2 ログイン画面 3 150,000 3 マイページ画面 5 250,000 4 記事画面 10 500,000 5 インフラ構築 15 750,000 6 データベース設計 15 750,000 … … … … 28 マネジメント工数 30 1,500,000 29 テスト工数 15 750,000 工数が入力すると、その人の１日あたりの単価をかけると、費用が算出できる。 こうすることで、提示された側からみても「明朗会計」になり、信頼しやすくなる。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/pm-estimate/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/readable-testing-code/>
 <h3 class="title is-4">
 Jestのリーダブルテストコード
@@ -314,53 +369,6 @@ import { render } from "solid-js/web"; import { createSignal, Component } from "
 </div>
 <div class=level-right>
 <a href=/posts/solidjs_types/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-20/>
-<h3 class="title is-4">
-TypeScript Tip #20
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-20/>
-<p class="subtitle info date">Apr 20, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-20/>
-<p class="subtitle info">
-8 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-20/>
-<p class=summary>
-背景 今回もmattさんのTypeScriptTipsを解説していく。
-TypeScript Tip #20
-概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
-export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = "a" | "a2" | "a3" 本題 以下が実際の型定義になる。順番に解説していく。
-type ValuesOfKeysStartingWithA&lt;Obj> = { [K in Extract&lt;keyof Obj, `a${string}`>]: Obj[K]; }[Extract&lt;keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA&lt;Obj> // type NewUnion = "a" | "a2" | "a3" 今回のポイントはExtract&lt;keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。 type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '"1"' is not assignable to type '`a${string}`'.
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-20/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

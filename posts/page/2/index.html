@@ -64,6 +64,53 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript_tip-20/>
+<h3 class="title is-4">
+TypeScript Tip #20
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript_tip-20/>
+<p class="subtitle info date">Apr 20, 2022
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript_tip-20/>
+<p class="subtitle info">
+8 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript_tip-20/>
+<p class=summary>
+背景 今回もmattさんのTypeScriptTipsを解説していく。
+TypeScript Tip #20
+概要 以下のオブジェクトの型が存在している時に、特定のキーのバリューのユニオンを作成する時に使用する。
+export type Obj = { a: 'a', a2: 'a2', a3: 'a3', b: 'b', b1: 'b1', b2: 'b2' } // 上記の型から以下の型を作成したい type NewUnion = "a" | "a2" | "a3" 本題 以下が実際の型定義になる。順番に解説していく。
+type ValuesOfKeysStartingWithA&lt;Obj> = { [K in Extract&lt;keyof Obj, `a${string}`>]: Obj[K]; }[Extract&lt;keyof Obj, `a${string}`>] type NewUnion = ValuesOfKeysStartingWithA&lt;Obj> // type NewUnion = "a" | "a2" | "a3" 今回のポイントはExtract&lt;keyof Obj,`a${string}`>になるため細かくみていく。 まず、a${string}がどのように型定義されるかというと、文字列aを含めて文字列リテラル型を定義できる。 type TestType = `a${string}` // Success const test1: TestType = 'a' const test2: TestType = 'a1' // Error const test3: TestType = '1' // Type '"1"' is not assignable to type '`a${string}`'.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript_tip-20/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/typescript_tip-8/>
 <h3 class="title is-4">
 TypeScript Tip #8
@@ -254,54 +301,6 @@ import { String, Union } from 'ts-toolbelt'; 今回はURLの操作をする時�
 </div>
 <div class=level-right>
 <a href=/posts/typescript_tip-3/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-2/>
-<h3 class="title is-4">
-TypeScript Tip #2
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-2/>
-<p class="subtitle info date">Apr 8, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-2/>
-<p class="subtitle info">
-4 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-2/>
-<p class=summary>
-背景 今回もmattoさんのTypeScriptの動画をまとめていく
-概要 下記の様なEntityの型を定義する。
-type Entity = | { type: 'user' } | { type: 'post' } | { type: 'comment' } 上記の型の各オブジェクトにidを追加したい。その時のコードは以下になる。
-typeに応じたidのプロパティを追加している。
-type EntityWithId = | { type: 'user' userId: string } | { type: 'post' postId: string } | { type: 'comment' commentId: string } const result1: EntityWithId = { type: 'post', postId: '123' } const result2: EntityWithId = { type: 'user', userId: '123' } 今回はEntityWithIdの部分をインデックスシグネチャを利用して作成していく。
-本題 実際のコードは以下になる。細かくみていく。
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-2/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
