@@ -1,0 +1,130 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+PM |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="技術ブログ
+    ">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
+<meta name=twitter:card content="summary">
+<meta property="og:title" content="PM">
+<meta property="og:description" content="技術ブログ">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://issei1213.github.io/tags/pm/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="PM">
+<meta name=twitter:description content="技術ブログ">
+<meta itemprop=name content="PM">
+<meta itemprop=description content="技術ブログ">
+<link rel=canonical href=https://issei1213.github.io/tags/pm/>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3WPQ6FJXBQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config',"G-3WPQ6FJXBQ")</script>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class=content>
+<h1>PM</h1>
+</div>
+<div class=blog-brief>
+<a href=/posts/pm-estimate/>
+<h3 class="title is-4">
+PMの見積もりの方法
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/pm-estimate/>
+<p class="subtitle info date">Jan 1, 0001
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/pm-estimate/>
+<p class="subtitle info">
+10 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/pm>PM</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/pm-estimate/>
+<p class=summary>
+背景 直近でPMの見積もりを行う機会があったので、その際に参考にした資料をまとめる。
+概要 こちらの参考書をもとに見積もりの方法をまとめる
+本題 見積もりは工数を前提で作成していく。これは そのために、工数が精度が荒い「概算見積もり」と、制度の高い「詳細見積もり」を段階的に提示していく必要がある。
+概算見積もり：精度が荒いが、短時間で作成できる 詳細見積もり：精度が高いが、時間がかかる 概算見積もり 不確実性が多い段階で提出する見積もりのこと。 この見積もりを作成す時には、以下の内容を明記しておくことが重要。
+「これは現時点での概算見積もりです。詳細見積もりは設計完了後に改めて行います」と日付と合わせて明記する 外部システムに影響する可能性がある場合、「外部システム連携の内容によって変動する可能性あり」と明記する また、概算見積もりを作成する時には、バッファを見込んで作成する。後ににあった追加予算が発生した時に、調整が大変になる可能性がある。
+詳細見積もり 不確実性をかなり潰した状態(要件定義や設計が完了した状態)で提示する見積もり Ex）ECサイトの場合、画面数や機能の詳細が明確になっている状態
+正しい見積もり方の手順 見積もりの一番失敗しやすいパターンは、定例会議なので口頭のみでざっくりと見積もりを提示すること。 かならず持ち帰って見積もりを実施すること大事。
+今回かの正しい手順に関しては、ボトムアップ見積もりをベースにしている。
+ボトムアップ見積もり
+成果物や作業を分割してそれぞれの構成要素の工数を算出して、積み上げて全体の工数を見積もる方法。
+手順1: やることを細分化して積み上げ式で見積もり 誰が何をするかを明確にし、メンバーのタスクレベルを落とし込む。 以下のルールを則り、見積もり表を作成していく
+工数は各領域の専門家に入力していく。PMが作成する場合でも、最終的に専門家に確認してもらうことが重要。 工数は1, 3, 5, 10, 15 …を5人日以上の工数は5人日単位で見積もる これは実際のタスクを遂行していくと、予想外の作業が発生することがあるため、バッファを積むことを目的としている。 プロジェクトマネージャーやディレクターのマネジメント工数やテスト工数などは漏れて赤字になる可能性があるため、見積もりの際には必ず入力すること。 項目 工数 費用 1 トップ画面　 5 250,000 2 ログイン画面 3 150,000 3 マイページ画面 5 250,000 4 記事画面 10 500,000 5 インフラ構築 15 750,000 6 データベース設計 15 750,000 … … … … 28 マネジメント工数 30 1,500,000 29 テスト工数 15 750,000 工数が入力すると、その人の１日あたりの単価をかけると、費用が算出できる。 こうすることで、提示された側からみても「明朗会計」になり、信頼しやすくなる。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/pm-estimate/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
