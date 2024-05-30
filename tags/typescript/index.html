@@ -65,6 +65,52 @@ TechBlog</title>
 <h1>TypeScript</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript-exhaustive-check/>
+<h3 class="title is-4">
+Typescript Exhaustive Check
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript-exhaustive-check/>
+<p class="subtitle info date">May 31, 2024
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript-exhaustive-check/>
+<p class="subtitle info">
+9 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript-exhaustive-check/>
+<p class=summary>
+背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
+概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript-exhaustive-check/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/solidjs_types/>
 <h3 class="title is-4">
 Component TypesとEvent Handlers
@@ -494,54 +540,6 @@ type Result&lt;T, E extends Error> = Ok&lt;T, E> | Err&lt;T, E> export class Ok&
 </div>
 <div class=level-right>
 <a href=/posts/typescript_react-sample-code-reading/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/typescript_tip-15/>
-<h3 class="title is-4">
-TypeScript Tip #15
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/typescript_tip-15/>
-<p class="subtitle info date">Apr 1, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/typescript_tip-15/>
-<p class="subtitle info">
-6 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/typescript_tip-15/>
-<p class=summary>
-背景 Twitterを眺めていると汎用性が高そうな関数を作成できるTypeScriptのツイートがあったので、整理するためにまとめる。
-TypeScript Tip #15 概要 関数の引数のタイプをみて、タイプに応じてpayloadが必要か必要がないかをTypeScriptで判断する。
-// 第一引数がSIGN_OUTの場合は、payloadはなし sendEvent('SIGN_OUT') // 第一引数がLOG_INの場合は、payloadは必須 sendEvent("LOG_IN", { userId: '123' }) 成功パターン
-sendEvent('SIGN_OUT') sendEvent("LOG_IN", { userId: '123' }) 失敗パターン(コンパイルエラー)
-sendEvent('SIGN_OUT', {}) sendEvent('LOG_IN', { userId: 122 }) sendEvent('LOG_IN', {}) sendEvent('LOG_IN') 本題 以下のコードで実現可能
-type AuthEvent = | { type: 'LOG_IN' payload: { userId: string } } | { type: 'SIGN_OUT' } const sendEvent = &lt;Type extends AuthEvent['type']>( ...args: Extract&lt;AuthEvent, { type: Type }> extends { payload: infer TPayload } ?
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/typescript_tip-15/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

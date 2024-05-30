@@ -64,9 +64,55 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/typescript-exhaustive-check/>
+<h3 class="title is-4">
+Typescript Exhaustive Check
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/typescript-exhaustive-check/>
+<p class="subtitle info date">May 31, 2024
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/typescript-exhaustive-check/>
+<p class="subtitle info">
+9 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/typescript-exhaustive-check/>
+<p class=summary>
+背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
+概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/typescript-exhaustive-check/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/pm-estimate/>
 <h3 class="title is-4">
-PMの見積もりの方法
+PMの見積もり手法
 </h3>
 </a>
 <div class="level is-mobile details">
@@ -272,57 +318,6 @@ getXXXを使ったサンプルは以下
 </div>
 <div class=level-right>
 <a href=/posts/which_use_getxxx_or_createxxx/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/solidjs_types/>
-<h3 class="title is-4">
-Component TypesとEvent Handlers
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/solidjs_types/>
-<p class="subtitle info date">Aug 12, 2022
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/solidjs_types/>
-<p class="subtitle info">
-7 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/solidjs>SolidJS</a>
-<a class="tag is-rounded" href=/tags/typescript>TypeScript</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/solidjs_types/>
-<p class=summary>
-背景 SolidJSのコンポーネントとイベントハンドラの型定義について悩んでいたが、公式で解説が乗っていたので、
-個人的にまとめることにする。
-概要 コンポーネントとイベントハンドラの型定義の方法をまとめていく。
-公式ではコンポーネントの型をComponent Types、エベントハンドラの型をEvent Handlersとして記載しているので、 同一の単語を使用していく。
-本題 Component Types Component import type { JSX, Component } from 'solid-js'; type Component&lt;P = {}> = (props: P) => JSX.Element; 基本的にはReactのFCと同じような使い型ができ、propsの型をジェネリクスで定義することができる。
-戻り値はJSX.Elementになる。
-サンプルコード　※公式のコードを参照
-import { render } from "solid-js/web"; import { createSignal, Component } from "solid-js"; const Counter: Component = () => { const [count, setCount] = createSignal(0); return ( &lt;button onClick={() => setCount((c) => c+1)}> {count()} &lt;/button> ); }; const InitCounter: Component&lt;{initial: number}> = (props) => { const [count, setCount] = createSignal(props.
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/solidjs_types/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>
