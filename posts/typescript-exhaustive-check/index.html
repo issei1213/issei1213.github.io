@@ -1,38 +1,50 @@
 <!doctype html><html lang=ja-jp>
 <head><title>
-Typescript Exhaustive Check |
+TypeScriptで網羅性チェック |
 TechBlog</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
- 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
- 本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
-type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.
+ 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+ 本題 以下のようなコードがあるとする。
+Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruits関数はFruit型を引数に取り、その値によって処理を分岐している。
+ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruits(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruits('apple') // This is an apple. checkAllFruits('banana') // This is an banana. checkAllFruits('orange') // This is an orange.
     ">
 <meta property="og:image" content="https://issei1213.github.io/img/logo.png">
 <meta name=twitter:card content="summary">
-<meta property="og:title" content="Typescript Exhaustive Check">
+<meta property="og:title" content="TypeScriptで網羅性チェック  ">
 <meta property="og:description" content="背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
- 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
- 本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
-type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.">
+ 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+ 本題 以下のようなコードがあるとする。
+Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruits関数はFruit型を引数に取り、その値によって処理を分岐している。
+ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruits(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruits('apple') // This is an apple. checkAllFruits('banana') // This is an banana. checkAllFruits('orange') // This is an orange.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://issei1213.github.io/posts/typescript-exhaustive-check/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-05-31T00:27:26+09:00">
 <meta property="article:modified_time" content="2024-05-31T00:27:26+09:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="Typescript Exhaustive Check">
+<meta name=twitter:title content="TypeScriptで網羅性チェック  ">
 <meta name=twitter:description content="背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
- 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
- 本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
-type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.">
-<meta itemprop=name content="Typescript Exhaustive Check">
+ 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+ 本題 以下のようなコードがあるとする。
+Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruits関数はFruit型を引数に取り、その値によって処理を分岐している。
+ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruits(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruits('apple') // This is an apple. checkAllFruits('banana') // This is an banana. checkAllFruits('orange') // This is an orange.">
+<meta itemprop=name content="TypeScriptで網羅性チェック  ">
 <meta itemprop=description content="背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
- 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
- 本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
-type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange."><meta itemprop=datePublished content="2024-05-31T00:27:26+09:00">
+ 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+ 本題 以下のようなコードがあるとする。
+Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruits関数はFruit型を引数に取り、その値によって処理を分岐している。
+ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruits(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruits('apple') // This is an apple. checkAllFruits('banana') // This is an banana. checkAllFruits('orange') // This is an orange."><meta itemprop=datePublished content="2024-05-31T00:27:26+09:00">
 <meta itemprop=dateModified content="2024-05-31T00:27:26+09:00">
-<meta itemprop=wordCount content="448">
+<meta itemprop=wordCount content="450">
 <meta itemprop=keywords content="TypeScript,">
 <link rel=canonical href=https://issei1213.github.io/posts/typescript-exhaustive-check/>
 <link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
@@ -79,7 +91,7 @@ type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit:
 </nav><div class="columns is-centered">
 <div id=page-body class="column is-7">
 <div class="content blog">
-<h1>Typescript Exhaustive Check</h1>
+<h1>TypeScriptで網羅性チェック </h1>
 <div id=infobar class="level is-mobile">
 <div class=level-left>
 <div class=level-item>
@@ -106,16 +118,16 @@ type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit:
 <p>ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。</p>
 <hr>
 <h2 id=概要>概要</h2>
-<p>網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+<p>網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。<br>
 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。</p>
 <hr>
 <h2 id=本題>本題</h2>
-<p>以下のようなコードがあるとする。
-<code>Fruit</code>型には<code>apple</code>、<code>banana</code>、<code>orange</code>の3つの文字列リテラル型があり、<code>checkAllFruitHandler</code>関数は<code>Fruit</code>型を引数に取り、その値によって処理を分岐している。
+<p>以下のようなコードがあるとする。<br>
+<code>Fruit</code>型には<code>apple</code>、<code>banana</code>、<code>orange</code>の3つの文字列リテラル型があり、<code>checkAllFruits</code>関数は<code>Fruit</code>型を引数に取り、その値によって処理を分岐している。<br>
 ここではシンプルに<code>console.log</code>で出力している。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span>;
 
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#a6e22e>fruit</span>: <span style=color:#66d9ef>Fruit</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#a6e22e>fruit</span>: <span style=color:#66d9ef>Fruit</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
     <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>fruit</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;apple&#39;</span>) {
         <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;This is an apple.&#39;</span>);
         <span style=color:#66d9ef>return</span>
@@ -128,16 +140,16 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
     }
 }
 
-<span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#e6db74>&#39;apple&#39;</span>) <span style=color:#75715e>// This is an apple.
-</span><span style=color:#75715e></span><span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#e6db74>&#39;banana&#39;</span>) <span style=color:#75715e>// This is an banana.
-</span><span style=color:#75715e></span><span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#e6db74>&#39;orange&#39;</span>) <span style=color:#75715e>// This is an orange.
+<span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#e6db74>&#39;apple&#39;</span>) <span style=color:#75715e>// This is an apple.
+</span><span style=color:#75715e></span><span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#e6db74>&#39;banana&#39;</span>) <span style=color:#75715e>// This is an banana.
+</span><span style=color:#75715e></span><span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#e6db74>&#39;orange&#39;</span>) <span style=color:#75715e>// This is an orange.
 </span><span style=color:#75715e></span>
-</code></pre></div><p>しかし、<code>Fruit</code>型に <code>grape</code> が追加された場合、<code>checkAllFruitHandler</code>関数は<code>grape</code>に対する条件分岐がないため、
-<code>checkAllFruitHandler('grape')</code>を実行すると、<code>This is an orange.</code>が出力されてしまう。
+</code></pre></div><p>しかし、<code>Fruit</code>型に <code>grape</code> が追加された場合、<code>checkAllFruits</code>関数は<code>grape</code>に対する条件分岐がないため、
+<code>checkAllFruits('grape')</code>を実行すると、<code>This is an orange.</code>が出力されてしまう。
 この時にコンパイルエラーも発生しないため、不具合の原因が分かりにくい。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;grape&#39;</span>;
 
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#a6e22e>fruit</span>: <span style=color:#66d9ef>Fruit</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#a6e22e>fruit</span>: <span style=color:#66d9ef>Fruit</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
     <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>fruit</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;apple&#39;</span>) {
         <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;This is an apple.&#39;</span>);
         <span style=color:#66d9ef>return</span> 
@@ -150,14 +162,12 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
     }
 }
 
-<span style=color:#a6e22e>checkAllFruitHandler</span>(<span style=color:#e6db74>&#39;grape&#39;</span>) <span style=color:#75715e>// This is an orange.
+<span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#e6db74>&#39;grape&#39;</span>) <span style=color:#75715e>// This is an orange.
 </span><span style=color:#75715e></span>
-</code></pre></div><p>このような問題を解決するために、全てのケースを網羅しているかをチェックする必要がある。
+</code></pre></div><p>このような問題を解決するために、全てのケースを網羅しているかをチェックする必要がある。<br>
 大まかに分けて二つパターンがあるため、紹介していく。</p>
-<ol>
-<li><code>switch</code>文を利用する
-上記では <code>if</code>文を利用していたが、<code>switch</code>文を利用して全てのケースをチェックしていく。</li>
-</ol>
+<p><strong>1. <code>switch</code>文を利用する</strong><br>
+上記では <code>if</code>文を利用していたが、<code>switch</code>文を利用して全てのケースをチェックしていく。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span>;
 
 <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkAllFruits</span>(<span style=color:#a6e22e>fruit</span>: <span style=color:#66d9ef>Fruit</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
@@ -175,7 +185,7 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
             <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>_</span>: <span style=color:#66d9ef>never</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>fruit</span>;
     }
 }
-</code></pre></div><p>ポイントは、<code>default</code>節の部分に<code>never</code>型を指定してい点。
+</code></pre></div><p>ポイントは、<code>default</code>節の部分に<code>never</code>型を指定してい点。<br>
 <code>default</code>節には<code>Fruit</code>型の全てのケースを網羅しているため、<code>never</code>型を指定することで、<code>Fruit</code>型の全てのケースを網羅していることを示している。</p>
 <p>もし、<code>Fruit</code>型に新しい文字列リテラル型が追加された場合、コンパイルエラーが発生するため、網羅性チェックができる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;grape&#34;</span>;
@@ -198,7 +208,7 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
 </span><span style=color:#75715e></span>        <span style=color:#75715e>// Type &#39;string&#39; is not assignable to type &#39;never&#39;.(2322)
 </span><span style=color:#75715e></span>    }
 }
-</code></pre></div><p>また、TypeScript4.9で追加になった<code>satisfies</code> 演算子を使って<code>default</code>節を記載することもできる。
+</code></pre></div><p>また、TypeScript4.9で追加になった<code>satisfies</code> 演算子を使って<code>default</code>節を記載することもできる。<br>
 型推論を利用して、<code>default</code>節には<code>never</code>型を指定することで、網羅性チェックをしている。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;grape&#39;</span>;
 
@@ -221,11 +231,9 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
 }
 </code></pre></div><p>このようのswitch式を利用することで、文字列リテラル型に追加してもTSのコンパイルエラーで検知できるようになり、
 保守性の高いコードになる。</p>
-<ol start=2>
-<li>オブジェクトで管理する
-文字列リテラル型の文字列をオブジェクトのフィールドに指定して、バリューに対応する処理をかいていく。
-こうすることで、文字列リテラル型に追加してもコンパイルエラーが発生するため、網羅性チェックができる。</li>
-</ol>
+<p><strong>2. オブジェクトで管理する</strong><br>
+文字列リテラル型の文字列をオブジェクトのフィールドに指定して、バリューに対応する処理をかいていく。<br>
+こうすることで、文字列リテラル型に追加してもコンパイルエラーが発生するため、網羅性チェックができる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Fruit</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;apple&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;banana&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;orange&#39;</span>;
 
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>checkAllFruitHandler</span>: <span style=color:#66d9ef>Record</span>&lt;<span style=color:#f92672>Fruit</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#960050;background-color:#1e0010>()</span> <span style=color:#960050;background-color:#1e0010>=</span>&gt; <span style=color:#66d9ef>void</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> {
@@ -252,7 +260,7 @@ TypeScriptは様々なケースで利用できるが、今回は文字列リテ�
 
 </code></pre></div><hr>
 <h2 id=まとめ>まとめ</h2>
-<p>今回はTypeScriptで網羅性チェックを行う方法についてまとめてみた。他の言語では、標準で網羅性チェックができるものもあるらしい。
+<p>今回はTypeScriptで網羅性チェックを行う方法についてまとめてみた。他の言語では、標準で網羅性チェックができるものもあるらしい。<br>
 他の言語を学ぶことで、TypeScriptの理解度を上がることもあると思うので、ぜひ挑戦していきたい。</p>
 </div>
 </div><div id=social-media-share class=has-text-centered>

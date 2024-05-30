@@ -112,7 +112,7 @@ Vue.js
 <div class=blog-brief>
 <a href=/posts/typescript-exhaustive-check/>
 <h3 class="title is-4">
-Typescript Exhaustive Check
+TypeScriptで網羅性チェック
 </h3>
 </a>
 <div class="level is-mobile details">
@@ -140,9 +140,12 @@ Typescript Exhaustive Check
 <a href=/posts/typescript-exhaustive-check/>
 <p class=summary>
 背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
-概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
-本題 以下のようなコードがあるとする。 Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruitHandler関数はFruit型を引数に取り、その値によって処理を分岐している。 ここではシンプルにconsole.logで出力している。
-type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruitHandler(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruitHandler('apple') // This is an apple. checkAllFruitHandler('banana') // This is an banana. checkAllFruitHandler('orange') // This is an orange.
+概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
+TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
+本題 以下のようなコードがあるとする。
+Fruit型にはapple、banana、orangeの3つの文字列リテラル型があり、checkAllFruits関数はFruit型を引数に取り、その値によって処理を分岐している。
+ここではシンプルにconsole.logで出力している。
+type Fruit = 'apple' | 'banana' | 'orange'; function checkAllFruits(fruit: Fruit): void { if(fruit === 'apple') { console.log('This is an apple.'); return } else if (fruit === 'banana') { console.log('This is a banana.'); return } else { console.log('This is an orange.'); return } } checkAllFruits('apple') // This is an apple. checkAllFruits('banana') // This is an banana. checkAllFruits('orange') // This is an orange.
 </p>
 </a>
 </div>
