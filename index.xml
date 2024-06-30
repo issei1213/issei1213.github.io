@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TechBlog</title><link>https://issei1213.github.io/</link><description>Recent content on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Fri, 31 May 2024 00:27:26 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>TypeScriptで網羅性チェック</title><link>https://issei1213.github.io/posts/typescript-exhaustive-check/</link><pubDate>Fri, 31 May 2024 00:27:26 +0900</pubDate><guid>https://issei1213.github.io/posts/typescript-exhaustive-check/</guid><description>背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TechBlog</title><link>https://issei1213.github.io/</link><description>Recent content on TechBlog</description><generator>Hugo -- gohugo.io</generator><language>ja-jp</language><lastBuildDate>Sun, 30 Jun 2024 01:36:29 +0900</lastBuildDate><atom:link href="https://issei1213.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>社内輪読会</title><link>https://issei1213.github.io/posts/reading-group-1/</link><pubDate>Sun, 30 Jun 2024 01:36:29 +0900</pubDate><guid>https://issei1213.github.io/posts/reading-group-1/</guid><description>背景 最近の社内で輪読会でリーダブルコードを読む機会があった。
+その際に、自分が改めて気づきがあったので、それをまとめる。
+概要 輪読会では第2章と第3章を読んだため、それぞれの内容をまとめる。
+本題 第2章: 名前に情報を詰め込む スコープが小さければ短い名前でもいい スコープの小さい関数で使われる変数などで、見える範囲が狭い場合は、短い名前でも問題ない。 全ての情報がみえるのので、短くていい
+if(debug) { const m = Map() lookUpNAmesNumbers(m) console.log(m) } 上記の例では、mという変数名は短いが、スコープが小さいため問題ない。
+例えば、mがグローバル変数だとすると、mという変数名だけでは何をしているのかわからない。その場合は、別の命名を検討する。
+頭文字と省略文字 エンジニアは文字を省略して書く癖がある。例えば、BackEndManagerをBEManagerと省略することがある。
+しかし、これは避けるべきである。新しい人がコードを読む際に、何を指しているのかわからないため。理解できるなら問題ない。
+問題ない例として、documentをdoc、stringをstrと省略することは問題ない。 ここの線引きは難しいが、理解できる範囲で省略することが大事。
+第3章: 誤解されない名前 範囲を指定するときはfirstとlastを使う 範囲を指定するときは、firstとlastを使うことで、範囲を指定することができる。
+例えば、以下の様なコードがあったする。
+function intgerRange(start = 2, stop = 4){ ... } 上記の関数は、startの2から始まることはわかるが、stopの4を含むのか含まないのかわからない。 そのため、firstとlastを使うことで、範囲を指定することができる。
+function intgerRange(first = 2, last = 4){ ... } 上記の関数は、startの2から始まり、stopの4を含むことがわかる。
+ブール値の名前 ブール値の命名を否定系にすることは避けるべきである。
+例えば以下のコードは、否定系の命名になっている。
+const disableSsl = false 上記のコードは、disableSslがfalseの場合、SSLが有効になることがわかるが、trueの場合はSSLが無効になることがわかる。 これでは、コードの可読性が下がるため、肯定系の命名をすることが望ましい。
+const enableSsl = true 上記のコードは、enableSslがtrueの場合、SSLが有効になることがわかり、可読性が上がる。</description></item><item><title>TypeScriptで網羅性チェック</title><link>https://issei1213.github.io/posts/typescript-exhaustive-check/</link><pubDate>Fri, 31 May 2024 00:27:26 +0900</pubDate><guid>https://issei1213.github.io/posts/typescript-exhaustive-check/</guid><description>背景 ソフトウェアデザインを読んでいて網羅性チェックについて知ったので、TypeScriptでの網羅性チェックについて自分なりにまとめてみた。
 概要 網羅性チェックとは、全てのケースを網羅しているどうかをチェックしていることを指す。
 TypeScriptは様々なケースで利用できるが、今回は文字列リテラル型を利用して網羅性チェックを行う方法をまとめていく。
 本題 以下のようなコードがあるとする。

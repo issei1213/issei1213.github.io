@@ -1,0 +1,135 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+Tech |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="技術ブログ
+    ">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
+<meta name=twitter:card content="summary">
+<meta property="og:title" content="Tech">
+<meta property="og:description" content="技術ブログ">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://issei1213.github.io/tags/tech/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Tech">
+<meta name=twitter:description content="技術ブログ">
+<meta itemprop=name content="Tech">
+<meta itemprop=description content="技術ブログ">
+<link rel=canonical href=https://issei1213.github.io/tags/tech/>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3WPQ6FJXBQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config',"G-3WPQ6FJXBQ")</script>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class=content>
+<h1>Tech</h1>
+</div>
+<div class=blog-brief>
+<a href=/posts/reading-group-1/>
+<h3 class="title is-4">
+社内輪読会
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/reading-group-1/>
+<p class="subtitle info date">Jun 30, 2024
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/reading-group-1/>
+<p class="subtitle info">
+6 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/tech>Tech</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/reading-group-1/>
+<p class=summary>
+背景 最近の社内で輪読会でリーダブルコードを読む機会があった。
+その際に、自分が改めて気づきがあったので、それをまとめる。
+概要 輪読会では第2章と第3章を読んだため、それぞれの内容をまとめる。
+本題 第2章: 名前に情報を詰め込む スコープが小さければ短い名前でもいい スコープの小さい関数で使われる変数などで、見える範囲が狭い場合は、短い名前でも問題ない。 全ての情報がみえるのので、短くていい
+if(debug) { const m = Map() lookUpNAmesNumbers(m) console.log(m) } 上記の例では、mという変数名は短いが、スコープが小さいため問題ない。
+例えば、mがグローバル変数だとすると、mという変数名だけでは何をしているのかわからない。その場合は、別の命名を検討する。
+頭文字と省略文字 エンジニアは文字を省略して書く癖がある。例えば、BackEndManagerをBEManagerと省略することがある。
+しかし、これは避けるべきである。新しい人がコードを読む際に、何を指しているのかわからないため。理解できるなら問題ない。
+問題ない例として、documentをdoc、stringをstrと省略することは問題ない。 ここの線引きは難しいが、理解できる範囲で省略することが大事。
+第3章: 誤解されない名前 範囲を指定するときはfirstとlastを使う 範囲を指定するときは、firstとlastを使うことで、範囲を指定することができる。
+例えば、以下の様なコードがあったする。
+function intgerRange(start = 2, stop = 4){ ... } 上記の関数は、startの2から始まることはわかるが、stopの4を含むのか含まないのかわからない。 そのため、firstとlastを使うことで、範囲を指定することができる。
+function intgerRange(first = 2, last = 4){ ... } 上記の関数は、startの2から始まり、stopの4を含むことがわかる。
+ブール値の名前 ブール値の命名を否定系にすることは避けるべきである。
+例えば以下のコードは、否定系の命名になっている。
+const disableSsl = false 上記のコードは、disableSslがfalseの場合、SSLが有効になることがわかるが、trueの場合はSSLが無効になることがわかる。 これでは、コードの可読性が下がるため、肯定系の命名をすることが望ましい。
+const enableSsl = true 上記のコードは、enableSslがtrueの場合、SSLが有効になることがわかり、可読性が上がる。
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/reading-group-1/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
