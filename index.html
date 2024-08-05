@@ -131,7 +131,7 @@ Compound Patternについて
 <div class=level-item>
 <a href=/posts/compound-pattern/>
 <p class="subtitle info">
-14 mins read
+16 mins read
 </p>
 </a>
 </div>
@@ -148,7 +148,7 @@ Compound Patternについて
 LTではCompound Pattern（複合パターン）について発表を行った。 概要 Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法 ユースケース お知らせ機能をModalコンポーネントを使って実装している 実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC&lt;ModalProps> = ({onClose, children }) => { return ( &lt;div className="..." onClick={onClose}> &lt;dialog open className="..." onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} &lt;button className="..." onClick={onClose} > &lt;Icon variant="close" className="..." /> &lt;/button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} &lt;/dialog> &lt;/div> ); }; modal.tsx を使った実装コード
-&lt;Modal> &lt;Heading as="h2">システムメンテナンスのお知らせ&lt;/Heading> &lt;div className="..."> &lt;p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 &lt;br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 &lt;br /> &lt;br /> 【メンテナンス日時】 &lt;br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 &lt;br /> &lt;br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 &lt;/p> &lt;/div> &lt;div className=".
+const ModalPage = () => { return ( &lt;Modal> &lt;Heading as="h2">システムメンテナンスのお知らせ&lt;/Heading> &lt;div className=".
 </p>
 </a>
 </div>

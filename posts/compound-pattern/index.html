@@ -8,7 +8,7 @@ TechBlog</title>
 LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
-<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.
+const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.
     ">
 <meta property="og:image" content="https://issei1213.github.io/img/logo.png">
 <meta name=twitter:card content="summary">
@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div cl
 LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
-<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.">
+const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://issei1213.github.io/posts/compound-pattern/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-07-31T01:18:06+09:00">
@@ -28,15 +28,15 @@ const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div cl
 LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
-<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.">
+const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.">
 <meta itemprop=name content="Compound Patternについて">
 <meta itemprop=description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
 LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
-<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;."><meta itemprop=datePublished content="2024-07-31T01:18:06+09:00">
+const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;."><meta itemprop=datePublished content="2024-07-31T01:18:06+09:00">
 <meta itemprop=dateModified content="2024-07-31T01:18:06+09:00">
-<meta itemprop=wordCount content="642">
+<meta itemprop=wordCount content="941">
 <meta itemprop=keywords content="Tech,">
 <link rel=canonical href=https://issei1213.github.io/posts/compound-pattern/>
 <link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
@@ -92,7 +92,7 @@ const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div cl
 </div>
 <div class=level-item>
 <p class="subtitle info">
-14 mins read
+16 mins read
 </p>
 </div>
 </div>
@@ -119,7 +119,7 @@ LTではCompound Pattern（複合パターン）について発表を行った�
 <ol>
 <li>お知らせ機能を<code>Modal</code>コンポーネントを使って実装している</li>
 </ol>
-<p><img src=/img/posts/compound-patter/usecase-1.png alt><br>
+<p><img src=/img/posts/compound-pattern/usecase-1.png alt><br>
 実際に使用しているコンポーネントは以下<br>
 <code>modal.tsx</code></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Modal</span>: <span style=color:#66d9ef>React.FC</span>&lt;<span style=color:#f92672>ModalProps</span>&gt; <span style=color:#f92672>=</span> ({<span style=color:#a6e22e>onClose</span>, <span style=color:#a6e22e>children</span> }) <span style=color:#f92672>=&gt;</span> {
@@ -144,35 +144,40 @@ LTではCompound Pattern（複合パターン）について発表を行った�
     );
 };
 </code></pre></div><p><code>modal.tsx</code> を使った実装コード</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span>&gt;
-    &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
-    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
-        &lt;<span style=color:#f92672>p</span>&gt;
-            <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
-        &lt;/<span style=color:#f92672>p</span>&gt;
-    &lt;/<span style=color:#f92672>div</span>&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalPage</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Modal</span>&gt;
+            &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+                &lt;<span style=color:#f92672>p</span>&gt;
+                    <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
+                &lt;/<span style=color:#f92672>p</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
 
-    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
-        &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
-            <span style=color:#960050;background-color:#1e0010>キャンセル</span>
-        &lt;/<span style=color:#f92672>Button</span>&gt;
-    &lt;/<span style=color:#f92672>div</span>&gt;
-&lt;/<span style=color:#f92672>Modal</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+                &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+                    <span style=color:#960050;background-color:#1e0010>キャンセル</span>
+                &lt;/<span style=color:#f92672>Button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>Modal</span>&gt;
+    )
+}
+
 </code></pre></div><ol start=2>
 <li>
 <p>次に削除確認モーダルを<code>Modal</code>コンポーネントを使って実装していく。<br>
 しかし、削除確認モーダルには閉じるアイコンが不要なモーダルになっている。
-<img src=/img/posts/compound-patter/usecase-2.png alt></p>
+<img src=/img/posts/compound-pattern/usecase-2.png alt></p>
 </li>
 <li>
 <p><code>Modal</code> コンポーネント内部に閉じるボタンが実装している。<br>
@@ -213,28 +218,33 @@ LTではCompound Pattern（複合パターン）について発表を行った�
     );
 };
 </code></pre></div><p>変更後の<code>modal.tsx</code> を使った実装コード</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>isVisibleCloseButton</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>false</span>}&gt; <span style=color:#75715e>// NOTE: isVisibleCloseButtonをfalseに設定
-</span><span style=color:#75715e></span>    &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>データ削除の確認</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
-    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
-        &lt;<span style=color:#f92672>p</span>&gt;
-            <span style=color:#960050;background-color:#1e0010>このデータを削除してもよろしいですか？</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>この操作は取り消せません。</span>
-        &lt;/<span style=color:#f92672>p</span>&gt;
-    &lt;/<span style=color:#f92672>div</span>&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalPage</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>isVisibleCloseButton</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>false</span>}&gt; <span style=color:#75715e>// NOTE: isVisibleCloseButtonをfalseに設定
+</span><span style=color:#75715e></span>            &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>データ削除の確認</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+                &lt;<span style=color:#f92672>p</span>&gt;
+                    <span style=color:#960050;background-color:#1e0010>このデータを削除してもよろしいですか？</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>この操作は取り消せません。</span>
+                &lt;/<span style=color:#f92672>p</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
 
-    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
-        &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
-            <span style=color:#960050;background-color:#1e0010>キャンセル</span>
-        &lt;/<span style=color:#f92672>Button</span>&gt;
-        &lt;<span style=color:#f92672>Button</span>
-            <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;delete&#34;</span>
-            <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;called delete API&#39;</span>)}
-        &gt;
-            <span style=color:#960050;background-color:#1e0010>削除</span>
-        &lt;/<span style=color:#f92672>Button</span>&gt;
-    &lt;/<span style=color:#f92672>div</span>&gt;
-&lt;/<span style=color:#f92672>Modal</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+                &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+                    <span style=color:#960050;background-color:#1e0010>キャンセル</span>
+                &lt;/<span style=color:#f92672>Button</span>&gt;
+                &lt;<span style=color:#f92672>Button</span>
+                    <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;delete&#34;</span>
+                    <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;called delete API&#39;</span>)}
+                &gt;
+                    <span style=color:#960050;background-color:#1e0010>削除</span>
+                &lt;/<span style=color:#f92672>Button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>Modal</span>&gt;
+    )
+}
+
 </code></pre></div><ol start=4>
 <li>
 <p>propsを追加して閉じるアイコンを管理する方法には、以下の問題がある</p>
@@ -324,25 +334,30 @@ Compound Patternを使った <code>Modal</code> コンポーネント</p>
 <span style=color:#66d9ef>export</span> { <span style=color:#a6e22e>Modal</span> };
 </code></pre></div><p>Compound Patternを使った <code>Modal</code> コンポーネントを使った実装コード
 <code>Modal.CloseButton</code> コンポーネントを使って閉じるアイコンを表示していたため、記載しないだけで閉じるアイコンが非表示になる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>onClickBackGround</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
-    &lt;<span style=color:#f92672>Modal.Header</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Modal.Header</span>&gt;
-    &lt;<span style=color:#f92672>Modal.Body</span>&gt;
-        &lt;<span style=color:#f92672>p</span>&gt;
-            <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            &lt;<span style=color:#f92672>br</span> /&gt;
-            <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
-        &lt;/<span style=color:#f92672>p</span>&gt;
-    &lt;/<span style=color:#f92672>Modal.Body</span>&gt;
-    &lt;<span style=color:#f92672>Modal.Footer</span> <span style=color:#a6e22e>onClickCancel</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>} /&gt;
-&lt;/<span style=color:#f92672>Modal</span>&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalPage</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>onClickBackGround</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+            &lt;<span style=color:#f92672>Modal.Header</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Modal.Header</span>&gt;
+            &lt;<span style=color:#f92672>Modal.Body</span>&gt;
+                &lt;<span style=color:#f92672>p</span>&gt;
+                    <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    &lt;<span style=color:#f92672>br</span> /&gt;
+                    <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
+                &lt;/<span style=color:#f92672>p</span>&gt;
+            &lt;/<span style=color:#f92672>Modal.Body</span>&gt;
+            &lt;<span style=color:#f92672>Modal.Footer</span> <span style=color:#a6e22e>onClickCancel</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>} /&gt;
+        &lt;/<span style=color:#f92672>Modal</span>&gt;
+    )
+}
+
 
 </code></pre></div><h2 id=メリットデメリット>メリット・デメリット</h2>
 <h3 id=メリット>メリット</h3>
@@ -353,29 +368,13 @@ Compound Patternを使った <code>Modal</code> コンポーネント</p>
 </ul>
 <h3 id=デメリット>デメリット</h3>
 <ul>
-<li>親コンポーネント→子コンポーネントや、孫コンポーネントに<code>props</code>を渡したい場合、複雑になる。
-<ul>
-<li>Ex:
-<ul>
-<li><code>React.Children</code>や<code>React.cloneElement</code>を使う場合</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>親コンポーネント→子コンポーネントや、孫コンポーネントに<code>props</code>を渡したい場合、複雑になる。</li>
 </ul>
 <details>
-<summary>`React.Children`や`React.cloneElement`を使う場合 </summary>
-<p>今回はドロップダウンを実現するコンポーネントを例に挙げる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> {
-  <span style=color:#a6e22e>cloneElement</span>,
-  <span style=color:#a6e22e>PropsWithChildren</span>,
-  <span style=color:#a6e22e>Children</span>,
-  <span style=color:#a6e22e>isValidElement</span>,
-  <span style=color:#a6e22e>useState</span>,
-  <span style=color:#a6e22e>ReactNode</span>,
-} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
-
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenu</span> <span style=color:#f92672>=</span> ({
+<summary>Ex: React.ChildrenやReact.cloneElementを使う場合 </summary>
+<p>今回はドロップダウンを実現するコンポーネントを例に挙げる　　
+ChildrenやcloneElementがレガシーなコードになるため、注意が必要</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenu</span> <span style=color:#f92672>=</span> ({
   <span style=color:#a6e22e>valueRender</span>,
   <span style=color:#a6e22e>children</span>,
   <span style=color:#a6e22e>onChange</span>,
@@ -441,35 +440,151 @@ Compound Patternを使った <code>Modal</code> コンポーネント</p>
 
 <span style=color:#66d9ef>export</span> { <span style=color:#a6e22e>SelectMenu</span> };
 </code></pre></div><p>実装コード</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>SelectMenu</span>
-    <span style=color:#a6e22e>valueRender</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>selected</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>selected</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;未選択&#39;</span>}
-    <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeMenu</span>}
-&gt;
-    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span>&gt;
-        &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span> /&gt;
-        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
-            <span style=color:#a6e22e>Instagram</span>
-        &lt;/<span style=color:#f92672>Typography</span>&gt;
-    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
-    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span>&gt;
-        &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span> /&gt;
-        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
-            <span style=color:#a6e22e>LinkedIn</span>
-        &lt;/<span style=color:#f92672>Typography</span>&gt;
-    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
-    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x&#34;</span>&gt;
-        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
-            <span style=color:#a6e22e>X</span><span style=color:#960050;background-color:#1e0010>（旧</span><span style=color:#a6e22e>Twitter</span><span style=color:#960050;background-color:#1e0010>）</span>
-        &lt;/<span style=color:#f92672>Typography</span>&gt;
-    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
-&lt;/<span style=color:#f92672>SelectMenu</span>&gt;
-
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuPage</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>SelectMenu</span>
+            <span style=color:#a6e22e>valueRender</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>selected</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>selected</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;未選択&#39;</span>}
+            <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeMenu</span>}
+        &gt;
+            &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span>&gt;
+                &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span> /&gt;
+                &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                    <span style=color:#a6e22e>Instagram</span>
+                &lt;/<span style=color:#f92672>Typography</span>&gt;
+            &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+            &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span>&gt;
+                &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span> /&gt;
+                &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                    <span style=color:#a6e22e>LinkedIn</span>
+                &lt;/<span style=color:#f92672>Typography</span>&gt;
+            &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+            &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x&#34;</span>&gt;
+                &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                    <span style=color:#a6e22e>X</span><span style=color:#960050;background-color:#1e0010>（旧</span><span style=color:#a6e22e>Twitter</span><span style=color:#960050;background-color:#1e0010>）</span>
+                &lt;/<span style=color:#f92672>Typography</span>&gt;
+            &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+        &lt;/<span style=color:#f92672>SelectMenu</span>&gt;
+    )
+}
 </code></pre></div></details>
-- `createContext`などを用いた`GlobalStore`を使う場合
----
-## 感想
-今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う
-コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。
+<details>
+<summary>createContextなどを用いたGlobalStoreを使う場合</summary>
+<p>上記と同じ様にドロップダウンを実現するコンポーネントを例に挙げる<br>
+<code>select-menu.tsx</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createContext</span><span style=color:#f92672>&lt;</span>{
+  <span style=color:#a6e22e>menu</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;close&#39;</span>;
+  <span style=color:#a6e22e>setMenu</span>: <span style=color:#66d9ef>Dispatch</span>&lt;<span style=color:#f92672>SetStateAction</span><span style=color:#960050;background-color:#1e0010>&lt;&#39;</span><span style=color:#a6e22e>open</span><span style=color:#960050;background-color:#1e0010>&#39;</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#a6e22e>close</span><span style=color:#960050;background-color:#1e0010>&#39;</span>&gt;<span style=color:#f92672>&gt;</span>;
+  <span style=color:#a6e22e>selectedValue</span>: <span style=color:#66d9ef>ReactElement</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>undefined</span>;
+  <span style=color:#a6e22e>setSelectedValue</span>: <span style=color:#66d9ef>Dispatch</span>&lt;<span style=color:#f92672>SetStateAction</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>ReactElement</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>undefined</span>&gt;<span style=color:#f92672>&gt;</span>;
+}<span style=color:#f92672>&gt;</span>({
+  <span style=color:#a6e22e>menu</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;close&#39;</span>,
+  <span style=color:#a6e22e>setMenu</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> {},
+  <span style=color:#a6e22e>selectedValue</span>: <span style=color:#66d9ef>undefined</span>,
+  <span style=color:#a6e22e>setSelectedValue</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> {},
+});
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenu</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>children</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>PropsWithChildren</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>menu</span>, <span style=color:#a6e22e>setMenu</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;close&#39;</span><span style=color:#f92672>&gt;</span>(<span style=color:#e6db74>&#39;close&#39;</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>selectedValue</span>, <span style=color:#a6e22e>setSelectedValue</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>&lt;<span style=color:#f92672>ReactElement</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>undefined</span>&gt;(
+    <span style=color:#66d9ef>undefined</span>,
+  );
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>SelectMenuContext.Provider</span>
+      <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>menu</span>, <span style=color:#a6e22e>setMenu</span>, <span style=color:#a6e22e>selectedValue</span>, <span style=color:#a6e22e>setSelectedValue</span> }}
+    &gt;
+      {<span style=color:#a6e22e>children</span>}
+    &lt;/<span style=color:#f92672>SelectMenuContext.Provider</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>SelectMenuListProps</span> <span style=color:#f92672>=</span> {};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuList</span> <span style=color:#f92672>=</span> ({
+  <span style=color:#a6e22e>children</span>,
+}<span style=color:#f92672>:</span> <span style=color:#a6e22e>PropsWithChildren</span>&lt;<span style=color:#f92672>SelectMenuListProps</span>&gt;) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>menu</span>, <span style=color:#a6e22e>setMenu</span>, <span style=color:#a6e22e>selectedValue</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>SelectMenuContext</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-1/4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span>
+          <span style=color:#a6e22e>setMenu</span>((<span style=color:#a6e22e>state</span>) <span style=color:#f92672>=&gt;</span> (<span style=color:#a6e22e>state</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;close&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span>))
+        }
+      &gt;
+        {<span style=color:#a6e22e>selectedValue</span> <span style=color:#f92672>??</span> <span style=color:#e6db74>&#39;未選択&#39;</span>}
+      &lt;/<span style=color:#f92672>button</span>&gt;
+      {<span style=color:#a6e22e>menu</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>&amp;&amp;</span> (
+        &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;absolute z-10 mt-1 max-h-56 w-1/4 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm&#34;</span>&gt;
+          {<span style=color:#a6e22e>children</span>}
+        &lt;/<span style=color:#f92672>ul</span>&gt;
+      )}
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuItem</span> <span style=color:#f92672>=</span> ({
+  <span style=color:#a6e22e>children</span>,
+  <span style=color:#a6e22e>value</span>,
+}<span style=color:#f92672>:</span> <span style=color:#a6e22e>PropsWithChildren</span><span style=color:#f92672>&lt;</span>{
+  <span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>string</span>;
+}<span style=color:#f92672>&gt;</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>setSelectedValue</span>, <span style=color:#a6e22e>setMenu</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>SelectMenuContext</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>li</span>
+      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900&#34;</span>
+      <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>setMenu</span>(<span style=color:#e6db74>&#39;close&#39;</span>);
+        <span style=color:#a6e22e>setSelectedValue</span>(() <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex gap-3 items-center&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+        ));
+      }}
+    &gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex gap-3 items-center&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>li</span>&gt;
+  );
+};
+
+<span style=color:#a6e22e>SelectMenu</span>.<span style=color:#a6e22e>List</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>SelectMenuList</span>;
+<span style=color:#a6e22e>SelectMenu</span>.<span style=color:#a6e22e>Item</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>SelectMenuItem</span>;
+
+<span style=color:#66d9ef>export</span> { <span style=color:#a6e22e>SelectMenu</span> };
+</code></pre></div><p>実装コード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuPage</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>SelectMenu</span>&gt;
+            &lt;<span style=color:#f92672>SelectMenu.List</span>&gt;
+                &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span>&gt;
+                    &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span> /&gt;
+                    &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                        <span style=color:#a6e22e>Instagram</span>
+                    &lt;/<span style=color:#f92672>Typography</span>&gt;
+                &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+
+                &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span>&gt;
+                    &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span> /&gt;
+                    &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                        <span style=color:#a6e22e>LinkedIn</span>
+                    &lt;/<span style=color:#f92672>Typography</span>&gt;
+                &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+
+                &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x&#34;</span>&gt;
+                    &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+                        <span style=color:#a6e22e>X</span><span style=color:#960050;background-color:#1e0010>（旧</span><span style=color:#a6e22e>Twitter</span><span style=color:#960050;background-color:#1e0010>）</span>
+                    &lt;/<span style=color:#f92672>Typography</span>&gt;
+                &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+            &lt;/<span style=color:#f92672>SelectMenu.List</span>&gt;
+        &lt;/<span style=color:#f92672>SelectMenu</span>&gt;
+    );
+};
+</code></pre></div></details>
+<hr>
+<h2 id=感想>感想</h2>
+<p>今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う
+コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。</p>
 <hr>
 <h2 id=参考文献>参考文献</h2>
 <p><a href=https://tegehoge.connpass.com/event/323105/ target=_blank>React勉強会 Vol.1</a><br>
