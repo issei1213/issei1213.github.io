@@ -64,6 +64,53 @@ TechBlog</title>
 <h1 class="title is-3">Posts</h1>
 </div>
 <div class=blog-brief>
+<a href=/posts/compound-pattern/>
+<h3 class="title is-4">
+Compound Patternについて
+</h3>
+</a>
+<div class="level is-mobile details">
+<div class=level-left>
+<div class=level-item>
+<a href=/posts/compound-pattern/>
+<p class="subtitle info date">Jul 31, 2024
+</p>
+</a>
+</div>
+<div class=level-item>
+<a href=/posts/compound-pattern/>
+<p class="subtitle info">
+14 mins read
+</p>
+</a>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<a class="tag is-rounded" href=/tags/tech>Tech</a>
+</div>
+</div>
+<div>
+<div>
+<a href=/posts/compound-pattern/>
+<p class=summary>
+背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
+LTではCompound Pattern（複合パターン）について発表を行った。 概要 Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法 ユースケース お知らせ機能をModalコンポーネントを使って実装している 実際に使用しているコンポーネントは以下
+modal.tsx
+const Modal: React.FC&lt;ModalProps> = ({onClose, children }) => { return ( &lt;div className="..." onClick={onClose}> &lt;dialog open className="..." onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} &lt;button className="..." onClick={onClose} > &lt;Icon variant="close" className="..." /> &lt;/button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} &lt;/dialog> &lt;/div> ); }; modal.tsx を使った実装コード
+&lt;Modal> &lt;Heading as="h2">システムメンテナンスのお知らせ&lt;/Heading> &lt;div className="..."> &lt;p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 &lt;br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 &lt;br /> &lt;br /> 【メンテナンス日時】 &lt;br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 &lt;br /> &lt;br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 &lt;/p> &lt;/div> &lt;div className=".
+</p>
+</a>
+</div>
+</div>
+<div class="level is-mobile continue-reading">
+<div class=level-left>
+</div>
+<div class=level-right>
+<a href=/posts/compound-pattern/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
+</div>
+</div>
+<hr>
+</div><div class=blog-brief>
 <a href=/posts/reading-group-1/>
 <h3 class="title is-4">
 社内輪読会
@@ -274,60 +321,6 @@ UIコンポーネントテスト テスト対象コンポーネント inputタ�
 </div>
 <div class=level-right>
 <a href=/posts/readable-testing-code/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
-</div>
-</div>
-<hr>
-</div><div class=blog-brief>
-<a href=/posts/testing-library_getbyrole/>
-<h3 class="title is-4">
-Testing Libraryで暗黙的なロールを使用したDOMの取得方法
-</h3>
-</a>
-<div class="level is-mobile details">
-<div class=level-left>
-<div class=level-item>
-<a href=/posts/testing-library_getbyrole/>
-<p class="subtitle info date">May 21, 2023
-</p>
-</a>
-</div>
-<div class=level-item>
-<a href=/posts/testing-library_getbyrole/>
-<p class="subtitle info">
-4 mins read
-</p>
-</a>
-</div>
-</div>
-<div class="level-right is-hidden-touch">
-<a class="tag is-rounded" href=/tags/%E9%80%B11%E3%82%86%E3%82%8B%E3%82%A2%E3%82%A6%E3%83%88%E3%83%97%E3%83%83%E3%83%88>週1ゆるアウトプット</a>
-</div>
-</div>
-<div>
-<div>
-<a href=/posts/testing-library_getbyrole/>
-<p class=summary>
-背景 現在以下の書籍でフロントのテストを学習しているので、勉強になったDOMの取得方法をまとめる。 書籍通り、ReactのUIコンポーネントのテスト方法を記載していく。
-概要 ReactのUIコンポーネントのDOMを取得する方法で、暗黙的なロールを活用した取得方法があったので、まとめていく
-本題 以下のコンポーネントのテストをしていく。
-import {ReactNode} from "react"; export const Heading = ({children}: {children: ReactNode}) => { return ( &lt;h1>{children}&lt;/h1> ); }; 今回は簡易的に、propsの値がh1タグで表示されているかをテストしていく。
-import {render, screen} from "@testing-library/react"; import {Heading} from "./Heading"; test('propsが値がh1タグに存在していること', () => { render(&lt;Heading>test&lt;/Heading>) expect(screen.getByRole('heading', {name: 'test'})).toBeInTheDocument() }) 上記のgetByRoleの第一引数にheadingを指定しているが、h1タグの暗黙的なロールがheadingであるため、headingを指定している。
-このように暗黙的なロールをうまく使えば、test-idみたいなカスタム属性をなどを使用せずに、テストをかくことができる。 また、Testing Libraryも公式も暗黙的なロールを使用することを推奨している。
-暗黙的なルール一覧はこちらから確認ができる。
-※上記はaria-queryというライブラリのドキュメントであるが、Testing Libraryのライブラリは内部的に依存するので、上記を参考にしても問題ない
-まとめ UIコンポーネントのテストをする際は、暗黙的なロールを使用することで、テストを書きやすくなるので、ぜひ活用していきたい。
-参考文献 Testing Library
-暗黙的なルール一覧(aria-query)
-フロントエンド開発のためのテスト入門 今からでも知っておきたい自動テスト戦略の必須知識
-</p>
-</a>
-</div>
-</div>
-<div class="level is-mobile continue-reading">
-<div class=level-left>
-</div>
-<div class=level-right>
-<a href=/posts/testing-library_getbyrole/>続きを読む <i class="fa fa-angle-double-right" aria-hidden=true></i></a>
 </div>
 </div>
 <hr>

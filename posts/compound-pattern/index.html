@@ -1,0 +1,496 @@
+<!doctype html><html lang=ja-jp>
+<head><title>
+Compound Patternについて |
+TechBlog</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name=description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
+LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+modal.tsx
+const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
+<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.
+    ">
+<meta property="og:image" content="https://issei1213.github.io/img/logo.png">
+<meta name=twitter:card content="summary">
+<meta property="og:title" content="Compound Patternについて">
+<meta property="og:description" content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
+LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+modal.tsx
+const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
+<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://issei1213.github.io/posts/compound-pattern/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-07-31T01:18:06+09:00">
+<meta property="article:modified_time" content="2024-07-31T01:18:06+09:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Compound Patternについて">
+<meta name=twitter:description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
+LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+modal.tsx
+const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
+<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;.">
+<meta itemprop=name content="Compound Patternについて">
+<meta itemprop=description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
+LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+modal.tsx
+const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
+<Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;...&#34;> <p> 平素より弊社サービスをご利用いただき、誠にありがとうございます。 <br /> 下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。 <br /> <br /> 【メンテナンス日時】 <br /> 2024年8月1日（木） 午前2:00 ～ 午前5:00 <br /> <br /> ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。 </p> </div> <div className=&#34;."><meta itemprop=datePublished content="2024-07-31T01:18:06+09:00">
+<meta itemprop=dateModified content="2024-07-31T01:18:06+09:00">
+<meta itemprop=wordCount content="642">
+<meta itemprop=keywords content="Tech,">
+<link rel=canonical href=https://issei1213.github.io/posts/compound-pattern/>
+<link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
+<link rel=stylesheet href=/css/font-awesome.min.css>
+<link rel=stylesheet href=/css/bulma.min.css>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','G-3WPQ6FJXBQ','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
+<script src=/js/ramium.js></script>
+<link rel=stylesheet href=/css/ramium.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3WPQ6FJXBQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config',"G-3WPQ6FJXBQ")</script>
+</head>
+<body><nav class="navbar is-dark" role=navigation aria-label="main navigation">
+<div class=navbar-brand>
+<a class=navbar-item href=/>
+<strong>TechBlog </strong>
+</a>
+<a role=button class="navbar-burger burger" aria-label=menu aria-expanded=false data-target=navbarBasicExample>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span>
+</a>
+</div>
+<div id=navbarBasicExample class=navbar-menu>
+<div class=navbar-start>
+<a class=navbar-item href=/>ホーム</a>
+<div class="navbar-item has-dropdown is-hoverable">
+<a class=navbar-link>ブログ</a>
+<div class=navbar-dropdown>
+<a class=navbar-item href=/tags/>タグ</a>
+<a class=navbar-item href=/posts/>記事</a>
+</div>
+</div>
+</div>
+<div class=navbar-end>
+<a class="navbar-item navgithub" href=https://github.com/issei1213 target=_blank>
+<i class="fa fa-github fa-2x"></i>
+</a>
+<a class="navbar-item navgithub" href=https://twitter.com/abIOELEsEfu6Os0 target=_blank>
+<i class="fa brands fa-twitter fa-2x"></i>
+</a>
+</div>
+</div>
+</nav><div class="columns is-centered">
+<div id=page-body class="column is-7">
+<div class="content blog">
+<h1>Compound Patternについて</h1>
+<div id=infobar class="level is-mobile">
+<div class=level-left>
+<div class=level-item>
+<p class="subtitle info date">Jul 31, 2024
+</p>
+</div>
+<div class=level-item>
+<p class="subtitle info">
+14 mins read
+</p>
+</div>
+</div>
+<div class="level-right is-hidden-touch">
+<div class=tags>
+<a class="tag is-dark is-rounded" href=/tags/tech>Tech</a>
+</div>
+</div>
+</div>
+<div class="tags is-hidden-desktop">
+<a class="tag is-dark is-rounded" href=/tags/tech>Tech</a>
+</div>
+<div class=blog-text>
+<h2 id=背景>背景</h2>
+<h2 id=ltではcompound-pattern複合パターンについて発表を行った>宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。<br>
+LTではCompound Pattern（複合パターン）について発表を行った。</h2>
+<h2 id=概要>概要</h2>
+<ul>
+<li>Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ</li>
+<li>複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法</li>
+</ul>
+<hr>
+<h2 id=ユースケース>ユースケース</h2>
+<ol>
+<li>お知らせ機能を<code>Modal</code>コンポーネントを使って実装している</li>
+</ol>
+<p><img src=/img/posts/compound-patter/usecase-1.png alt><br>
+実際に使用しているコンポーネントは以下<br>
+<code>modal.tsx</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Modal</span>: <span style=color:#66d9ef>React.FC</span>&lt;<span style=color:#f92672>ModalProps</span>&gt; <span style=color:#f92672>=</span> ({<span style=color:#a6e22e>onClose</span>, <span style=color:#a6e22e>children</span> }) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClose</span>}&gt;
+            &lt;<span style=color:#f92672>dialog</span>
+                <span style=color:#a6e22e>open</span>
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>stopPropagation</span>()}
+            &gt;
+                {<span style=color:#75715e>/* NOTE: モーダル閉じるボタン */</span>}
+                &lt;<span style=color:#f92672>button</span>
+                    <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+                    <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClose</span>}
+                &gt;
+                    &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;close&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> /&gt;
+                &lt;/<span style=color:#f92672>button</span>&gt;
+                {<span style=color:#75715e>/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */</span>}
+                {<span style=color:#a6e22e>children</span>}
+            &lt;/<span style=color:#f92672>dialog</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+</code></pre></div><p><code>modal.tsx</code> を使った実装コード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span>&gt;
+    &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+            <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
+        &lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+        &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+            <span style=color:#960050;background-color:#1e0010>キャンセル</span>
+        &lt;/<span style=color:#f92672>Button</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>Modal</span>&gt;
+</code></pre></div><ol start=2>
+<li>
+<p>次に削除確認モーダルを<code>Modal</code>コンポーネントを使って実装していく。<br>
+しかし、削除確認モーダルには閉じるアイコンが不要なモーダルになっている。
+<img src=/img/posts/compound-patter/usecase-2.png alt></p>
+</li>
+<li>
+<p><code>Modal</code> コンポーネント内部に閉じるボタンが実装している。<br>
+そのため、<code>props</code>(<code>isVisibleCloseButton</code>)を使って、閉じるボタンの表示・非表示を制御する。</p>
+</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalProps</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>children</span>: <span style=color:#66d9ef>ReactNode</span>;
+    <span style=color:#a6e22e>onClose</span><span style=color:#f92672>?:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+    <span style=color:#a6e22e>isVisibleCloseButton?</span>: <span style=color:#66d9ef>boolean</span>; <span style=color:#75715e>// NOTE: オプショナルなpropsを定義
+</span><span style=color:#75715e></span>};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Modal</span>: <span style=color:#66d9ef>React.FC</span>&lt;<span style=color:#f92672>ModalProps</span>&gt; <span style=color:#f92672>=</span> ({
+    <span style=color:#a6e22e>onClose</span>, 
+    <span style=color:#a6e22e>children</span>, 
+    <span style=color:#a6e22e>isVisibleCloseButton</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span> <span style=color:#75715e>// NOTE: デフォルト値を設定して、指定がない場合は基本表示する
+</span><span style=color:#75715e></span>}) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClose</span>}&gt;
+            &lt;<span style=color:#f92672>dialog</span>
+                <span style=color:#a6e22e>open</span>
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>stopPropagation</span>()}
+            &gt;
+                {<span style=color:#75715e>/* NOTE: isVisibleCloseButtonがtrue場合、閉じるボタンを表示する */</span>}
+                {<span style=color:#a6e22e>isVisibleCloseButton</span> <span style=color:#f92672>&amp;&amp;</span> (
+                    &lt;<span style=color:#f92672>button</span>
+                        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+                        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClose</span>}
+                    &gt;
+                        &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;close&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> /&gt;
+                    &lt;/<span style=color:#f92672>button</span>&gt;
+                )}
+
+                {<span style=color:#a6e22e>children</span>}
+            &lt;/<span style=color:#f92672>dialog</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+</code></pre></div><p>変更後の<code>modal.tsx</code> を使った実装コード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>isVisibleCloseButton</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>false</span>}&gt; <span style=color:#75715e>// NOTE: isVisibleCloseButtonをfalseに設定
+</span><span style=color:#75715e></span>    &lt;<span style=color:#f92672>Heading</span> <span style=color:#a6e22e>as</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;h2&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>データ削除の確認</span>&lt;/<span style=color:#f92672>Heading</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+            <span style=color:#960050;background-color:#1e0010>このデータを削除してもよろしいですか？</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>この操作は取り消せません。</span>
+        &lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+        &lt;<span style=color:#f92672>Button</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+            <span style=color:#960050;background-color:#1e0010>キャンセル</span>
+        &lt;/<span style=color:#f92672>Button</span>&gt;
+        &lt;<span style=color:#f92672>Button</span>
+            <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;delete&#34;</span>
+            <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;called delete API&#39;</span>)}
+        &gt;
+            <span style=color:#960050;background-color:#1e0010>削除</span>
+        &lt;/<span style=color:#f92672>Button</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>Modal</span>&gt;
+</code></pre></div><ol start=4>
+<li>
+<p>propsを追加して閉じるアイコンを管理する方法には、以下の問題がある</p>
+<ul>
+<li>表示関連のpropsが増えていく可能性がある<br>
+Ex: Modalコンポーネントの中でフッターの内容まで含めていると、isVisibleFooterみたいなpropsが作成される可能性がある</li>
+<li>オプショナルなpropsが発生するので、デフォルト値を考慮しないといけない</li>
+<li>オプショナルなpropsを作成しない場合、修正箇所が多くなる。</li>
+</ul>
+</li>
+<li>
+<p>上記の問題を解決するために、Compound Patternを使って実装する<br>
+Compound Patternを使った <code>Modal</code> コンポーネント</p>
+</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalProps</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>children</span>: <span style=color:#66d9ef>ReactNode</span>;
+    <span style=color:#a6e22e>onClickBackGround</span><span style=color:#f92672>?:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+
+};
+
+<span style=color:#75715e>// NOTE: Modal全体をラップするコンポーネント
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Modal</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>onClickBackGround</span>, <span style=color:#a6e22e>children</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ModalProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClickBackGround</span>}&gt;
+            &lt;<span style=color:#f92672>dialog</span> <span style=color:#a6e22e>open</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>stopPropagation</span>()}&gt;
+                {<span style=color:#a6e22e>children</span>}
+            &lt;/<span style=color:#f92672>dialog</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalCloseButtonProps</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>onClick</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+};
+
+<span style=color:#75715e>// NOTE: 閉じるアイコンコンポーネント
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalCloseButton</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>onClick</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ModalCloseButtonProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClick</span>}&gt;
+            &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;close&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> /&gt;
+        &lt;/<span style=color:#f92672>button</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalHeaderProps</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PropsWithChildren</span>;
+
+<span style=color:#75715e>// NOTE: ヘッダーテキストコンポーネント
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalHeader</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>children</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ModalHeaderProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalBodyProps</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PropsWithChildren</span>;
+
+<span style=color:#75715e>// NOTE: ボディテキストコンポーネント
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalBody</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>children</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ModalBodyProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;...&#39;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModalFooterProps</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PropsWithChildren</span><span style=color:#f92672>&lt;</span>{
+    <span style=color:#a6e22e>actions?</span>: <span style=color:#66d9ef>ReactElement</span>;
+    <span style=color:#a6e22e>onClickCancel</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+}<span style=color:#f92672>&gt;</span>;
+
+<span style=color:#75715e>// NOTE: フッターテキストコンポーネント
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ModalFooter</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>onClickCancel</span>, <span style=color:#a6e22e>actions</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ModalFooterProps</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> (
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+            &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>ripple</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>dark</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>dialog</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>close</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onClickCancel</span>}&gt;
+                <span style=color:#960050;background-color:#1e0010>キャンセル</span>
+            &lt;/<span style=color:#f92672>button</span>&gt;
+            {<span style=color:#a6e22e>actions</span>}
+        &lt;/<span style=color:#f92672>div</span>&gt;
+    );
+};
+
+<span style=color:#75715e>// NOTE: Modalコンポーネントをオブジェクトとして扱い、各コンポーネントをプロパティとして持つ
+</span><span style=color:#75715e></span><span style=color:#a6e22e>Modal</span>.<span style=color:#a6e22e>CloseButton</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ModalCloseButton</span>;
+<span style=color:#a6e22e>Modal</span>.<span style=color:#a6e22e>Header</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ModalHeader</span>;
+<span style=color:#a6e22e>Modal</span>.<span style=color:#a6e22e>Body</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ModalBody</span>;
+<span style=color:#a6e22e>Modal</span>.<span style=color:#a6e22e>Footer</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ModalFooter</span>;
+
+<span style=color:#66d9ef>export</span> { <span style=color:#a6e22e>Modal</span> };
+</code></pre></div><p>Compound Patternを使った <code>Modal</code> コンポーネントを使った実装コード
+<code>Modal.CloseButton</code> コンポーネントを使って閉じるアイコンを表示していたため、記載しないだけで閉じるアイコンが非表示になる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>Modal</span> <span style=color:#a6e22e>onClickBackGround</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>}&gt;
+    &lt;<span style=color:#f92672>Modal.Header</span>&gt;<span style=color:#960050;background-color:#1e0010>システムメンテナンスのお知らせ</span>&lt;/<span style=color:#f92672>Modal.Header</span>&gt;
+    &lt;<span style=color:#f92672>Modal.Body</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+            <span style=color:#960050;background-color:#1e0010>平素より弊社サービスをご利用いただき、誠にありがとうございます。</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>下記の日程でシステムメンテナンスを実施いたします。メンテナンス期間中はサービスのご利用ができなくなりますので、ご注意ください。</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>【メンテナンス日時】</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#ae81ff>2024</span><span style=color:#960050;background-color:#1e0010>年</span><span style=color:#ae81ff>8</span><span style=color:#960050;background-color:#1e0010>月</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>日（木）</span> <span style=color:#a6e22e>午前2</span>:<span style=color:#66d9ef>00</span> <span style=color:#960050;background-color:#1e0010>～</span> <span style=color:#a6e22e>午前5</span>:<span style=color:#66d9ef>00</span>
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            &lt;<span style=color:#f92672>br</span> /&gt;
+            <span style=color:#960050;background-color:#1e0010>ご不便をおかけいたしますが、ご理解とご協力のほど、よろしくお願いいたします。</span>
+        &lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/<span style=color:#f92672>Modal.Body</span>&gt;
+    &lt;<span style=color:#f92672>Modal.Footer</span> <span style=color:#a6e22e>onClickCancel</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>closeModal</span>} /&gt;
+&lt;/<span style=color:#f92672>Modal</span>&gt;
+
+</code></pre></div><h2 id=メリットデメリット>メリット・デメリット</h2>
+<h3 id=メリット>メリット</h3>
+<ul>
+<li>直感的なコンポーネント</li>
+<li>コンポーネントの柔軟性があがる</li>
+<li><code>LocalState</code> や <code>GlobalState</code> がコンポーネント内部で完結することができる、使用する側は意識せずに使用できる</li>
+</ul>
+<h3 id=デメリット>デメリット</h3>
+<ul>
+<li>親コンポーネント→子コンポーネントや、孫コンポーネントに<code>props</code>を渡したい場合、複雑になる。
+<ul>
+<li>Ex:
+<ul>
+<li><code>React.Children</code>や<code>React.cloneElement</code>を使う場合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<details>
+<summary>`React.Children`や`React.cloneElement`を使う場合 </summary>
+<p>今回はドロップダウンを実現するコンポーネントを例に挙げる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>cloneElement</span>,
+  <span style=color:#a6e22e>PropsWithChildren</span>,
+  <span style=color:#a6e22e>Children</span>,
+  <span style=color:#a6e22e>isValidElement</span>,
+  <span style=color:#a6e22e>useState</span>,
+  <span style=color:#a6e22e>ReactNode</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenu</span> <span style=color:#f92672>=</span> ({
+  <span style=color:#a6e22e>valueRender</span>,
+  <span style=color:#a6e22e>children</span>,
+  <span style=color:#a6e22e>onChange</span>,
+  <span style=color:#a6e22e>testProps</span>,
+}<span style=color:#f92672>:</span> <span style=color:#a6e22e>PropsWithChildren</span><span style=color:#f92672>&lt;</span>{
+  <span style=color:#a6e22e>onChange</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+  <span style=color:#a6e22e>valueRender</span>: <span style=color:#66d9ef>ReactNode</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>testProps?</span>: <span style=color:#66d9ef>string</span>;
+}<span style=color:#f92672>&gt;</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>menu</span>, <span style=color:#a6e22e>setMenu</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;close&#39;</span><span style=color:#f92672>&gt;</span>(<span style=color:#e6db74>&#39;close&#39;</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span>
+          <span style=color:#a6e22e>setMenu</span>((<span style=color:#a6e22e>state</span>) <span style=color:#f92672>=&gt;</span> (<span style=color:#a6e22e>state</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;close&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span>))
+        }
+      &gt;
+        {<span style=color:#a6e22e>valueRender</span>}
+      &lt;/<span style=color:#f92672>button</span>&gt;
+      {<span style=color:#a6e22e>menu</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>&amp;&amp;</span> (
+        &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
+            <span style=color:#75715e>// NOTE: childrenをmapして、onChangeを追加
+</span><span style=color:#75715e></span>          {<span style=color:#a6e22e>Children</span>.<span style=color:#a6e22e>map</span>(<span style=color:#a6e22e>children</span>, (<span style=color:#a6e22e>child</span>) <span style=color:#f92672>=&gt;</span>
+            <span style=color:#a6e22e>isValidElement</span>(<span style=color:#a6e22e>child</span>)
+              <span style=color:#f92672>?</span> <span style=color:#a6e22e>cloneElement</span>(<span style=color:#a6e22e>child</span>, {
+                  <span style=color:#a6e22e>onChange</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> {
+                    <span style=color:#a6e22e>onChange</span>(<span style=color:#a6e22e>child</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>value</span>);
+                    <span style=color:#a6e22e>setMenu</span>(<span style=color:#e6db74>&#39;close&#39;</span>);
+                  },
+                  <span style=color:#a6e22e>testProps</span>: <span style=color:#66d9ef>testProps</span>,
+                  <span style=color:#75715e>// testProps: &#39;dummyProps&#39;, // シャローマージにより上書きされてしまう
+</span><span style=color:#75715e></span>                })
+              <span style=color:#f92672>:</span> <span style=color:#a6e22e>child</span>,
+          )}
+        &lt;/<span style=color:#f92672>ul</span>&gt;
+      )}
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenuItem</span> <span style=color:#f92672>=</span> ({
+  <span style=color:#a6e22e>children</span>,
+  <span style=color:#a6e22e>value</span>,
+  <span style=color:#a6e22e>onChange</span>,
+}<span style=color:#f92672>:</span> <span style=color:#a6e22e>PropsWithChildren</span><span style=color:#f92672>&lt;</span>{
+  <span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>onChange</span><span style=color:#f92672>?:</span> (<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+}<span style=color:#f92672>&gt;</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>li</span>
+      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
+      <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChange</span> <span style=color:#f92672>&amp;&amp;</span> (() <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>onChange</span>(<span style=color:#a6e22e>value</span>))}
+    &gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex gap-3 items-center&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>li</span>&gt;
+  );
+};
+
+<span style=color:#a6e22e>SelectMenu</span>.<span style=color:#a6e22e>Item</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>SelectMenuItem</span>;
+
+<span style=color:#66d9ef>export</span> { <span style=color:#a6e22e>SelectMenu</span> };
+</code></pre></div><p>実装コード</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx>&lt;<span style=color:#f92672>SelectMenu</span>
+    <span style=color:#a6e22e>valueRender</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>selected</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>selected</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;未選択&#39;</span>}
+    <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeMenu</span>}
+&gt;
+    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span>&gt;
+        &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;instagram&#34;</span> /&gt;
+        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+            <span style=color:#a6e22e>Instagram</span>
+        &lt;/<span style=color:#f92672>Typography</span>&gt;
+    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span>&gt;
+        &lt;<span style=color:#f92672>Icon</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;linkedin&#34;</span> /&gt;
+        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+            <span style=color:#a6e22e>LinkedIn</span>
+        &lt;/<span style=color:#f92672>Typography</span>&gt;
+    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+    &lt;<span style=color:#f92672>SelectMenu.Item</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x&#34;</span>&gt;
+        &lt;<span style=color:#f92672>Typography</span> <span style=color:#a6e22e>variant</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tertiary&#34;</span> <span style=color:#a6e22e>size</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sm&#34;</span>&gt;
+            <span style=color:#a6e22e>X</span><span style=color:#960050;background-color:#1e0010>（旧</span><span style=color:#a6e22e>Twitter</span><span style=color:#960050;background-color:#1e0010>）</span>
+        &lt;/<span style=color:#f92672>Typography</span>&gt;
+    &lt;/<span style=color:#f92672>SelectMenu.Item</span>&gt;
+&lt;/<span style=color:#f92672>SelectMenu</span>&gt;
+
+</code></pre></div></details>
+- `createContext`などを用いた`GlobalStore`を使う場合
+---
+## 感想
+今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う
+コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。
+<hr>
+<h2 id=参考文献>参考文献</h2>
+<p><a href=https://tegehoge.connpass.com/event/323105/ target=_blank>React勉強会 Vol.1</a><br>
+<a href=https://tyotto-good.com/react/compound-component target=_blank>【React デザインパターン】Compound Components を使って直感的なコンポーネントを実装しよう</a><br>
+<a href=https://www.patterns.dev/react/compound-pattern target=_blank>Compound Pattern</a></p>
+</div>
+</div><div id=social-media-share class=has-text-centered>
+<br>
+<div class=share-buttons>
+</div>
+</div>
+<br>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<footer class="footer has-background-dark">
+<div class="content has-text-centered has-text-white">
+<p>© 2022 issei1213 All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>
