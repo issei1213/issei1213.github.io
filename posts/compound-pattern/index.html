@@ -40,7 +40,7 @@ modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;."><meta itemprop=datePublished content="2024-07-31T01:18:06+09:00">
 <meta itemprop=dateModified content="2024-07-31T01:18:06+09:00">
-<meta itemprop=wordCount content="895">
+<meta itemprop=wordCount content="906">
 <meta itemprop=keywords content="Tech,">
 <link rel=canonical href=https://issei1213.github.io/posts/compound-pattern/>
 <link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
@@ -250,12 +250,12 @@ LTではCompound Pattern（複合パターン）について発表を行った�
 }
 </code></pre></div><ol start=4>
 <li>
-<p>propsを追加して閉じるアイコンを管理する方法には、以下の問題がある</p>
+<p><code>props</code>を追加して閉じるアイコンを管理する方法には、以下の問題がある</p>
 <ul>
-<li>表示関連のpropsが増えていく可能性がある<br>
-Ex: Modalコンポーネントの中でフッターの内容まで含めていると、isVisibleFooterみたいなpropsが作成される可能性がある</li>
-<li>オプショナルなpropsが発生するので、デフォルト値を考慮しないといけない</li>
-<li>オプショナルなpropsを作成しない場合、修正箇所が多くなる。</li>
+<li>表示関連の <code>props</code> が増えていく可能性がある<br>
+Ex: <code>Modal</code> コンポーネントの中でフッターの内容まで含めていると、<code>isVisibleFooter</code> みたいな <code>props</code> が作成される可能性がある</li>
+<li>オプショナルな <code>props</code> が発生するので、デフォルト値を考慮しないといけない</li>
+<li>オプショナルな <code>props</code> を作成しない場合、修正箇所が多くなる。</li>
 </ul>
 </li>
 <li>
@@ -584,6 +584,7 @@ ChildrenやcloneElementがレガシーなコードになるため、注意が必
 <h2 id=感想>感想</h2>
 <p>今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う<br>
 コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。</p>
+<p>宮崎のReact勉強会はまた次回も参加したいと思った。宮崎在住の方で、興味がある方はぜひ参加してみてほしい。</p>
 <hr>
 <h2 id=参考文献>参考文献</h2>
 <p><a href=https://tegehoge.connpass.com/event/323105/ target=_blank>React勉強会 Vol.1</a><br>
