@@ -4,11 +4,13 @@ date: 2024-07-31T01:18:06+09:00
 tags: 
   - "Tech"
 ---
-## 背景
 
+## 背景
 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。  
 LTではCompound Pattern（複合パターン）について発表を行った。
+
 ---
+
 ## 概要
 - Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ
 - 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法
@@ -74,7 +76,6 @@ const ModalPage = () => {
         </Modal>
     )
 }
-
 ```
 
 2. 次に削除確認モーダルを`Modal`コンポーネントを使って実装していく。  
@@ -147,7 +148,6 @@ const ModalPage = () => {
         </Modal>
     )
 }
-
 ```
 
 4. propsを追加して閉じるアイコンを管理する方法には、以下の問題がある  
@@ -259,8 +259,6 @@ const ModalPage = () => {
         </Modal>
     )
 }
-
-
 ```
 
 ## メリット・デメリット
@@ -272,7 +270,7 @@ const ModalPage = () => {
 ### デメリット
 - 親コンポーネント→子コンポーネントや、孫コンポーネントに`props`を渡したい場合、複雑になる。
 <details>
-<summary>Ex: React.ChildrenやReact.cloneElementを使う場合 </summary>
+<summary>React.ChildrenやReact.cloneElementを使う場合 </summary>
     
 今回はドロップダウンを実現するコンポーネントを例に挙げる　　
 ChildrenやcloneElementがレガシーなコードになるため、注意が必要
@@ -418,10 +416,10 @@ const SelectMenuList = ({
   const { menu, setMenu, selectedValue } = useContext(SelectMenuContext);
 
   return (
-    <div className="w-1/4">
+    <div className="...">
       <button
         type="button"
-        className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+        className="..."
         onClick={() =>
           setMenu((state) => (state === 'open' ? 'close' : 'open'))
         }
@@ -429,9 +427,7 @@ const SelectMenuList = ({
         {selectedValue ?? '未選択'}
       </button>
       {menu === 'open' && (
-        <ul className="absolute z-10 mt-1 max-h-56 w-1/4 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-          {children}
-        </ul>
+        <ul className="...">{children}</ul>
       )}
     </div>
   );
@@ -447,15 +443,15 @@ const SelectMenuItem = ({
 
   return (
     <li
-      className="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+      className="..."
       onClick={() => {
         setMenu('close');
         setSelectedValue(() => (
-          <div className="flex gap-3 items-center">{children}</div>
+          <div className="...">{children}</div>
         ));
       }}
     >
-      <div className="flex gap-3 items-center">{children}</div>
+      <div className="...">{children}</div>
     </li>
   );
 };
@@ -501,7 +497,7 @@ export const SelectMenuPage = () => {
 
 ---
 ## 感想
-今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う
+今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う  
 コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。
 
 
