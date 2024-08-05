@@ -94,7 +94,8 @@ Compound Patternについて
 <a href=/posts/compound-pattern/>
 <p class=summary>
 背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
-LTではCompound Pattern（複合パターン）について発表を行った。 概要 Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法 ユースケース お知らせ機能をModalコンポーネントを使って実装している 実際に使用しているコンポーネントは以下
+LTではCompound Pattern（複合パターン）について発表を行った。
+概要 Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法 ユースケース お知らせ機能をModalコンポーネントを使って実装している 実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC&lt;ModalProps> = ({onClose, children }) => { return ( &lt;div className="..." onClick={onClose}> &lt;dialog open className="..." onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} &lt;button className="..." onClick={onClose} > &lt;Icon variant="close" className="..." /> &lt;/button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} &lt;/dialog> &lt;/div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( &lt;Modal> &lt;Heading as="h2">システムメンテナンスのお知らせ&lt;/Heading> &lt;div className=".

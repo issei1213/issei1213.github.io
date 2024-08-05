@@ -5,7 +5,8 @@ TechBlog</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name=description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
-LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+LTではCompound Pattern（複合パターン）について発表を行った。
+ 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.
@@ -14,7 +15,8 @@ const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システム
 <meta name=twitter:card content="summary">
 <meta property="og:title" content="Compound Patternについて">
 <meta property="og:description" content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
-LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+LTではCompound Pattern（複合パターン）について発表を行った。
+ 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.">
@@ -25,18 +27,20 @@ const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システム
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Compound Patternについて">
 <meta name=twitter:description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
-LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+LTではCompound Pattern（複合パターン）について発表を行った。
+ 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;.">
 <meta itemprop=name content="Compound Patternについて">
 <meta itemprop=description content="背景 宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。
-LTではCompound Pattern（複合パターン）について発表を行った。 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
+LTではCompound Pattern（複合パターン）について発表を行った。
+ 概要  Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ 複数のコンポーネントを組み合わせて、複雑なコンポーネントを構築する方法   ユースケース  お知らせ機能をModalコンポーネントを使って実装している  実際に使用しているコンポーネントは以下
 modal.tsx
 const Modal: React.FC<ModalProps> = ({onClose, children }) => { return ( <div className=&#34;...&#34; onClick={onClose}> <dialog open className=&#34;...&#34; onClick={(e) => e.stopPropagation()} > {/* NOTE: モーダル閉じるボタン */} <button className=&#34;...&#34; onClick={onClose} > <Icon variant=&#34;close&#34; className=&#34;...&#34; /> </button> {/* NOTE: ヘッダー・テキスト・フッターなどはchildrenで表示 */} {children} </dialog> </div> ); }; modal.tsx を使った実装コード
 const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システムメンテナンスのお知らせ</Heading> <div className=&#34;."><meta itemprop=datePublished content="2024-07-31T01:18:06+09:00">
 <meta itemprop=dateModified content="2024-07-31T01:18:06+09:00">
-<meta itemprop=wordCount content="941">
+<meta itemprop=wordCount content="895">
 <meta itemprop=keywords content="Tech,">
 <link rel=canonical href=https://issei1213.github.io/posts/compound-pattern/>
 <link rel=icon type=image/png href=https://issei1213.github.io/img/favicon.png>
@@ -107,8 +111,9 @@ const ModalPage = () => { return ( <Modal> <Heading as=&#34;h2&#34;>システム
 </div>
 <div class=blog-text>
 <h2 id=背景>背景</h2>
-<h2 id=ltではcompound-pattern複合パターンについて発表を行った>宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。<br>
-LTではCompound Pattern（複合パターン）について発表を行った。</h2>
+<p>宮崎のReact勉強会で小規模なLTをしたので、発表した内容をまとめる。<br>
+LTではCompound Pattern（複合パターン）について発表を行った。</p>
+<hr>
 <h2 id=概要>概要</h2>
 <ul>
 <li>Compound Pattern（複合パターン）とは、コンポーネント設計パターンの一つ</li>
@@ -172,7 +177,6 @@ LTではCompound Pattern（複合パターン）について発表を行った�
         &lt;/<span style=color:#f92672>Modal</span>&gt;
     )
 }
-
 </code></pre></div><ol start=2>
 <li>
 <p>次に削除確認モーダルを<code>Modal</code>コンポーネントを使って実装していく。<br>
@@ -244,7 +248,6 @@ LTではCompound Pattern（複合パターン）について発表を行った�
         &lt;/<span style=color:#f92672>Modal</span>&gt;
     )
 }
-
 </code></pre></div><ol start=4>
 <li>
 <p>propsを追加して閉じるアイコンを管理する方法には、以下の問題がある</p>
@@ -357,8 +360,6 @@ Compound Patternを使った <code>Modal</code> コンポーネント</p>
         &lt;/<span style=color:#f92672>Modal</span>&gt;
     )
 }
-
-
 </code></pre></div><h2 id=メリットデメリット>メリット・デメリット</h2>
 <h3 id=メリット>メリット</h3>
 <ul>
@@ -371,7 +372,7 @@ Compound Patternを使った <code>Modal</code> コンポーネント</p>
 <li>親コンポーネント→子コンポーネントや、孫コンポーネントに<code>props</code>を渡したい場合、複雑になる。</li>
 </ul>
 <details>
-<summary>Ex: React.ChildrenやReact.cloneElementを使う場合 </summary>
+<summary>React.ChildrenやReact.cloneElementを使う場合 </summary>
 <p>今回はドロップダウンを実現するコンポーネントを例に挙げる　　
 ChildrenやcloneElementがレガシーなコードになるため、注意が必要</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SelectMenu</span> <span style=color:#f92672>=</span> ({
@@ -506,10 +507,10 @@ ChildrenやcloneElementがレガシーなコードになるため、注意が必
   <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>menu</span>, <span style=color:#a6e22e>setMenu</span>, <span style=color:#a6e22e>selectedValue</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>SelectMenuContext</span>);
 
   <span style=color:#66d9ef>return</span> (
-    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-1/4&#34;</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;
       &lt;<span style=color:#f92672>button</span>
         <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
-        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
         <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span>
           <span style=color:#a6e22e>setMenu</span>((<span style=color:#a6e22e>state</span>) <span style=color:#f92672>=&gt;</span> (<span style=color:#a6e22e>state</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;close&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span>))
         }
@@ -517,9 +518,7 @@ ChildrenやcloneElementがレガシーなコードになるため、注意が必
         {<span style=color:#a6e22e>selectedValue</span> <span style=color:#f92672>??</span> <span style=color:#e6db74>&#39;未選択&#39;</span>}
       &lt;/<span style=color:#f92672>button</span>&gt;
       {<span style=color:#a6e22e>menu</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;open&#39;</span> <span style=color:#f92672>&amp;&amp;</span> (
-        &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;absolute z-10 mt-1 max-h-56 w-1/4 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm&#34;</span>&gt;
-          {<span style=color:#a6e22e>children</span>}
-        &lt;/<span style=color:#f92672>ul</span>&gt;
+        &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>ul</span>&gt;
       )}
     &lt;/<span style=color:#f92672>div</span>&gt;
   );
@@ -535,15 +534,15 @@ ChildrenやcloneElementがレガシーなコードになるため、注意が必
 
   <span style=color:#66d9ef>return</span> (
     &lt;<span style=color:#f92672>li</span>
-      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900&#34;</span>
+      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>
       <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
         <span style=color:#a6e22e>setMenu</span>(<span style=color:#e6db74>&#39;close&#39;</span>);
         <span style=color:#a6e22e>setSelectedValue</span>(() <span style=color:#f92672>=&gt;</span> (
-          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex gap-3 items-center&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
         ));
       }}
     &gt;
-      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex gap-3 items-center&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;...&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>div</span>&gt;
     &lt;/<span style=color:#f92672>li</span>&gt;
   );
 };
@@ -583,7 +582,7 @@ ChildrenやcloneElementがレガシーなコードになるため、注意が必
 </code></pre></div></details>
 <hr>
 <h2 id=感想>感想</h2>
-<p>今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う
+<p>今回のユースケースで提示したような、コンポーネント間でpropsを共有しないケースは、積極的に使っていいと思う<br>
 コンポーネント間でprops渡しが発生する場合は、実装方法が主に２パターンがあるので、チーム内で議論して決めていく必要があると思う。</p>
 <hr>
 <h2 id=参考文献>参考文献</h2>
